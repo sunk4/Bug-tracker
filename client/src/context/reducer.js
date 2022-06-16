@@ -40,7 +40,7 @@ const reducer = (state, action) => {
       isLoading: false,
       showAlert: true,
       alertType: 'success',
-      alertText: 'User Created! Redirecting...',
+      alertText: 'User Created! Now you can login',
     }
   }
 
@@ -65,6 +65,7 @@ const reducer = (state, action) => {
     return {
       ...state,
       user: action.payload.user,
+      isLoading: false,
       showAlert: true,
       alertType: 'success',
       alertText: 'User Logged in! Redirecting... ',
@@ -73,6 +74,7 @@ const reducer = (state, action) => {
   if (action.type === LOGIN_USER_ERROR) {
     return {
       ...state,
+      isLoading: false,
       showAlert: true,
       alertType: 'danger',
       alertText: action.payload.msg,
@@ -82,7 +84,7 @@ const reducer = (state, action) => {
   if (action.type === 'A') {
     return {
       ...state,
-      isLoading: true,
+      isLoading: false,
     }
   }
   if (action.type === 'B') {

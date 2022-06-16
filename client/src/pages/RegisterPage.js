@@ -17,6 +17,9 @@ const RegisterPage = () => {
 
   const { isLoading, displayAlert, registerUser, user, loginUser } =
     useAppContext()
+
+  console.log(isLoading)
+
   const navigate = useNavigate()
 
   const handleChange = (e) => {
@@ -106,7 +109,7 @@ const RegisterPage = () => {
           handleChange={handleChange}
         />
 
-        <button type="submit" className="btn btn-block">
+        <button type="submit" className="btn btn-block" disabled={isLoading}>
           {values.isMember ? 'Register' : 'Login'}
         </button>
         <p>
