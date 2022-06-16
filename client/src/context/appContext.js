@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useReducer } from 'react'
+import React, { useEffect, useContext, useReducer, useState } from 'react'
 import axios from 'axios'
 import reducer from './reducer'
 import {
@@ -68,9 +68,29 @@ const AppProvider = ({ children }) => {
     clearAlert()
   }
 
+  const showMe = async () => {
+    dispatch({ type: 'A' })
+    try {
+      const response = await axios.get('/api/v1/users/showMe')
+      const { user } = response.data
+      console.log({ user })
+      dispatch({ type: 'B', payload: { user } })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(() => {
+    showMe()
+  }, [])
+
   return (
     <AppContext.Provider
-      value={{ ...state, displayAlert, registerUser, loginUser }}
+      value={{
+        ...state,
+        displayAlert,
+        registerUser,
+        loginUser,
+      }}
     >
       {children}
     </AppContext.Provider>

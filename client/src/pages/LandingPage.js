@@ -2,8 +2,20 @@ import LandingImg from '../assets/images/Landing-img.png'
 import { Navbar, Footer } from '../components'
 import { Link } from 'react-router-dom'
 import Wrapper from '../assets/wrappers/LandingPage'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useAppContext } from '../context/appContext'
 
 const LandingPage = () => {
+  const { user } = useAppContext()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (user) {
+      navigate('/')
+    }
+  }, [user, navigate])
+
   return (
     <main className="full-page">
       <Navbar />

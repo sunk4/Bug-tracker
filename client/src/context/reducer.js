@@ -79,6 +79,19 @@ const reducer = (state, action) => {
     }
   }
 
+  if (action.type === 'A') {
+    return {
+      ...state,
+      isLoading: true,
+    }
+  }
+  if (action.type === 'B') {
+    return {
+      ...state,
+      user: action.payload.user,
+    }
+  }
+
   throw new Error(`no such action :${action.type}`)
 }
 

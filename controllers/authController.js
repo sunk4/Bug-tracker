@@ -1,7 +1,12 @@
 import User from '../models/User.js'
+import Token from '../models/Token.js'
 import { StatusCodes } from 'http-status-codes'
 import { BadRequestError, UnauthenticatedError } from '../errors/index.js'
-import { createTokenUser, attachCookiesToResponse } from '../utils/index.js'
+import {
+  createTokenUser,
+  attachCookiesToResponse,
+  sendVerificationEmail,
+} from '../utils/index.js'
 import crypto from 'crypto'
 
 const register = async (req, res) => {
@@ -34,9 +39,19 @@ const register = async (req, res) => {
     verificationToken,
   })
 
+  const origin = 'http://localhost:3000'
+
+  await sendVerificationEmail({
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
+    verificationToken: user.verificationToken,
+    origin,
+  })
+
   res
     .status(StatusCodes.CREATED)
-    .json({ msg: 'success', token: user.verificationToken })
+    .json({ msg: 'success, please check your email to verify account' })
 }
 
 const verifyEmail = async (req, res) => {
@@ -81,12 +96,40 @@ const login = async (req, res) => {
   }
 
   const tokenUser = createTokenUser(user)
-  attachCookiesToResponse({ res, user: tokenUser })
+
+  let refreshToken = ''
+
+  const existingToken = await Token.findOne({ user: user._id })
+
+  if (existingToken) {
+    const { isValid } = existingToken
+    if (!isValid) {
+      throw new UnauthenticatedError('Invalid credentials')
+    }
+    refreshToken = existingToken.refreshToken
+    attachCookiesToResponse({ res, user: tokenUser, refreshToken })
+    res.status(StatusCodes.OK).json({ user: tokenUser })
+    return
+  }
+
+  refreshToken = crypto.randomBytes(40).toString('hex')
+  const userAgent = req.headers['user-agent']
+  const userToken = { refreshToken, userAgent, user: user.id }
+
+  await Token.create(userToken)
+
+  attachCookiesToResponse({ res, user: tokenUser, refreshToken })
 
   res.status(StatusCodes.OK).json({ user: tokenUser })
 }
 const logout = async (req, res) => {
-  res.cookie('token', 'logout', {
+  await Token.findOneAndDelete({ user: req.user.userId })
+
+  res.cookie('acessToken', 'logout', {
+    httpOnly: true,
+    expires: new Date(Date.now()),
+  })
+  res.cookie('refreshToken', 'logout', {
     httpOnly: true,
     expires: new Date(Date.now()),
   })

@@ -106,7 +106,7 @@ const RegisterPage = () => {
           handleChange={handleChange}
         />
 
-        <button type="submit" className="btn btn-block" disabled={isLoading}>
+        <button type="submit" className="btn btn-block">
           {values.isMember ? 'Register' : 'Login'}
         </button>
         <p>
