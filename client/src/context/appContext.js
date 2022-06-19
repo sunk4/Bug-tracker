@@ -10,6 +10,9 @@ import {
   LOGIN_USER_BEGIN,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
+  SHOW_ME_BEGIN,
+  SHOW_ME_SUCCESS,
+  SHOW_ME_ERROR,
 } from './actions'
 
 export const initialState = {
@@ -69,14 +72,17 @@ const AppProvider = ({ children }) => {
   }
 
   const showMe = async () => {
-    dispatch({ type: 'A' })
+    dispatch({ type: SHOW_ME_BEGIN })
     try {
       const response = await axios.get('/api/v1/users/showMe')
       const { user } = response.data
       console.log({ user })
-      dispatch({ type: 'B', payload: { user } })
+      dispatch({ type: SHOW_ME_SUCCESS, payload: { user } })
     } catch (error) {
-      console.log(error)
+      dispatch({
+        type: SHOW_ME_ERROR,
+        payload: { msg: error.response.data.msg },
+      })
     }
   }
   useEffect(() => {

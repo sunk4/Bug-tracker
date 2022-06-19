@@ -7,6 +7,9 @@ import {
   LOGIN_USER_BEGIN,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
+  SHOW_ME_SUCCESS,
+  SHOW_ME_ERROR,
+  SHOW_ME_BEGIN,
 } from './actions'
 import { initialState } from './appContext'
 
@@ -81,16 +84,26 @@ const reducer = (state, action) => {
     }
   }
 
-  if (action.type === 'A') {
+  if (action.type === SHOW_ME_BEGIN) {
+    return {
+      ...state,
+      isLoading: true,
+    }
+  }
+
+  if (action.type === SHOW_ME_SUCCESS) {
     return {
       ...state,
       isLoading: false,
+      user: action.payload.user,
     }
   }
-  if (action.type === 'B') {
+
+  if (action.type === SHOW_ME_ERROR) {
     return {
       ...state,
-      user: action.payload.user,
+      isLoading: false,
+      user: null,
     }
   }
 
