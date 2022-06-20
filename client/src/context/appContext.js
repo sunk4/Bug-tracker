@@ -13,6 +13,9 @@ import {
   SHOW_ME_BEGIN,
   SHOW_ME_SUCCESS,
   SHOW_ME_ERROR,
+  LOGOUT_USER_BEGIN,
+  LOGOUT_USER_SUCCESS,
+  LOGOUT_USER_ERROR,
 } from './actions'
 
 export const initialState = {
@@ -89,6 +92,16 @@ const AppProvider = ({ children }) => {
     showMe()
   }, [])
 
+  const logoutUser = async () => {
+    dispatch({ type: LOGIN_USER_BEGIN })
+    try {
+      await axios.delete('/api/v1/auth/logout')
+      dispatch({ type: LOGOUT_USER_SUCCESS })
+    } catch (error) {
+      dispatch({ type: LOGIN_USER_ERROR })
+    }
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -96,6 +109,7 @@ const AppProvider = ({ children }) => {
         displayAlert,
         registerUser,
         loginUser,
+        logoutUser,
       }}
     >
       {children}

@@ -1,9 +1,8 @@
 import { Navbar, Footer } from '../components'
-// import Wrapper from '../assets/wrappers/AboutPage'
+import Wrapper from '../assets/wrappers/AboutPage'
 import googleImg from '../assets/images/google.png'
 import meImg from '../assets/images/romanTrnka.jpg'
 import godImg from '../assets/images/god.jpg'
-import styled from 'styled-components'
 
 const AboutPage = () => {
   return (
@@ -48,37 +47,5 @@ const AboutPage = () => {
     </main>
   )
 }
-
-const Wrapper = styled.section`
-  h2 {
-    text-align: center;
-  }
-  .about-section {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: 'a b c';
-    gap: 1rem;
-  }
-
-  .member {
-    margin: 5rem;
-  }
-
-  .first-member {
-    grid-area: a;
-  }
-  .second-member {
-    grid-area: b;
-  }
-  .third-member {
-    grid-area: c;
-  }
-
-  img {
-    width: 40%;
-    border-radius: 50%;
-  }
-`
 
 export default AboutPage
