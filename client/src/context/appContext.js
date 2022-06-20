@@ -76,7 +76,7 @@ const AppProvider = ({ children }) => {
     try {
       const response = await axios.get('/api/v1/users/showMe')
       const { user } = response.data
-      console.log({ user })
+
       dispatch({ type: SHOW_ME_SUCCESS, payload: { user } })
     } catch (error) {
       dispatch({
