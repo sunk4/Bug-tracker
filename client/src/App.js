@@ -9,7 +9,6 @@ import {
 } from './pages/dashboard'
 
 const App = () => {
-  console.log(document.cookie)
   return (
     <BrowserRouter>
       <Routes>

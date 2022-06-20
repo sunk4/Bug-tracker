@@ -7,6 +7,9 @@ import {
   LOGIN_USER_BEGIN,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
+  SHOW_ME_SUCCESS,
+  SHOW_ME_ERROR,
+  SHOW_ME_BEGIN,
 } from './actions'
 import { initialState } from './appContext'
 
@@ -40,7 +43,7 @@ const reducer = (state, action) => {
       isLoading: false,
       showAlert: true,
       alertType: 'success',
-      alertText: 'User Created! Redirecting...',
+      alertText: 'User Created! Now you can login',
     }
   }
 
@@ -65,6 +68,7 @@ const reducer = (state, action) => {
     return {
       ...state,
       user: action.payload.user,
+      isLoading: false,
       showAlert: true,
       alertType: 'success',
       alertText: 'User Logged in! Redirecting... ',
@@ -73,9 +77,33 @@ const reducer = (state, action) => {
   if (action.type === LOGIN_USER_ERROR) {
     return {
       ...state,
+      isLoading: false,
       showAlert: true,
       alertType: 'danger',
       alertText: action.payload.msg,
+    }
+  }
+
+  if (action.type === SHOW_ME_BEGIN) {
+    return {
+      ...state,
+      isLoading: true,
+    }
+  }
+
+  if (action.type === SHOW_ME_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      user: action.payload.user,
+    }
+  }
+
+  if (action.type === SHOW_ME_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      user: null,
     }
   }
 

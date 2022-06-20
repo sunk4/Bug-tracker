@@ -17,6 +17,7 @@ const RegisterPage = () => {
 
   const { isLoading, displayAlert, registerUser, user, loginUser } =
     useAppContext()
+
   const navigate = useNavigate()
 
   const handleChange = (e) => {
@@ -56,7 +57,7 @@ const RegisterPage = () => {
         navigate('/')
       }, 2000)
     }
-  }, [user, navigate])
+  }, [navigate, user])
 
   return (
     <section>

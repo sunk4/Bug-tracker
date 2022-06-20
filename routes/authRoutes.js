@@ -8,9 +8,11 @@ import {
   verifyEmail,
 } from '../controllers/authController.js'
 
+import { authenticateUser } from '../middleware/authentication.js'
+
 router.route('/register').post(register)
 router.route('/login').post(login)
-router.route('/logout').get(logout)
+router.route('/logout').delete(authenticateUser, logout)
 router.route('/verify-email').post(verifyEmail)
 
 export default router
