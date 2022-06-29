@@ -1,21 +1,21 @@
 import React from 'react'
 import Wrapper from '../assets/wrappers/ErrorPage'
-import { Navbar, Footer } from '../components'
+import { Footer } from '../components'
 import { Link } from 'react-router-dom'
 import errorImage from '../assets/images/error_404.svg'
 
 const ErrorPage = () => {
   return (
-    <main className="full-page">
-      <Navbar />
-      <Wrapper>
+    <Wrapper>
+      <section>
         <img src={errorImage} alt="error" />
+        <h4>Ops page does not exist :-&#x28;</h4>
         <Link to="/landing" className="btn">
           back home
         </Link>
-      </Wrapper>
+      </section>
       <Footer />
-    </main>
+    </Wrapper>
   )
 }
 

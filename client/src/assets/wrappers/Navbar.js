@@ -18,14 +18,9 @@ const Wrapper = styled.nav`
     text-decoration: underline;
   }
 
-  .active-home {
-    color: var(--primary-500);
-    text-decoration: underline;
-  }
-
+  .active-home,
   .active-about {
     color: var(--primary-500);
-    text-decoration: underline;
   }
 
   .logo {
