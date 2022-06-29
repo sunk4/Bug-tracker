@@ -93,12 +93,12 @@ const AppProvider = ({ children }) => {
   }, [])
 
   const logoutUser = async () => {
-    dispatch({ type: LOGIN_USER_BEGIN })
+    dispatch({ type: LOGOUT_USER_BEGIN })
     try {
       await axios.delete('/api/v1/auth/logout')
       dispatch({ type: LOGOUT_USER_SUCCESS })
     } catch (error) {
-      dispatch({ type: LOGIN_USER_ERROR })
+      dispatch({ type: LOGOUT_USER_ERROR })
     }
   }
 

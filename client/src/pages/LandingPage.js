@@ -17,10 +17,10 @@ const LandingPage = () => {
   }, [user, navigate])
 
   return (
-    <main className="full-page">
+    <Wrapper>
       <Navbar />
-      <Wrapper>
-        <div className="section">
+      <section>
+        <div>
           <h1>
             Bug <span>Tracker</span> App
           </h1>
@@ -34,10 +34,13 @@ const LandingPage = () => {
             Login/Register
           </Link>
         </div>
-        <img src={LandingImg} alt="programmer" />
-      </Wrapper>
+        <div>
+          <img src={LandingImg} alt="programmer" />
+        </div>
+      </section>
+
       <Footer />
-    </main>
+    </Wrapper>
   )
 }
 

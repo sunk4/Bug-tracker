@@ -1,16 +1,21 @@
 import styled from 'styled-components'
 
-const Wrapper = styled.section`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 2rem;
-  padding: 5rem 2rem;
-  .section {
-    padding: 2rem 7rem;
+const Wrapper = styled.main`
+  section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 17rem;
   }
+
+  p {
+    width: 80%;
+  }
+
   img {
-    width: 400px;
+    width: 350px;
   }
+
   span {
     color: var(--primary-500);
   }
