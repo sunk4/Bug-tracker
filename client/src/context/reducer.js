@@ -10,6 +10,10 @@ import {
   SHOW_ME_SUCCESS,
   SHOW_ME_ERROR,
   SHOW_ME_BEGIN,
+  LOGOUT_USER,
+  LOGOUT_USER_BEGIN,
+  LOGOUT_USER_SUCCESS,
+  LOGOUT_USER_ERROR,
 } from './actions'
 import { initialState } from './appContext'
 
@@ -104,6 +108,25 @@ const reducer = (state, action) => {
       ...state,
       isLoading: false,
       user: null,
+    }
+  }
+
+  if (action.type === LOGOUT_USER_BEGIN) {
+    return {
+      ...state,
+      isLoading: true,
+    }
+  }
+  if (action.type === LOGOUT_USER_SUCCESS) {
+    return {
+      ...state,
+      user: null,
+    }
+  }
+  if (action.type === LOGOUT_USER_ERROR) {
+    return {
+      ...state,
+      isLoading: true,
     }
   }
 

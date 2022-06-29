@@ -1,34 +1,35 @@
 import styled from 'styled-components'
 
 const Wrapper = styled.nav`
-  .nav-center {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-  }
-  .nav-header {
-    display: flex;
-    justify-content: center;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 50% 0 8rem;
+  height: 10%;
+
   .nav-links {
     display: flex;
-    justify-content: center;
-    li {
-      margin: 0 0.5rem;
-      a {
-        color: var(--grey-700);
-        font-size: 1.5rem;
-        text-transform: capitalize;
-        letter-spacing: var(--letter-spacing);
-        padding: 0.5rem;
-        &:hover {
-          border-bottom: 2px solid var(--primary-600);
-        }
-      }
-    }
+    gap: 0 2rem;
   }
+  .nav-links li {
+    font-size: 1.5rem;
+  }
+  li:hover {
+    text-decoration: underline;
+  }
+
+  .active-home {
+    color: var(--primary-500);
+    text-decoration: underline;
+  }
+
+  .active-about {
+    color: var(--primary-500);
+    text-decoration: underline;
+  }
+
   .logo {
-    width: 220px;
+    width: 250px;
   }
 `
 
