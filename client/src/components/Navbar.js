@@ -12,7 +12,7 @@ const Navbar = () => {
         <li>
           <NavLink
             to="/landing"
-            className={({ isActive }) => isActive && 'active'}
+            className={({ isActive }) => isActive && 'active-home'}
           >
             Home
           </NavLink>
@@ -20,7 +20,7 @@ const Navbar = () => {
         <li>
           <NavLink
             to="/about"
-            className={({ isActive }) => isActive && 'active'}
+            className={({ isActive }) => isActive && 'active-about'}
           >
             About us
           </NavLink>

@@ -121,12 +121,13 @@ const reducer = (state, action) => {
     return {
       ...state,
       user: null,
+      isLoading: false,
     }
   }
   if (action.type === LOGOUT_USER_ERROR) {
     return {
       ...state,
-      isLoading: true,
+      isLoading: false,
     }
   }
 

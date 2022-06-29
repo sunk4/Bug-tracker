@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Logo, FormRow, Alert } from '../components'
 import { useAppContext } from '../context/appContext'
+import Wrapper from '../assets/wrappers/RegisterPage'
 
 const initialState = {
   firstName: '',
@@ -9,7 +10,7 @@ const initialState = {
   phoneNumber: '',
   email: '',
   password: '',
-  isMember: false,
+  isMember: true,
 }
 
 const RegisterPage = () => {
@@ -31,9 +32,9 @@ const RegisterPage = () => {
     if (
       !email ||
       !password ||
-      (isMember && !firstName) ||
-      (isMember && !lastName) ||
-      (isMember && !phoneNumber)
+      (!isMember && !firstName) ||
+      (!isMember && !lastName) ||
+      (!isMember && !phoneNumber)
     ) {
       displayAlert()
       return
@@ -41,9 +42,9 @@ const RegisterPage = () => {
     const currentUser = { firstName, lastName, email, password, phoneNumber }
 
     if (isMember) {
-      registerUser(currentUser)
-    } else {
       loginUser(currentUser)
+    } else {
+      registerUser(currentUser)
     }
   }
 
@@ -60,12 +61,15 @@ const RegisterPage = () => {
   }, [navigate, user])
 
   return (
-    <section>
+    <Wrapper>
       <form className="form" onSubmit={onSubmit}>
-        <Logo />
-        <h3>{values.isMember ? 'Register' : 'Login'}</h3>
+        <div className="header-form">
+          <Logo />
+          <h3>{values.isMember ? 'Login' : 'Register'}</h3>
+        </div>
         <Alert />
-        {values.isMember && (
+
+        {!values.isMember && (
           <FormRow
             labelText="First Name"
             name="firstName"
@@ -74,7 +78,7 @@ const RegisterPage = () => {
             handleChange={handleChange}
           />
         )}
-        {values.isMember && (
+        {!values.isMember && (
           <FormRow
             labelText="Last Name"
             name="lastName"
@@ -83,7 +87,8 @@ const RegisterPage = () => {
             handleChange={handleChange}
           />
         )}
-        {values.isMember && (
+
+        {!values.isMember && (
           <FormRow
             labelText="Phone number"
             name="phoneNumber"
@@ -92,6 +97,7 @@ const RegisterPage = () => {
             handleChange={handleChange}
           />
         )}
+
         <FormRow
           labelText="Email"
           name="email"
@@ -99,6 +105,7 @@ const RegisterPage = () => {
           value={values.email}
           handleChange={handleChange}
         />
+
         <FormRow
           labelText="Password"
           name="password"
@@ -108,16 +115,16 @@ const RegisterPage = () => {
         />
 
         <button type="submit" className="btn btn-block" disabled={isLoading}>
-          {values.isMember ? 'Register' : 'Login'}
+          {values.isMember ? 'Login' : 'Register'}
         </button>
         <p>
-          {values.isMember ? 'Already a member' : 'Not member yet'}
-          <button onClick={toggleMember}>
-            {values.isMember ? 'Login' : 'Register'}
+          {values.isMember ? 'Not a member yet?' : 'Already a member?'}
+          <button type="button" onClick={toggleMember} className="member-btn">
+            {values.isMember ? 'Register' : 'Login'}
           </button>
         </p>
       </form>
-    </section>
+    </Wrapper>
   )
 }
 
