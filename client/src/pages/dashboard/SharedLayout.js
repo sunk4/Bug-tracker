@@ -5,7 +5,7 @@ import { FaTicketAlt } from 'react-icons/fa'
 import { GrUserAdmin } from 'react-icons/gr'
 
 import Wrapper from '../../assets/wrappers/SharedLayout'
-import Header from '../../components/Header'
+import { Header } from '../../components'
 
 const SharedLayout = () => {
   return (

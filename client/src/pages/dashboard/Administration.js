@@ -1,5 +1,5 @@
 const Administration = () => {
-  return <div>Projects</div>
+  return <div>Administration</div>
 }
 
 export default Administration
