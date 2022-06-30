@@ -1,34 +1,34 @@
 import styled from 'styled-components'
 
-const Wrapper = styled.section`
-  h2 {
-    text-align: center;
-  }
-  .about-section {
+const Wrapper = styled.div`
+  .about-main {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: 'a b c';
-    gap: 1rem;
+    gap: 0.5rem;
+    width: 70rem;
+    margin: 0 auto;
   }
 
-  .member {
-    margin: 5rem;
+  .team-member-section {
+    border: 1px solid var(--primary-500);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 22rem;
   }
-
-  .first-member {
-    grid-area: a;
-  }
-  .second-member {
-    grid-area: b;
-  }
-  .third-member {
-    grid-area: c;
-  }
-
-  img {
-    width: 40%;
+  .team-member-img {
+    object-fit: cover;
+    width: 12vw;
+    height: 12vw;
     border-radius: 50%;
+  }
+
+  p {
+    font-size: 1rem;
+    text-align: center;
+    height: 8.75rem;
   }
 `
 
