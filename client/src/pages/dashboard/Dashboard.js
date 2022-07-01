@@ -1,5 +1,7 @@
+import Wrapper from '../../assets/wrappers/AllDashboardPages'
+
 const Dashboard = () => {
-  return <div>projects</div>
+  return <Wrapper>projects</Wrapper>
 }
 
 export default Dashboard

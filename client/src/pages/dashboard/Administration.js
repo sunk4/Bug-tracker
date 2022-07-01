@@ -1,5 +1,7 @@
+import Wrapper from '../../assets/wrappers/AllDashboardPages'
+
 const Administration = () => {
-  return <div>Administration</div>
+  return <Wrapper>Administration</Wrapper>
 }
 
 export default Administration
