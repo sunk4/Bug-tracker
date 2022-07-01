@@ -2,9 +2,12 @@ import styled from 'styled-components'
 
 const Wrapper = styled.header`
   display: flex;
-  height: 55px;
+  height: 60px;
   justify-content: space-between;
-  margin: 0.5rem 5rem 0 2rem;
+  position: fixed;
+  z-index: 1;
+  background-color: var(--grey-200);
+  width: 100%;
 `
 
 export default Wrapper
