@@ -5,6 +5,6 @@ const Wrapper = styled.div`
   top: 60px;
   left: 12rem;
   bottom: 0;
-  background-color: red;
+  width: calc(100% - 12rem);
 `
 export default Wrapper

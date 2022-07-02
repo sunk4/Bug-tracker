@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useReducer, useState } from 'react'
+import React, { useEffect, useContext, useReducer } from 'react'
 import axios from 'axios'
 import reducer from './reducer'
 import {
@@ -16,6 +16,9 @@ import {
   LOGOUT_USER_BEGIN,
   LOGOUT_USER_SUCCESS,
   LOGOUT_USER_ERROR,
+  GET_ALL_USERS_BEGIN,
+  GET_ALL_USERS_SUCCESS,
+  GET_ALL_USERS_ERROR,
 } from './actions'
 
 export const initialState = {
@@ -24,6 +27,7 @@ export const initialState = {
   alertText: '',
   alertType: '',
   user: null,
+  users: [],
 }
 
 const AppContext = React.createContext()
@@ -102,6 +106,24 @@ const AppProvider = ({ children }) => {
     }
   }
 
+  const getAllUsers = async () => {
+    dispatch({ type: GET_ALL_USERS_BEGIN })
+    try {
+      const response = await axios('/api/v1/users')
+      const { users } = response.data
+
+      dispatch({
+        type: GET_ALL_USERS_SUCCESS,
+        payload: { users },
+      })
+    } catch (error) {
+      dispatch({
+        type: GET_ALL_USERS_ERROR,
+        payload: { msg: error.response.data.msg },
+      })
+    }
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -110,6 +132,7 @@ const AppProvider = ({ children }) => {
         registerUser,
         loginUser,
         logoutUser,
+        getAllUsers,
       }}
     >
       {children}
