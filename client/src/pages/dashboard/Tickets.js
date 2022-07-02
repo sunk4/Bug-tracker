@@ -1,4 +1,4 @@
-import Wrapper from '../../assets/wrappers/AllDashboardPages'
+import Wrapper from '../../assets/wrappers/TicketPage'
 
 const Tickets = () => {
   return <Wrapper>Tickets</Wrapper>

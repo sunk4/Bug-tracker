@@ -1,4 +1,4 @@
-import Wrapper from '../../assets/wrappers/AllDashboardPages'
+import Wrapper from '../../assets/wrappers/DashboardPage'
 
 const Dashboard = () => {
   return <Wrapper>projects</Wrapper>

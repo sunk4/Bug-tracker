@@ -7,6 +7,8 @@ import Loading from './Loading'
 import Header from './Header'
 import Sidebar from './Sidebar'
 import UsersContainer from './UsersContainer'
+import AdministrationComponent from './AdministrationComponent'
+import EditUserInformation from './EditUserInformation'
 
 export {
   Logo,
@@ -18,4 +20,6 @@ export {
   Header,
   Sidebar,
   UsersContainer,
+  AdministrationComponent,
+  EditUserInformation,
 }
