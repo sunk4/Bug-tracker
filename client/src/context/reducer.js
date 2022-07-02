@@ -10,10 +10,12 @@ import {
   SHOW_ME_SUCCESS,
   SHOW_ME_ERROR,
   SHOW_ME_BEGIN,
-  LOGOUT_USER,
   LOGOUT_USER_BEGIN,
   LOGOUT_USER_SUCCESS,
   LOGOUT_USER_ERROR,
+  GET_ALL_USERS_BEGIN,
+  GET_ALL_USERS_SUCCESS,
+  GET_ALL_USERS_ERROR,
 } from './actions'
 import { initialState } from './appContext'
 
@@ -128,6 +130,27 @@ const reducer = (state, action) => {
     return {
       ...state,
       isLoading: false,
+    }
+  }
+  if (action.type === GET_ALL_USERS_BEGIN) {
+    return {
+      ...state,
+      isLoading: true,
+    }
+  }
+  if (action.type === GET_ALL_USERS_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      users: action.payload.users,
+    }
+  }
+
+  if (action.type === GET_ALL_USERS_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      alertText: action.payload.msg,
     }
   }
 

@@ -1,5 +1,7 @@
+import Wrapper from '../../assets/wrappers/TicketPage'
+
 const Tickets = () => {
-  return <div>Tickets</div>
+  return <Wrapper>Tickets</Wrapper>
 }
 
 export default Tickets
