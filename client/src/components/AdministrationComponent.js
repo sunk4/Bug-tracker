@@ -19,13 +19,13 @@ const AdministrationComponent = () => {
     <Wrapper>
       <h4>Organization</h4>
       <section className="title-administration">
-        <h6>First Name</h6>
-        <h6>Last Name</h6>
-        <h6>Email</h6>
-        <h6>role</h6>
+        <h5>First Name</h5>
+        <h5>Last Name</h5>
+        <h5>Email</h5>
+        <h5>role</h5>
       </section>
       {users.map((user) => {
-        return <UsersContainer {...user} />
+        return <UsersContainer key={user._id} {...user} />
       })}
     </Wrapper>
   )
