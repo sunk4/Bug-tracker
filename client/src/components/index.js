@@ -9,6 +9,7 @@ import Sidebar from './Sidebar'
 import UsersContainer from './UsersContainer'
 import AdministrationComponent from './AdministrationComponent'
 import EditUserInformation from './EditUserInformation'
+import ModalNewProject from './ModalNewProject'
 
 export {
   Logo,
@@ -22,4 +23,5 @@ export {
   UsersContainer,
   AdministrationComponent,
   EditUserInformation,
+  ModalNewProject,
 }

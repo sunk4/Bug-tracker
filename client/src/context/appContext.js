@@ -19,6 +19,12 @@ import {
   GET_ALL_USERS_BEGIN,
   GET_ALL_USERS_SUCCESS,
   GET_ALL_USERS_ERROR,
+  DISPLAY_MODAL,
+  HIDE_MODAL,
+  HANDLE_CHANGE,
+  CREATE_PROJECT_BEGIN,
+  CREATE_PROJECT_SUCCESS,
+  CREATE_PROJECT_ERROR,
 } from './actions'
 
 export const initialState = {
@@ -28,6 +34,10 @@ export const initialState = {
   alertType: '',
   user: null,
   users: [],
+  showModal: false,
+  projectName: '',
+  projectDescription: '',
+  projectUsers: ['62ab0e2e8cedb30795d2111a'],
 }
 
 const AppContext = React.createContext()
@@ -124,6 +134,38 @@ const AppProvider = ({ children }) => {
     }
   }
 
+  const displayModal = () => {
+    dispatch({ type: DISPLAY_MODAL })
+  }
+
+  const hideModal = () => {
+    dispatch({ type: HIDE_MODAL })
+  }
+
+  const handleChange = ({ name, value }) => {
+    dispatch({ type: HANDLE_CHANGE, payload: { name, value } })
+  }
+
+  const createProject = async () => {
+    dispatch({ type: CREATE_PROJECT_BEGIN })
+
+    try {
+      const { projectName, projectDescription, projectUsers } = state
+
+      await axios.post('/api/v1/projects', {
+        projectName,
+        projectDescription,
+        projectUsers,
+      })
+      dispatch({ type: CREATE_PROJECT_SUCCESS })
+    } catch (error) {
+      dispatch({
+        type: CREATE_PROJECT_ERROR,
+        payload: { msg: error.response.data.msg },
+      })
+    }
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -133,6 +175,10 @@ const AppProvider = ({ children }) => {
         loginUser,
         logoutUser,
         getAllUsers,
+        displayModal,
+        hideModal,
+        handleChange,
+        createProject,
       }}
     >
       {children}

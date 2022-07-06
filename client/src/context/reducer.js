@@ -16,6 +16,12 @@ import {
   GET_ALL_USERS_BEGIN,
   GET_ALL_USERS_SUCCESS,
   GET_ALL_USERS_ERROR,
+  DISPLAY_MODAL,
+  HIDE_MODAL,
+  HANDLE_CHANGE,
+  CREATE_PROJECT_BEGIN,
+  CREATE_PROJECT_SUCCESS,
+  CREATE_PROJECT_ERROR,
 } from './actions'
 import { initialState } from './appContext'
 
@@ -154,6 +160,50 @@ const reducer = (state, action) => {
     }
   }
 
+  if (action.type === DISPLAY_MODAL) {
+    return {
+      ...state,
+      showModal: true,
+    }
+  }
+
+  if (action.type === HIDE_MODAL) {
+    return {
+      ...state,
+      showModal: false,
+    }
+  }
+
+  if (action.type === HANDLE_CHANGE) {
+    return {
+      ...state,
+      [action.payload.name]: action.payload.value,
+    }
+  }
+
+  if (action.type === CREATE_PROJECT_BEGIN) {
+    return { ...state, isLoading: true }
+  }
+
+  if (action.type === CREATE_PROJECT_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: 'success',
+      alertText: 'New project Created!',
+    }
+  }
+
+  if (action.type === CREATE_PROJECT_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: 'danger',
+      alertText: action.payload.msg,
+    }
+  }
   throw new Error(`no such action :${action.type}`)
 }
 
