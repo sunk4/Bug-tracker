@@ -22,6 +22,12 @@ import {
   CREATE_PROJECT_BEGIN,
   CREATE_PROJECT_SUCCESS,
   CREATE_PROJECT_ERROR,
+  GET_ALL_PROJECTS_BEGIN,
+  GET_ALL_PROJECTS_SUCCESS,
+  GET_ALL_PROJECTS_ERROR,
+  GET_ALL_TICKETS_BEGIN,
+  GET_ALL_TICKETS_SUCCESS,
+  GET_ALL_TICKETS_ERROR,
 } from './actions'
 import { initialState } from './appContext'
 
@@ -204,6 +210,53 @@ const reducer = (state, action) => {
       alertText: action.payload.msg,
     }
   }
+
+  if (action.type === GET_ALL_PROJECTS_BEGIN) {
+    return {
+      ...state,
+      isLoading: true,
+    }
+  }
+
+  if (action.type === GET_ALL_PROJECTS_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      projectsAll: action.payload.projects,
+    }
+  }
+
+  if (action.type === GET_ALL_PROJECTS_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      alertText: action.payload.msg,
+    }
+  }
+  if (action.type === GET_ALL_TICKETS_BEGIN) {
+    return {
+      ...state,
+      isLoading: true,
+    }
+  }
+
+  if (action.type === GET_ALL_TICKETS_SUCCESS) {
+    console.log(action.payload.tickets)
+    return {
+      ...state,
+      isLoading: false,
+      ticketsAll: action.payload.tickets,
+    }
+  }
+
+  if (action.type === GET_ALL_TICKETS_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      alertText: action.payload.msg,
+    }
+  }
+
   throw new Error(`no such action :${action.type}`)
 }
 

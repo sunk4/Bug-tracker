@@ -25,6 +25,12 @@ import {
   CREATE_PROJECT_BEGIN,
   CREATE_PROJECT_SUCCESS,
   CREATE_PROJECT_ERROR,
+  GET_ALL_PROJECTS_BEGIN,
+  GET_ALL_PROJECTS_SUCCESS,
+  GET_ALL_PROJECTS_ERROR,
+  GET_ALL_TICKETS_BEGIN,
+  GET_ALL_TICKETS_SUCCESS,
+  GET_ALL_TICKETS_ERROR,
 } from './actions'
 
 export const initialState = {
@@ -38,6 +44,8 @@ export const initialState = {
   projectName: '',
   projectDescription: '',
   projectUsers: ['62ab0e2e8cedb30795d2111a'],
+  projectsAll: [],
+  ticketsAll: [],
 }
 
 const AppContext = React.createContext()
@@ -166,6 +174,38 @@ const AppProvider = ({ children }) => {
     }
   }
 
+  const getAllProjects = async () => {
+    dispatch({ type: GET_ALL_PROJECTS_BEGIN })
+
+    try {
+      const response = await axios('/api/v1/projects')
+      const { projects } = response.data
+
+      dispatch({ type: GET_ALL_PROJECTS_SUCCESS, payload: { projects } })
+    } catch (error) {
+      dispatch({
+        type: GET_ALL_PROJECTS_ERROR,
+        payload: { msg: error.response.data },
+      })
+    }
+  }
+
+  const getAllTickets = async () => {
+    dispatch({ type: GET_ALL_TICKETS_BEGIN })
+
+    try {
+      const response = await axios('/api/v1/tickets')
+      const { tickets } = response.data
+
+      dispatch({ type: GET_ALL_TICKETS_SUCCESS, payload: { tickets } })
+    } catch (error) {
+      dispatch({
+        type: GET_ALL_TICKETS_ERROR,
+        payload: { msg: error.response.data },
+      })
+    }
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -179,6 +219,8 @@ const AppProvider = ({ children }) => {
         hideModal,
         handleChange,
         createProject,
+        getAllProjects,
+        getAllTickets,
       }}
     >
       {children}

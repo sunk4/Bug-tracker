@@ -1,6 +1,6 @@
 import Wrapper from '../assets/wrappers/UsersContainer'
 
-const UsersContainer = ({ firstName, lastName, role, email, _id }) => {
+const UsersContainer = ({ firstName, lastName, role, email }) => {
   return (
     <Wrapper>
       <h5 className="title-user">{firstName}</h5>
