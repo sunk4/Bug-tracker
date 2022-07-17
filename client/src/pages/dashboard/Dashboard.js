@@ -2,13 +2,24 @@ import { useEffect } from 'react'
 import Wrapper from '../../assets/wrappers/DashboardPage'
 import { ListOfProjects, ModalNewProject } from '../../components'
 import { useAppContext } from '../../context/appContext'
-import Loading from '../../components/Loading'
+import { Loading, ChartComponent } from '../../components/'
 const Dashboard = () => {
-  const { showModal, displayModal, getAllProjects, projectsAll, isLoading } =
-    useAppContext()
+  const {
+    showModal,
+    displayModal,
+    getAllProjects,
+    projectsAll,
+    isLoading,
+    getAllTickets,
+    ticketsAll: data,
+  } = useAppContext()
 
   useEffect(() => {
     getAllProjects()
+  }, [])
+
+  useEffect(() => {
+    getAllTickets()
   }, [])
 
   return (
@@ -35,6 +46,8 @@ const Dashboard = () => {
           })}
         </section>
       )}
+
+      <ChartComponent data={data} />
     </Wrapper>
   )
 }

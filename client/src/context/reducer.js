@@ -241,7 +241,6 @@ const reducer = (state, action) => {
   }
 
   if (action.type === GET_ALL_TICKETS_SUCCESS) {
-    console.log(action.payload.tickets)
     return {
       ...state,
       isLoading: false,

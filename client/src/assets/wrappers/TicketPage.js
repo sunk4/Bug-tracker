@@ -6,7 +6,11 @@ const Wrapper = styled.section`
   left: 12rem;
   bottom: 0;
   width: calc(100% - 12rem);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+
+  .titles-tickets {
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid black;
+  }
 `
 export default Wrapper

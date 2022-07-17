@@ -12,6 +12,7 @@ import EditUserInformation from './EditUserInformation'
 import ModalNewProject from './ModalNewProject'
 import ListOfProjects from './ListOfProjects'
 import ChartComponent from './ChartComponent'
+import TicketsContainer from './TicketsContainer'
 
 export {
   Logo,
@@ -28,4 +29,5 @@ export {
   ModalNewProject,
   ListOfProjects,
   ChartComponent,
+  TicketsContainer,
 }

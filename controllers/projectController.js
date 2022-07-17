@@ -21,7 +21,7 @@ const createProject = async (req, res) => {
 const getAllProjects = async (req, res) => {
   const projects = await Project.find({}).populate({
     path: 'user',
-    select: '-password',
+    select: '-password _id',
   })
 
   res.status(StatusCodes.OK).json({ projects, counts: projects.length })
