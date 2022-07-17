@@ -2,13 +2,13 @@ import mongoose from 'mongoose'
 
 const ProjectSchema = new mongoose.Schema(
   {
-    name: {
+    projectName: {
       type: String,
       required: [true, 'Please provide project name'],
       minlength: 1,
       maxlength: 50,
     },
-    description: {
+    projectDescription: {
       type: String,
       required: [true, 'Please provide description of project'],
     },
@@ -17,7 +17,7 @@ const ProjectSchema = new mongoose.Schema(
       ref: 'User',
       required: true,
     },
-    users: {
+    projectUsers: {
       type: Array,
     },
   },

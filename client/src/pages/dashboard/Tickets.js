@@ -1,7 +1,33 @@
+import { useEffect } from 'react'
 import Wrapper from '../../assets/wrappers/TicketPage'
+import { useAppContext } from '../../context/appContext'
+import { TicketsContainer } from '../../components'
 
 const Tickets = () => {
-  return <Wrapper>Tickets</Wrapper>
+  const { getAllTickets, ticketsAll } = useAppContext()
+
+  useEffect(() => {
+    getAllTickets()
+  }, [])
+
+  return (
+    <Wrapper>
+      <div className="main-title">
+        <h4>Tickets</h4>
+      </div>
+      <div className="titles-tickets">
+        <h5>Project</h5>
+        <h5>Ticket</h5>
+        <h5>Type</h5>
+        <h5>Status</h5>
+        <h5>Created at</h5>
+        <h5>Priority</h5>
+      </div>
+      {ticketsAll.map((ticket) => {
+        return <TicketsContainer key={ticket._id} {...ticket} />
+      })}
+    </Wrapper>
+  )
 }
 
 export default Tickets

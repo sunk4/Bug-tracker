@@ -9,6 +9,10 @@ import Sidebar from './Sidebar'
 import UsersContainer from './UsersContainer'
 import AdministrationComponent from './AdministrationComponent'
 import EditUserInformation from './EditUserInformation'
+import ModalNewProject from './ModalNewProject'
+import ListOfProjects from './ListOfProjects'
+import ChartComponent from './ChartComponent'
+import TicketsContainer from './TicketsContainer'
 
 export {
   Logo,
@@ -22,4 +26,8 @@ export {
   UsersContainer,
   AdministrationComponent,
   EditUserInformation,
+  ModalNewProject,
+  ListOfProjects,
+  ChartComponent,
+  TicketsContainer,
 }

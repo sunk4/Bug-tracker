@@ -4,7 +4,7 @@ import { StatusCodes } from 'http-status-codes'
 import { NotFoundError } from '../errors/index.js'
 
 const createProject = async (req, res) => {
-  const { users: usersId } = req.body
+  const { projectUsers: usersId } = req.body
 
   for (let i = 0; i < usersId.length; i++) {
     const userIdExist = await User.findOne({ _id: usersId[i] })
@@ -21,7 +21,7 @@ const createProject = async (req, res) => {
 const getAllProjects = async (req, res) => {
   const projects = await Project.find({}).populate({
     path: 'user',
-    select: '-password',
+    select: '-password _id',
   })
 
   res.status(StatusCodes.OK).json({ projects, counts: projects.length })

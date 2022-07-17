@@ -16,6 +16,18 @@ import {
   GET_ALL_USERS_BEGIN,
   GET_ALL_USERS_SUCCESS,
   GET_ALL_USERS_ERROR,
+  DISPLAY_MODAL,
+  HIDE_MODAL,
+  HANDLE_CHANGE,
+  CREATE_PROJECT_BEGIN,
+  CREATE_PROJECT_SUCCESS,
+  CREATE_PROJECT_ERROR,
+  GET_ALL_PROJECTS_BEGIN,
+  GET_ALL_PROJECTS_SUCCESS,
+  GET_ALL_PROJECTS_ERROR,
+  GET_ALL_TICKETS_BEGIN,
+  GET_ALL_TICKETS_SUCCESS,
+  GET_ALL_TICKETS_ERROR,
 } from './actions'
 import { initialState } from './appContext'
 
@@ -147,6 +159,96 @@ const reducer = (state, action) => {
   }
 
   if (action.type === GET_ALL_USERS_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      alertText: action.payload.msg,
+    }
+  }
+
+  if (action.type === DISPLAY_MODAL) {
+    return {
+      ...state,
+      showModal: true,
+    }
+  }
+
+  if (action.type === HIDE_MODAL) {
+    return {
+      ...state,
+      showModal: false,
+    }
+  }
+
+  if (action.type === HANDLE_CHANGE) {
+    return {
+      ...state,
+      [action.payload.name]: action.payload.value,
+    }
+  }
+
+  if (action.type === CREATE_PROJECT_BEGIN) {
+    return { ...state, isLoading: true }
+  }
+
+  if (action.type === CREATE_PROJECT_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: 'success',
+      alertText: 'New project Created!',
+    }
+  }
+
+  if (action.type === CREATE_PROJECT_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: 'danger',
+      alertText: action.payload.msg,
+    }
+  }
+
+  if (action.type === GET_ALL_PROJECTS_BEGIN) {
+    return {
+      ...state,
+      isLoading: true,
+    }
+  }
+
+  if (action.type === GET_ALL_PROJECTS_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      projectsAll: action.payload.projects,
+    }
+  }
+
+  if (action.type === GET_ALL_PROJECTS_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      alertText: action.payload.msg,
+    }
+  }
+  if (action.type === GET_ALL_TICKETS_BEGIN) {
+    return {
+      ...state,
+      isLoading: true,
+    }
+  }
+
+  if (action.type === GET_ALL_TICKETS_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      ticketsAll: action.payload.tickets,
+    }
+  }
+
+  if (action.type === GET_ALL_TICKETS_ERROR) {
     return {
       ...state,
       isLoading: false,
