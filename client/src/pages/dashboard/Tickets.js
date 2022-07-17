@@ -12,7 +12,9 @@ const Tickets = () => {
 
   return (
     <Wrapper>
-      <h4>Tickets</h4>
+      <div className="main-title">
+        <h4>Tickets</h4>
+      </div>
       <div className="titles-tickets">
         <h5>Project</h5>
         <h5>Ticket</h5>

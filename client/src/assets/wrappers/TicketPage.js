@@ -7,10 +7,18 @@ const Wrapper = styled.section`
   bottom: 0;
   width: calc(100% - 12rem);
 
+  .main-title {
+    background-color: var(--grey-200);
+  }
+
+  h4 {
+    margin-bottom: 0;
+  }
+
   .titles-tickets {
     display: flex;
     justify-content: space-around;
-    border: 1px solid black;
+    background-color: var(--grey-100);
   }
 `
 export default Wrapper

@@ -12,11 +12,12 @@ const Wrapper = styled.section`
     justify-content: space-between;
     align-items: center;
     padding: 0 0.5rem;
+    background-color: var(--grey-200);
   }
   .titles-projects {
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    background-color: var(--grey-100);
   }
 `
 export default Wrapper
