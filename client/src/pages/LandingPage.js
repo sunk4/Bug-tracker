@@ -8,6 +8,7 @@ import { useAppContext } from '../context/appContext'
 
 const LandingPage = () => {
   const { user } = useAppContext()
+
   const navigate = useNavigate()
 
   useEffect(() => {

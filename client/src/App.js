@@ -6,6 +6,7 @@ import {
   Tickets,
   Administration,
   Dashboard,
+  SingleProject,
 } from './pages/dashboard'
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
           <Route index element={<Dashboard />}></Route>
           <Route path="tickets" element={<Tickets />}></Route>
           <Route path="administration" element={<Administration />}></Route>
+          <Route path="project/:id" element={<SingleProject />}></Route>
         </Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/about" element={<About />}></Route>

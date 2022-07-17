@@ -3,6 +3,8 @@ import Wrapper from '../../assets/wrappers/DashboardPage'
 import { ListOfProjects, ModalNewProject } from '../../components'
 import { useAppContext } from '../../context/appContext'
 import { Loading, ChartComponent } from '../../components/'
+import { Link } from 'react-router-dom'
+
 const Dashboard = () => {
   const {
     showModal,
@@ -42,7 +44,11 @@ const Dashboard = () => {
           </div>
 
           {projectsAll.map((project) => {
-            return <ListOfProjects key={project._id} {...project} />
+            return (
+              <Link key={project._id} to={`project/${project._id}`}>
+                <ListOfProjects {...project} />
+              </Link>
+            )
           })}
         </section>
       )}
