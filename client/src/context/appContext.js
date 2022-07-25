@@ -31,6 +31,13 @@ import {
   GET_ALL_TICKETS_BEGIN,
   GET_ALL_TICKETS_SUCCESS,
   GET_ALL_TICKETS_ERROR,
+  HANDLE_CHANGE_SELECT,
+  GET_SINGLE_PROJECT_BEGIN,
+  GET_SINGLE_PROJECT_SUCCESS,
+  GET_SINGLE_PROJECT_ERROR,
+  GET_SINGLE_USER_BEGIN,
+  GET_SINGLE_USER_SUCCESS,
+  GET_SINGLE_USER_ERROR,
 } from './actions'
 
 export const initialState = {
@@ -43,9 +50,11 @@ export const initialState = {
   showModal: false,
   projectName: '',
   projectDescription: '',
-  projectUsers: ['62ab0e2e8cedb30795d2111a'],
+  projectUsers: [],
   projectsAll: [],
   ticketsAll: [],
+  singleProject: [],
+  teamMembersInProject: [],
 }
 
 const AppContext = React.createContext()
@@ -142,6 +151,10 @@ const AppProvider = ({ children }) => {
     }
   }
 
+  useEffect(() => {
+    getAllUsers()
+  }, [])
+
   const displayModal = () => {
     dispatch({ type: DISPLAY_MODAL })
   }
@@ -152,6 +165,10 @@ const AppProvider = ({ children }) => {
 
   const handleChange = ({ name, value }) => {
     dispatch({ type: HANDLE_CHANGE, payload: { name, value } })
+  }
+
+  const handleChangeSelect = ({ name, value }) => {
+    dispatch({ type: HANDLE_CHANGE_SELECT, payload: { name, value } })
   }
 
   const createProject = async () => {
@@ -166,6 +183,7 @@ const AppProvider = ({ children }) => {
         projectUsers,
       })
       dispatch({ type: CREATE_PROJECT_SUCCESS })
+      getAllProjects()
     } catch (error) {
       dispatch({
         type: CREATE_PROJECT_ERROR,
@@ -206,6 +224,38 @@ const AppProvider = ({ children }) => {
     }
   }
 
+  const getSingleProject = async (id) => {
+    dispatch({ type: GET_SINGLE_PROJECT_BEGIN })
+    try {
+      const response = await axios(`/api/v1/projects/${id}`)
+      const { project, users } = response.data
+
+      dispatch({
+        type: GET_SINGLE_PROJECT_SUCCESS,
+        payload: { project, users },
+      })
+    } catch (error) {
+      dispatch({
+        type: GET_SINGLE_PROJECT_ERROR,
+        payload: { msg: error.response.data },
+      })
+    }
+  }
+
+  // const getSingleUser = async (id) => {
+  //   dispatch({ type: GET_SINGLE_USER_BEGIN })
+  //   try {
+  //     const response = await axios(`/api/v1/users/${id}`)
+  //     const { user } = response.data
+  //     dispatch({ type: GET_SINGLE_USER_SUCCESS, payload: { user } })
+  //   } catch (error) {
+  //     dispatch({
+  //       type: GET_SINGLE_USER_ERROR,
+  //       payload: { msg: error.response.data },
+  //     })
+  //   }
+  // }
+
   return (
     <AppContext.Provider
       value={{
@@ -218,9 +268,12 @@ const AppProvider = ({ children }) => {
         displayModal,
         hideModal,
         handleChange,
+        handleChangeSelect,
         createProject,
         getAllProjects,
         getAllTickets,
+        getSingleProject,
+        // getSingleUser,
       }}
     >
       {children}

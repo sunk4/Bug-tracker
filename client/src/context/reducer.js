@@ -19,6 +19,7 @@ import {
   DISPLAY_MODAL,
   HIDE_MODAL,
   HANDLE_CHANGE,
+  HANDLE_CHANGE_SELECT,
   CREATE_PROJECT_BEGIN,
   CREATE_PROJECT_SUCCESS,
   CREATE_PROJECT_ERROR,
@@ -28,6 +29,12 @@ import {
   GET_ALL_TICKETS_BEGIN,
   GET_ALL_TICKETS_SUCCESS,
   GET_ALL_TICKETS_ERROR,
+  GET_SINGLE_PROJECT_BEGIN,
+  GET_SINGLE_PROJECT_SUCCESS,
+  GET_SINGLE_PROJECT_ERROR,
+  GET_SINGLE_USER_BEGIN,
+  GET_SINGLE_USER_SUCCESS,
+  GET_SINGLE_USER_ERROR,
 } from './actions'
 import { initialState } from './appContext'
 
@@ -187,6 +194,17 @@ const reducer = (state, action) => {
     }
   }
 
+  if (action.type === HANDLE_CHANGE_SELECT) {
+    const newProjectUsers = state.projectUsers.filter((user) => {
+      return user !== action.payload.value
+    })
+
+    return {
+      ...state,
+      [action.payload.name]: [...newProjectUsers, action.payload.value],
+    }
+  }
+
   if (action.type === CREATE_PROJECT_BEGIN) {
     return { ...state, isLoading: true }
   }
@@ -255,6 +273,53 @@ const reducer = (state, action) => {
       alertText: action.payload.msg,
     }
   }
+
+  if (action.type === GET_SINGLE_PROJECT_BEGIN) {
+    return {
+      ...state,
+      isLoading: true,
+    }
+  }
+
+  if (action.type === GET_SINGLE_PROJECT_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      singleProject: action.payload.project,
+      teamMembersInProject: action.payload.users,
+    }
+  }
+
+  if (action.type === GET_SINGLE_PROJECT_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      alertText: action.payload.msg,
+    }
+  }
+
+  // if (action.type === GET_SINGLE_USER_BEGIN) {
+  //   return {
+  //     ...state,
+  //     isLoading: true,
+  //   }
+  // }
+
+  // if (action.type === GET_SINGLE_USER_SUCCESS) {
+  //   return {
+  //     ...state,
+  //     isLoading: false,
+  //     singleUser: action.payload.user,
+  //   }
+  // }
+
+  // if (action.type === GET_SINGLE_USER_ERROR) {
+  //   return {
+  //     ...state,
+  //     isLoading: false,
+  //     alertText: action.payload.msg,
+  //   }
+  // }
 
   throw new Error(`no such action :${action.type}`)
 }

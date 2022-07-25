@@ -1,4 +1,5 @@
 import Project from '../models/Project.js'
+import Ticket from '../models/Ticket.js'
 import User from '../models/User.js'
 import { StatusCodes } from 'http-status-codes'
 import { NotFoundError } from '../errors/index.js'
@@ -27,18 +28,26 @@ const getAllProjects = async (req, res) => {
   res.status(StatusCodes.OK).json({ projects, counts: projects.length })
 }
 const getSingleProject = async (req, res) => {
-  const { id: projectId } = req.params
-  const project = await Project.findOne({ projectId })
+  const { id } = req.params
+
+  const project = await Project.findOne({ _id: id })
+
   if (!project) {
     throw new NotFoundError(`Project with id: ${projectId} does not exist`)
   }
 
-  res.status(StatusCodes.OK).json({ project })
+  const users = await User.find({
+    _id: {
+      $in: project.projectUsers,
+    },
+  }).select('-password')
+
+  res.status(StatusCodes.OK).json({ project, users })
 }
 const updateProject = async (req, res) => {
   const { id: projectId } = req.params
 
-  const { users: usersId } = req.body
+  const { projectUsers: usersId } = req.body
 
   for (let i = 0; i < usersId.length; i++) {
     const userIdExist = await User.findOne({ _id: usersId[i] })
@@ -46,7 +55,6 @@ const updateProject = async (req, res) => {
       throw new NotFoundError(`User with id ${usersId[i]} does not exist`)
     }
   }
-
   const project = await Project.findOneAndUpdate({ _id: projectId }, req.body, {
     new: true,
     runValidators: true,

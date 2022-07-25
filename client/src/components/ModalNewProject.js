@@ -1,3 +1,4 @@
+import { GrSelection } from 'react-icons/gr'
 import Wrapper from '../assets/wrappers/ModalNewProjects'
 
 import { useAppContext } from '../context/appContext'
@@ -11,8 +12,10 @@ const ModalNewProject = () => {
     projectDescription,
     displayAlert,
     handleChange,
+    handleChangeSelect,
     createProject,
     projectUsers,
+    users,
   } = useAppContext()
 
   const handleSubmit = (e) => {
@@ -21,12 +24,19 @@ const ModalNewProject = () => {
       displayAlert()
     }
     createProject()
+    //  hideModal()
   }
 
   const handleProjectInput = (e) => {
     const name = e.target.name
     const value = e.target.value
     handleChange({ name, value })
+  }
+
+  const handleProjectSelect = (e) => {
+    const name = e.target.name
+    const value = e.target.value
+    handleChangeSelect({ name, value })
   }
 
   return (
@@ -49,15 +59,24 @@ const ModalNewProject = () => {
           value={projectDescription}
           handleChange={handleProjectInput}
         />
-
-        <FormRow
-          labelText="Add team members"
-          name="projectUsers"
-          type="text"
-          value={projectUsers}
-          handleChange={handleProjectInput}
-        />
-
+        <label>
+          Add team member
+          <select
+            name="projectUsers"
+            type="select"
+            value={projectUsers}
+            onChange={handleProjectSelect}
+            multiple={true}
+          >
+            {users.map((user) => {
+              return (
+                <option key={user._id} value={user._id}>
+                  {user.firstName} {user.lastName}
+                </option>
+              )
+            })}
+          </select>
+        </label>
         <button className="btn" type="submit" onClick={handleSubmit}>
           Submit
         </button>
