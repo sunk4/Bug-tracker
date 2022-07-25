@@ -36,7 +36,13 @@ const getSingleProject = async (req, res) => {
     throw new NotFoundError(`Project with id: ${projectId} does not exist`)
   }
 
-  res.status(StatusCodes.OK).json({ project })
+  const users = await User.find({
+    _id: {
+      $in: project.projectUsers,
+    },
+  }).select('-password')
+
+  res.status(StatusCodes.OK).json({ project, users })
 }
 const updateProject = async (req, res) => {
   const { id: projectId } = req.params

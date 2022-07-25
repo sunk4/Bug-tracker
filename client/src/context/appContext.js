@@ -54,7 +54,7 @@ export const initialState = {
   projectsAll: [],
   ticketsAll: [],
   singleProject: [],
-  singleUser: [],
+  teamMembersInProject: [],
 }
 
 const AppContext = React.createContext()
@@ -228,9 +228,12 @@ const AppProvider = ({ children }) => {
     dispatch({ type: GET_SINGLE_PROJECT_BEGIN })
     try {
       const response = await axios(`/api/v1/projects/${id}`)
-      const { project } = response.data
+      const { project, users } = response.data
 
-      dispatch({ type: GET_SINGLE_PROJECT_SUCCESS, payload: { project } })
+      dispatch({
+        type: GET_SINGLE_PROJECT_SUCCESS,
+        payload: { project, users },
+      })
     } catch (error) {
       dispatch({
         type: GET_SINGLE_PROJECT_ERROR,
@@ -239,19 +242,19 @@ const AppProvider = ({ children }) => {
     }
   }
 
-  const getSingleUser = async (id) => {
-    dispatch({ type: GET_SINGLE_USER_BEGIN })
-    try {
-      const response = await axios(`/api/v1/users/${id}`)
-      const { user } = response.data
-      dispatch({ type: GET_SINGLE_USER_SUCCESS, payload: { user } })
-    } catch (error) {
-      dispatch({
-        type: GET_SINGLE_USER_ERROR,
-        payload: { msg: error.response.data },
-      })
-    }
-  }
+  // const getSingleUser = async (id) => {
+  //   dispatch({ type: GET_SINGLE_USER_BEGIN })
+  //   try {
+  //     const response = await axios(`/api/v1/users/${id}`)
+  //     const { user } = response.data
+  //     dispatch({ type: GET_SINGLE_USER_SUCCESS, payload: { user } })
+  //   } catch (error) {
+  //     dispatch({
+  //       type: GET_SINGLE_USER_ERROR,
+  //       payload: { msg: error.response.data },
+  //     })
+  //   }
+  // }
 
   return (
     <AppContext.Provider
@@ -270,7 +273,7 @@ const AppProvider = ({ children }) => {
         getAllProjects,
         getAllTickets,
         getSingleProject,
-        getSingleUser,
+        // getSingleUser,
       }}
     >
       {children}

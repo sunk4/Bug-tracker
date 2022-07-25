@@ -1,17 +1,11 @@
-const TeamComponent = () => {
+const TeamComponent = ({ firstName, lastName, email, phone }) => {
   return (
-    <section>
-      <div>
-        <h5>Team</h5>
-        <button className="btn">New Member</button>
-      </div>
-      <div>
-        <h5>First name</h5>
-        <h5>Last name</h5>
-        <h5>Email</h5>
-        <h5>Phone</h5>
-      </div>
-    </section>
+    <>
+      <h5>{firstName}</h5>
+      <h5>{lastName}</h5>
+      <h5>{email}</h5>
+      <h5>{phone}</h5>
+    </>
   )
 }
 
