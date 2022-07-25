@@ -28,8 +28,10 @@ const getAllProjects = async (req, res) => {
   res.status(StatusCodes.OK).json({ projects, counts: projects.length })
 }
 const getSingleProject = async (req, res) => {
-  const { id: projectId } = req.params
-  const project = await Project.findOne({ projectId })
+  const { id } = req.params
+
+  const project = await Project.findOne({ _id: id })
+
   if (!project) {
     throw new NotFoundError(`Project with id: ${projectId} does not exist`)
   }
@@ -39,7 +41,7 @@ const getSingleProject = async (req, res) => {
 const updateProject = async (req, res) => {
   const { id: projectId } = req.params
 
-  const { users: usersId } = req.body
+  const { projectUsers: usersId } = req.body
 
   for (let i = 0; i < usersId.length; i++) {
     const userIdExist = await User.findOne({ _id: usersId[i] })

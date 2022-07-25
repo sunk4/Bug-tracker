@@ -10,6 +10,8 @@ const TicketsContainer = ({
 }) => {
   let modifiedDate = createdAt.substring(0, 10)
 
+  console.log(project)
+
   return (
     <Wrapper>
       <h5>{project.projectName}</h5>

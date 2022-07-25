@@ -29,6 +29,12 @@ import {
   GET_ALL_TICKETS_BEGIN,
   GET_ALL_TICKETS_SUCCESS,
   GET_ALL_TICKETS_ERROR,
+  GET_SINGLE_PROJECT_BEGIN,
+  GET_SINGLE_PROJECT_SUCCESS,
+  GET_SINGLE_PROJECT_ERROR,
+  GET_SINGLE_USER_BEGIN,
+  GET_SINGLE_USER_SUCCESS,
+  GET_SINGLE_USER_ERROR,
 } from './actions'
 import { initialState } from './appContext'
 
@@ -261,6 +267,52 @@ const reducer = (state, action) => {
   }
 
   if (action.type === GET_ALL_TICKETS_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      alertText: action.payload.msg,
+    }
+  }
+
+  if (action.type === GET_SINGLE_PROJECT_BEGIN) {
+    return {
+      ...state,
+      isLoading: true,
+    }
+  }
+
+  if (action.type === GET_SINGLE_PROJECT_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      singleProject: action.payload.project,
+    }
+  }
+
+  if (action.type === GET_SINGLE_PROJECT_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      alertText: action.payload.msg,
+    }
+  }
+
+  if (action.type === GET_SINGLE_USER_BEGIN) {
+    return {
+      ...state,
+      isLoading: true,
+    }
+  }
+
+  if (action.type === GET_SINGLE_USER_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      singleUser: action.payload.user,
+    }
+  }
+
+  if (action.type === GET_SINGLE_USER_ERROR) {
     return {
       ...state,
       isLoading: false,
