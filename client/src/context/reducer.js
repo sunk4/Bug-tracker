@@ -19,6 +19,7 @@ import {
   DISPLAY_MODAL,
   HIDE_MODAL,
   HANDLE_CHANGE,
+  HANDLE_CHANGE_SELECT,
   CREATE_PROJECT_BEGIN,
   CREATE_PROJECT_SUCCESS,
   CREATE_PROJECT_ERROR,
@@ -184,6 +185,17 @@ const reducer = (state, action) => {
     return {
       ...state,
       [action.payload.name]: action.payload.value,
+    }
+  }
+
+  if (action.type === HANDLE_CHANGE_SELECT) {
+    const newProjectUsers = state.projectUsers.filter((user) => {
+      return user !== action.payload.value
+    })
+
+    return {
+      ...state,
+      [action.payload.name]: [...newProjectUsers, action.payload.value],
     }
   }
 

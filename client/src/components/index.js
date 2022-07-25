@@ -13,6 +13,7 @@ import ModalNewProject from './ModalNewProject'
 import ListOfProjects from './ListOfProjects'
 import ChartComponent from './ChartComponent'
 import TicketsContainer from './TicketsContainer'
+import TeamComponent from './TeamComponent'
 
 export {
   Logo,
@@ -30,4 +31,5 @@ export {
   ListOfProjects,
   ChartComponent,
   TicketsContainer,
+  TeamComponent,
 }

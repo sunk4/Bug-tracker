@@ -1,4 +1,5 @@
 import Project from '../models/Project.js'
+import Ticket from '../models/Ticket.js'
 import User from '../models/User.js'
 import { StatusCodes } from 'http-status-codes'
 import { NotFoundError } from '../errors/index.js'
@@ -46,7 +47,6 @@ const updateProject = async (req, res) => {
       throw new NotFoundError(`User with id ${usersId[i]} does not exist`)
     }
   }
-
   const project = await Project.findOneAndUpdate({ _id: projectId }, req.body, {
     new: true,
     runValidators: true,

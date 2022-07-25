@@ -31,6 +31,7 @@ import {
   GET_ALL_TICKETS_BEGIN,
   GET_ALL_TICKETS_SUCCESS,
   GET_ALL_TICKETS_ERROR,
+  HANDLE_CHANGE_SELECT,
 } from './actions'
 
 export const initialState = {
@@ -43,7 +44,7 @@ export const initialState = {
   showModal: false,
   projectName: '',
   projectDescription: '',
-  projectUsers: ['62ab0e2e8cedb30795d2111a'],
+  projectUsers: [],
   projectsAll: [],
   ticketsAll: [],
 }
@@ -142,6 +143,10 @@ const AppProvider = ({ children }) => {
     }
   }
 
+  useEffect(() => {
+    getAllUsers()
+  }, [])
+
   const displayModal = () => {
     dispatch({ type: DISPLAY_MODAL })
   }
@@ -152,6 +157,10 @@ const AppProvider = ({ children }) => {
 
   const handleChange = ({ name, value }) => {
     dispatch({ type: HANDLE_CHANGE, payload: { name, value } })
+  }
+
+  const handleChangeSelect = ({ name, value }) => {
+    dispatch({ type: HANDLE_CHANGE_SELECT, payload: { name, value } })
   }
 
   const createProject = async () => {
@@ -166,6 +175,7 @@ const AppProvider = ({ children }) => {
         projectUsers,
       })
       dispatch({ type: CREATE_PROJECT_SUCCESS })
+      getAllProjects()
     } catch (error) {
       dispatch({
         type: CREATE_PROJECT_ERROR,
@@ -218,6 +228,7 @@ const AppProvider = ({ children }) => {
         displayModal,
         hideModal,
         handleChange,
+        handleChangeSelect,
         createProject,
         getAllProjects,
         getAllTickets,

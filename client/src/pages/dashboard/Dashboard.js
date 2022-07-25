@@ -53,7 +53,7 @@ const Dashboard = () => {
         </section>
       )}
 
-      <ChartComponent data={data} />
+      {/* <ChartComponent data={data} /> */}
     </Wrapper>
   )
 }
