@@ -15,6 +15,7 @@ import ChartComponent from './ChartComponent'
 import TicketsContainer from './TicketsContainer'
 import TeamComponent from './TeamComponent'
 import TicketsContainerInProject from './TicketsContainerInProject'
+import AddMemberModal from './AddMemberModal'
 
 export {
   Logo,
@@ -34,4 +35,5 @@ export {
   TicketsContainer,
   TeamComponent,
   TicketsContainerInProject,
+  AddMemberModal,
 }
