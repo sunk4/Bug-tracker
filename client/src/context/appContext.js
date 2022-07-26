@@ -55,6 +55,7 @@ export const initialState = {
   ticketsAll: [],
   singleProject: [],
   teamMembersInProject: [],
+  singleUser: [],
 }
 
 const AppContext = React.createContext()
@@ -242,19 +243,19 @@ const AppProvider = ({ children }) => {
     }
   }
 
-  // const getSingleUser = async (id) => {
-  //   dispatch({ type: GET_SINGLE_USER_BEGIN })
-  //   try {
-  //     const response = await axios(`/api/v1/users/${id}`)
-  //     const { user } = response.data
-  //     dispatch({ type: GET_SINGLE_USER_SUCCESS, payload: { user } })
-  //   } catch (error) {
-  //     dispatch({
-  //       type: GET_SINGLE_USER_ERROR,
-  //       payload: { msg: error.response.data },
-  //     })
-  //   }
-  // }
+  const getSingleUser = async (id) => {
+    dispatch({ type: GET_SINGLE_USER_BEGIN })
+    try {
+      const response = await axios(`/api/v1/users/${id}`)
+      const { user } = response.data
+      dispatch({ type: GET_SINGLE_USER_SUCCESS, payload: { user } })
+    } catch (error) {
+      dispatch({
+        type: GET_SINGLE_USER_ERROR,
+        payload: { msg: error.response.data },
+      })
+    }
+  }
 
   return (
     <AppContext.Provider
@@ -273,7 +274,7 @@ const AppProvider = ({ children }) => {
         getAllProjects,
         getAllTickets,
         getSingleProject,
-        // getSingleUser,
+        getSingleUser,
       }}
     >
       {children}

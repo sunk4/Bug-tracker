@@ -10,9 +10,6 @@ const SingleProject = () => {
   const { getSingleProject, singleProject, teamMembersInProject, ticketsAll } =
     useAppContext()
 
-  // console.log(singleProject)
-  console.log(ticketsAll)
-
   useEffect(() => {
     getSingleProject(id)
   }, [])
