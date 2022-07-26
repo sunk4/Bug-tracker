@@ -298,28 +298,28 @@ const reducer = (state, action) => {
     }
   }
 
-  // if (action.type === GET_SINGLE_USER_BEGIN) {
-  //   return {
-  //     ...state,
-  //     isLoading: true,
-  //   }
-  // }
+  if (action.type === GET_SINGLE_USER_BEGIN) {
+    return {
+      ...state,
+      isLoading: true,
+    }
+  }
 
-  // if (action.type === GET_SINGLE_USER_SUCCESS) {
-  //   return {
-  //     ...state,
-  //     isLoading: false,
-  //     singleUser: action.payload.user,
-  //   }
-  // }
+  if (action.type === GET_SINGLE_USER_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      singleUser: action.payload.user,
+    }
+  }
 
-  // if (action.type === GET_SINGLE_USER_ERROR) {
-  //   return {
-  //     ...state,
-  //     isLoading: false,
-  //     alertText: action.payload.msg,
-  //   }
-  // }
+  if (action.type === GET_SINGLE_USER_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      alertText: action.payload.msg,
+    }
+  }
 
   throw new Error(`no such action :${action.type}`)
 }

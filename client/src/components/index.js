@@ -14,6 +14,7 @@ import ListOfProjects from './ListOfProjects'
 import ChartComponent from './ChartComponent'
 import TicketsContainer from './TicketsContainer'
 import TeamComponent from './TeamComponent'
+import TicketsContainerInProject from './TicketsContainerInProject'
 
 export {
   Logo,
@@ -32,4 +33,5 @@ export {
   ChartComponent,
   TicketsContainer,
   TeamComponent,
+  TicketsContainerInProject,
 }

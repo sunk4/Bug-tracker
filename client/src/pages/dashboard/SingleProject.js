@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { TeamComponent } from '../../components'
+import { TeamComponent, TicketsContainerInProject } from '../../components'
 import Wrapper from '../../assets/wrappers/SingleProject'
 import { useAppContext } from '../../context/appContext'
 import { useEffect } from 'react'
@@ -7,7 +7,7 @@ import { useEffect } from 'react'
 const SingleProject = () => {
   const { id } = useParams()
 
-  const { getSingleProject, singleProject, teamMembersInProject } =
+  const { getSingleProject, singleProject, teamMembersInProject, ticketsAll } =
     useAppContext()
 
   useEffect(() => {
@@ -29,11 +29,23 @@ const SingleProject = () => {
           <h5>Phone</h5>
         </div>
       </section>
+      {teamMembersInProject.map((member) => {
+        return <TeamComponent key={member._id} {...member} />
+      })}
       <section>
-        {teamMembersInProject.map((member) => {
-          return <TeamComponent key={member._id} {...member} />
-        })}
+        <div>
+          <h5>Tickets</h5>
+          <button className="btn">New Ticket</button>
+        </div>
+        <div>
+          <h5>Ticket title</h5>
+          <h5>Description</h5>
+          <h5>Ticket author</h5>
+        </div>
       </section>
+      {ticketsAll.map((ticket) => {
+        return <TicketsContainerInProject key={ticket._id} {...ticket} />
+      })}
     </Wrapper>
   )
 }
