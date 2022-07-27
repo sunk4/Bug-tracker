@@ -14,7 +14,6 @@ const AddMemberModal = () => {
     const name = e.target.name
     const value = e.target.value
     handleChangeSelect({ name, value })
-    console.log(name, value)
   }
 
   const usersNotInProject = users.filter(
