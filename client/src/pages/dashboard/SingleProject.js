@@ -3,6 +3,7 @@ import {
   TeamComponent,
   TicketsContainerInProject,
   AddMemberModal,
+  CreateTicketModal,
 } from '../../components'
 import Wrapper from '../../assets/wrappers/SingleProject'
 import { useAppContext } from '../../context/appContext'
@@ -18,6 +19,7 @@ const SingleProject = () => {
     ticketsAll,
     displayModal,
     showModal,
+    deleteTicket,
   } = useAppContext()
 
   useEffect(() => {
@@ -48,7 +50,10 @@ const SingleProject = () => {
       <section>
         <div>
           <h5>Tickets</h5>
-          <button className="btn">New Ticket</button>
+          <button className="btn" onClick={displayModal}>
+            New Ticket
+          </button>
+          {showModal && <CreateTicketModal />}
         </div>
         <div>
           <h5>Ticket title</h5>
@@ -57,6 +62,7 @@ const SingleProject = () => {
         </div>
       </section>
       {ticketsAll.map((ticket) => {
+        console.log(ticket)
         return <TicketsContainerInProject key={ticket._id} {...ticket} />
       })}
     </Wrapper>

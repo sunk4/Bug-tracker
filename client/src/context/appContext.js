@@ -41,6 +41,12 @@ import {
   UPDATE_ADD_MEMBER_TO_PROJECT_BEGIN,
   UPDATE_ADD_MEMBER_TO_PROJECT_SUCCESS,
   UPDATE_ADD_MEMBER_TO_PROJECT_ERROR,
+  CREATE_TICKET_BEGIN,
+  CREATE_TICKET_SUCCESS,
+  CREATE_TICKET_ERROR,
+  DELETE_TICKET_BEGIN,
+  DELETE_TICKET_SUCCESS,
+  DELETE_TICKET_ERROR,
 } from './actions'
 
 export const initialState = {
@@ -59,6 +65,15 @@ export const initialState = {
   singleProject: [],
   teamMembersInProject: [],
   singleUser: [],
+  ticketTitle: '',
+  ticketProjectId: '',
+  ticketDescription: '',
+  ticketPriority: 'medium',
+  ticketPriorityOptions: ['low', 'medium', 'high'],
+  ticketStatus: 'open',
+  ticketStatusOptions: ['open', 'in progress', 'closed'],
+  ticketType: 'bug',
+  ticketTypeOptions: ['bug', 'error', 'featured request', 'other'],
 }
 
 const AppContext = React.createContext()
@@ -278,6 +293,23 @@ const AppProvider = ({ children }) => {
     }
   }
 
+  const deleteTicket = async (id) => {
+    dispatch({ type: DELETE_TICKET_BEGIN })
+    try {
+      await axios.delete(`/api/v1/tickets/${id}`)
+      dispatch({ type: DELETE_TICKET_SUCCESS })
+      getAllTickets()
+    } catch (error) {
+      dispatch({ type: DELETE_TICKET_ERROR, payload: error.response.data })
+    }
+  }
+
+  const createNewTicket = async () => {
+    dispatch({ type: CREATE_TICKET_BEGIN })
+    try {
+    } catch (error) {}
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -297,6 +329,7 @@ const AppProvider = ({ children }) => {
         getSingleProject,
         getSingleUser,
         addMemberToProject,
+        deleteTicket,
       }}
     >
       {children}
