@@ -35,6 +35,9 @@ import {
   GET_SINGLE_USER_BEGIN,
   GET_SINGLE_USER_SUCCESS,
   GET_SINGLE_USER_ERROR,
+  UPDATE_ADD_MEMBER_TO_PROJECT_BEGIN,
+  UPDATE_ADD_MEMBER_TO_PROJECT_SUCCESS,
+  UPDATE_ADD_MEMBER_TO_PROJECT_ERROR,
 } from './actions'
 import { initialState } from './appContext'
 
@@ -314,6 +317,30 @@ const reducer = (state, action) => {
   }
 
   if (action.type === GET_SINGLE_USER_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      alertText: action.payload.msg,
+    }
+  }
+
+  if (action.type === UPDATE_ADD_MEMBER_TO_PROJECT_BEGIN) {
+    return {
+      ...state,
+      isLoading: true,
+    }
+  }
+
+  if (action.type === UPDATE_ADD_MEMBER_TO_PROJECT_SUCCESS) {
+    console.log(action.payload)
+    return {
+      ...state,
+      isLoading: false,
+      // projectUsers: [...projectsUsers, action.payload],
+    }
+  }
+
+  if (action.type === UPDATE_ADD_MEMBER_TO_PROJECT_ERROR) {
     return {
       ...state,
       isLoading: false,

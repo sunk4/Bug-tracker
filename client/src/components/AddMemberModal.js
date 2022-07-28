@@ -1,13 +1,19 @@
 import { useAppContext } from '../context/appContext'
 
 const AddMemberModal = () => {
-  const { hideModal, handleChangeSelect, users, singleProject } =
-    useAppContext()
+  const {
+    hideModal,
+    handleChangeSelect,
+    users,
+    singleProject,
+    addMemberToProject,
+  } = useAppContext()
 
-  const { projectUsers } = singleProject
+  const { projectUsers, _id: projectId } = singleProject
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    addMemberToProject(projectId)
   }
 
   const handleProjectSelect = (e) => {

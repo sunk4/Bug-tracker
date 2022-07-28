@@ -38,6 +38,9 @@ import {
   GET_SINGLE_USER_BEGIN,
   GET_SINGLE_USER_SUCCESS,
   GET_SINGLE_USER_ERROR,
+  UPDATE_ADD_MEMBER_TO_PROJECT_BEGIN,
+  UPDATE_ADD_MEMBER_TO_PROJECT_SUCCESS,
+  UPDATE_ADD_MEMBER_TO_PROJECT_ERROR,
 } from './actions'
 
 export const initialState = {
@@ -257,6 +260,24 @@ const AppProvider = ({ children }) => {
     }
   }
 
+  const addMemberToProject = async (id) => {
+    dispatch({ type: UPDATE_ADD_MEMBER_TO_PROJECT_BEGIN })
+    try {
+      const { projectUsers } = state
+
+      await axios.patch(`/api/v1/projects/${id}`, {
+        projectUsers,
+      })
+
+      dispatch({ type: UPDATE_ADD_MEMBER_TO_PROJECT_SUCCESS })
+    } catch (error) {
+      dispatch({
+        type: UPDATE_ADD_MEMBER_TO_PROJECT_ERROR,
+        payload: { msg: error.response.data },
+      })
+    }
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -275,6 +296,7 @@ const AppProvider = ({ children }) => {
         getAllTickets,
         getSingleProject,
         getSingleUser,
+        addMemberToProject,
       }}
     >
       {children}
