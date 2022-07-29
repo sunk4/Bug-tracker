@@ -47,6 +47,9 @@ import {
   DELETE_TICKET_BEGIN,
   DELETE_TICKET_SUCCESS,
   DELETE_TICKET_ERROR,
+  GET_TICKET_BEGIN,
+  GET_TICKET_SUCCESS,
+  GET_TICKET_ERROR,
 } from './actions'
 
 export const initialState = {
@@ -74,6 +77,7 @@ export const initialState = {
   ticketStatusOptions: ['open', 'in progress', 'closed'],
   ticketType: 'bug',
   ticketTypeOptions: ['bug', 'error', 'featured request', 'other'],
+  singleTicket: [],
 }
 
 const AppContext = React.createContext()
@@ -300,7 +304,26 @@ const AppProvider = ({ children }) => {
       dispatch({ type: DELETE_TICKET_SUCCESS })
       getAllTickets()
     } catch (error) {
-      dispatch({ type: DELETE_TICKET_ERROR, payload: error.response.data })
+      dispatch({
+        type: DELETE_TICKET_ERROR,
+        payload: { msg: error.response.data },
+      })
+    }
+  }
+
+  const getSingleTicket = async (id) => {
+    dispatch({ type: GET_TICKET_BEGIN })
+
+    try {
+      const response = await axios(`/api/v1/tickets/${id}`)
+      const { ticket } = response.data
+
+      dispatch({ type: GET_TICKET_SUCCESS, payload: { ticket } })
+    } catch (error) {
+      dispatch({
+        type: GET_TICKET_ERROR,
+        payload: { msg: error.response.data },
+      })
     }
   }
 
@@ -330,6 +353,7 @@ const AppProvider = ({ children }) => {
         getSingleUser,
         addMemberToProject,
         deleteTicket,
+        getSingleTicket,
       }}
     >
       {children}
