@@ -50,6 +50,9 @@ import {
   GET_TICKET_BEGIN,
   GET_TICKET_SUCCESS,
   GET_TICKET_ERROR,
+  DELETE_USER_BEGIN,
+  DELETE_USER_SUCCESS,
+  DELETE_USER_ERROR,
 } from './actions'
 
 export const initialState = {
@@ -327,6 +330,22 @@ const AppProvider = ({ children }) => {
     }
   }
 
+  const deleteUser = async (id) => {
+    dispatch({ type: DELETE_USER_BEGIN })
+
+    try {
+      await axios.delete(`/api/v1/users/${id}`)
+
+      dispatch({ type: DELETE_USER_SUCCESS })
+      getAllUsers()
+    } catch (error) {
+      dispatch({
+        type: DELETE_TICKET_ERROR,
+        payload: { msg: error.response.data },
+      })
+    }
+  }
+
   const createNewTicket = async () => {
     dispatch({ type: CREATE_TICKET_BEGIN })
     try {
@@ -354,6 +373,7 @@ const AppProvider = ({ children }) => {
         addMemberToProject,
         deleteTicket,
         getSingleTicket,
+        deleteUser,
       }}
     >
       {children}
