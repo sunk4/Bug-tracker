@@ -15,6 +15,9 @@ import ChartComponent from './ChartComponent'
 import TicketsContainer from './TicketsContainer'
 import TeamComponent from './TeamComponent'
 import TicketsContainerInProject from './TicketsContainerInProject'
+import AddMemberModal from './AddMemberModal'
+import FormRowSelect from './FormRowSelect'
+import CreateTicketModal from './CreateTicketModal'
 
 export {
   Logo,
@@ -34,4 +37,7 @@ export {
   TicketsContainer,
   TeamComponent,
   TicketsContainerInProject,
+  AddMemberModal,
+  FormRowSelect,
+  CreateTicketModal,
 }

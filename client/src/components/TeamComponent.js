@@ -1,3 +1,5 @@
+
+
 const TeamComponent = ({ firstName, lastName, email, phone }) => {
   return (
     <section>

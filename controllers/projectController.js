@@ -55,10 +55,25 @@ const updateProject = async (req, res) => {
       throw new NotFoundError(`User with id ${usersId[i]} does not exist`)
     }
   }
-  const project = await Project.findOneAndUpdate({ _id: projectId }, req.body, {
-    new: true,
-    runValidators: true,
-  })
+
+  const { projectName, projectDescription, projectUsers } = req.body
+
+  const project = await Project.findOneAndUpdate(
+    { _id: projectId },
+
+    {
+      $addToSet: {
+        projectUsers: { $each: projectUsers },
+      },
+      projectDescription,
+      projectName,
+    },
+
+    {
+      new: true,
+      runValidators: true,
+    }
+  )
 
   if (!project) {
     throw new NotFoundError(`Project with id: ${projectId} does not exist`)

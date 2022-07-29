@@ -100,7 +100,6 @@ const updateUserPassword = async (req, res) => {
 
 const deleteUser = async (req, res) => {
   const { id: userId } = req.params
-  console.log(userId)
 
   const user = await User.findOne({ _id: userId })
   if (!user) {

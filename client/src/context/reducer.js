@@ -35,6 +35,15 @@ import {
   GET_SINGLE_USER_BEGIN,
   GET_SINGLE_USER_SUCCESS,
   GET_SINGLE_USER_ERROR,
+  UPDATE_ADD_MEMBER_TO_PROJECT_BEGIN,
+  UPDATE_ADD_MEMBER_TO_PROJECT_SUCCESS,
+  UPDATE_ADD_MEMBER_TO_PROJECT_ERROR,
+  CREATE_TICKET_BEGIN,
+  CREATE_TICKET_SUCCESS,
+  CREATE_TICKET_ERROR,
+  DELETE_TICKET_BEGIN,
+  DELETE_TICKET_SUCCESS,
+  DELETE_TICKET_ERROR,
 } from './actions'
 import { initialState } from './appContext'
 
@@ -314,6 +323,51 @@ const reducer = (state, action) => {
   }
 
   if (action.type === GET_SINGLE_USER_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      alertText: action.payload.msg,
+    }
+  }
+
+  if (action.type === UPDATE_ADD_MEMBER_TO_PROJECT_BEGIN) {
+    return {
+      ...state,
+      isLoading: true,
+    }
+  }
+
+  if (action.type === UPDATE_ADD_MEMBER_TO_PROJECT_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+    }
+  }
+
+  if (action.type === UPDATE_ADD_MEMBER_TO_PROJECT_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      alertText: action.payload.msg,
+    }
+  }
+
+  if (action.type === DELETE_TICKET_BEGIN) {
+    return {
+      ...state,
+      isLoading: true,
+    }
+  }
+
+  if (action.type === DELETE_TICKET_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      alertText: 'Deleted',
+    }
+  }
+
+  if (action.type === DELETE_TICKET_ERROR) {
     return {
       ...state,
       isLoading: false,
