@@ -44,6 +44,9 @@ import {
   DELETE_TICKET_BEGIN,
   DELETE_TICKET_SUCCESS,
   DELETE_TICKET_ERROR,
+  GET_TICKET_BEGIN,
+  GET_TICKET_SUCCESS,
+  GET_TICKET_ERROR,
 } from './actions'
 import { initialState } from './appContext'
 
@@ -368,6 +371,29 @@ const reducer = (state, action) => {
   }
 
   if (action.type === DELETE_TICKET_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      alertText: action.payload.msg,
+    }
+  }
+
+  if (action.type === GET_TICKET_BEGIN) {
+    return {
+      ...state,
+      isLoading: true,
+    }
+  }
+
+  if (action.type === GET_TICKET_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      singleTicket: action.payload.ticket,
+    }
+  }
+
+  if (action.type === GET_TICKET_ERROR) {
     return {
       ...state,
       isLoading: false,

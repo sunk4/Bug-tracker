@@ -8,7 +8,8 @@ const TicketsContainerInProject = ({
   user: userId,
   _id: ticketId,
 }) => {
-  const { getSingleUser, singleUser, deleteTicket } = useAppContext()
+  const { getSingleUser, singleUser, deleteTicket, getSingleTicket } =
+    useAppContext()
 
   const { firstName, lastName } = singleUser
 
@@ -17,7 +18,7 @@ const TicketsContainerInProject = ({
   }, [])
 
   return (
-    <div>
+    <div onClick={() => getSingleTicket(ticketId)}>
       <h5>{title}</h5>
       <h5>{description}</h5>
       <h5>

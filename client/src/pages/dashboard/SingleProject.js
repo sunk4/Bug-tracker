@@ -8,6 +8,7 @@ import {
 import Wrapper from '../../assets/wrappers/SingleProject'
 import { useAppContext } from '../../context/appContext'
 import { useEffect } from 'react'
+import { BiZoomIn } from 'react-icons/bi'
 
 const SingleProject = () => {
   const { id } = useParams()
@@ -19,8 +20,17 @@ const SingleProject = () => {
     ticketsAll,
     displayModal,
     showModal,
-    deleteTicket,
+    singleTicket,
   } = useAppContext()
+
+  const {
+    description,
+    priority,
+    status,
+    title,
+    type,
+    user: userId,
+  } = singleTicket
 
   useEffect(() => {
     getSingleProject(id)
@@ -62,9 +72,31 @@ const SingleProject = () => {
         </div>
       </section>
       {ticketsAll.map((ticket) => {
-        console.log(ticket)
         return <TicketsContainerInProject key={ticket._id} {...ticket} />
       })}
+
+      <section>
+        <div>
+          <h6>Ticket title</h6>
+          <h5>{title}</h5>
+          <h6>Status</h6>
+          <h5>{status}</h5>
+        </div>
+        <div>
+          <div>
+            <h6>Description</h6>
+            <h5>{description}</h5>
+          </div>
+          <div>
+            <h6>Priority</h6>
+            <h5>{priority}</h5>
+          </div>
+          <div>
+            <h6>Type</h6>
+            <h5>{type}</h5>
+          </div>
+        </div>
+      </section>
     </Wrapper>
   )
 }
