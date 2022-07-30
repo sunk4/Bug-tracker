@@ -25,9 +25,10 @@ const Tickets = () => {
         <h5>Priority</h5>
       </div>
       {ticketsAll.map((ticket) => {
-        const { project } = ticket
+        const { ticketProjectId } = ticket
+
         return (
-          <Link key={ticket._id} to={`project/${project._id}`}>
+          <Link key={ticket._id} to={`project/${ticketProjectId._id}`}>
             <TicketsContainer {...ticket} />
           </Link>
         )

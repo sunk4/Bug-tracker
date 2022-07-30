@@ -4,9 +4,9 @@ import { StatusCodes } from 'http-status-codes'
 import { NotFoundError } from '../errors/index.js'
 
 const createTicket = async (req, res) => {
-  const { project: projectId } = req.body
+  const { ticketProjectId } = req.body
 
-  const projectExist = await Project.findOne({ _id: projectId })
+  const projectExist = await Project.findOne({ _id: ticketProjectId })
 
   if (!projectExist) {
     throw new NotFoundError(
@@ -21,10 +21,12 @@ const createTicket = async (req, res) => {
 }
 const getAllTickets = async (req, res) => {
   const tickets = await Ticket.find({}).populate({
-    path: 'project',
+    path: 'ticketProjectId',
   })
   res.status(StatusCodes.OK).json({ tickets, count: tickets.length })
 }
+
+//toto je zle ---->>>>
 const getSingleTicket = async (req, res) => {
   const { id: ticketId } = req.params
   const ticket = await Ticket.findOne({ _id: ticketId }).populate({

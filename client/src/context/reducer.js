@@ -18,6 +18,8 @@ import {
   GET_ALL_USERS_ERROR,
   DISPLAY_MODAL,
   HIDE_MODAL,
+  DISPLAY_CREATE_TICKET_MODAL,
+  HIDE_CREATE_TICKET_MODAL,
   HANDLE_CHANGE,
   HANDLE_CHANGE_SELECT,
   CREATE_PROJECT_BEGIN,
@@ -195,6 +197,19 @@ const reducer = (state, action) => {
     }
   }
 
+  if (action.type === DISPLAY_CREATE_TICKET_MODAL) {
+    return {
+      ...state,
+      showCreateTicketModal: true,
+    }
+  }
+
+  if (action.type === HIDE_CREATE_TICKET_MODAL) {
+    return {
+      ...state,
+      showCreateTicketModal: false,
+    }
+  }
   if (action.type === HIDE_MODAL) {
     return {
       ...state,
@@ -422,6 +437,33 @@ const reducer = (state, action) => {
     return {
       ...state,
       isLoading: false,
+      alertText: action.payload.msg,
+    }
+  }
+
+  if (action.type === CREATE_TICKET_BEGIN) {
+    return {
+      ...state,
+      isLoading: true,
+    }
+  }
+
+  if (action.type === CREATE_TICKET_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      // showAlert: true,
+      // alertType: 'success',
+      // alertText: 'New ticket Created!',
+    }
+  }
+
+  if (action.type === CREATE_TICKET_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: 'danger',
       alertText: action.payload.msg,
     }
   }

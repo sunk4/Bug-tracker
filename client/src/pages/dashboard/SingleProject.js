@@ -21,15 +21,16 @@ const SingleProject = () => {
     displayModal,
     showModal,
     singleTicket,
+    showCreateTicketModal,
+    createTicketModal,
   } = useAppContext()
 
   const {
-    description,
-    priority,
-    status,
-    title,
-    type,
-    user: userId,
+    ticketTitle,
+    ticketStatus,
+    ticketDescription,
+    ticketPriority,
+    ticketType,
   } = singleTicket
 
   useEffect(() => {
@@ -60,10 +61,10 @@ const SingleProject = () => {
       <section>
         <div>
           <h5>Tickets</h5>
-          <button className="btn" onClick={displayModal}>
+          <button className="btn" onClick={createTicketModal}>
             New Ticket
           </button>
-          {showModal && <CreateTicketModal />}
+          {showCreateTicketModal && <CreateTicketModal />}
         </div>
         <div>
           <h5>Ticket title</h5>
@@ -78,22 +79,22 @@ const SingleProject = () => {
       <section>
         <div>
           <h6>Ticket title</h6>
-          <h5>{title}</h5>
+          <h5>{ticketTitle}</h5>
           <h6>Status</h6>
-          <h5>{status}</h5>
+          <h5>{ticketStatus}</h5>
         </div>
         <div>
           <div>
             <h6>Description</h6>
-            <h5>{description}</h5>
+            <h5>{ticketDescription}</h5>
           </div>
           <div>
             <h6>Priority</h6>
-            <h5>{priority}</h5>
+            <h5>{ticketPriority}</h5>
           </div>
           <div>
             <h6>Type</h6>
-            <h5>{type}</h5>
+            <h5>{ticketType}</h5>
           </div>
         </div>
       </section>
