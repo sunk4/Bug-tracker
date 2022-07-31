@@ -7,32 +7,32 @@ const TicketSchema = new mongoose.Schema(
       ref: 'User',
       required: true,
     },
-    project: {
+    ticketProjectId: {
       type: mongoose.Schema.ObjectId,
       ref: 'Project',
       required: true,
     },
-    title: {
+    ticketTitle: {
       type: String,
       required: [true, 'Please provide title'],
       minlength: 1,
       maxlength: 50,
     },
-    description: {
+    ticketDescription: {
       type: String,
       required: [true, 'Please provide description of ticket'],
     },
-    priority: {
+    ticketPriority: {
       type: String,
       enum: ['low', 'medium', 'high'],
       default: 'medium',
     },
-    status: {
+    ticketStatus: {
       type: String,
       enum: ['open', 'in progress', 'closed'],
       default: 'open',
     },
-    type: {
+    ticketType: {
       type: String,
       enum: ['bug', 'error', 'featured request', 'other'],
       default: 'bug',

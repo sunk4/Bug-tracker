@@ -3,8 +3,8 @@ import { useAppContext } from '../context/appContext'
 import { AiFillDelete } from 'react-icons/ai'
 
 const TicketsContainerInProject = ({
-  description,
-  title,
+  ticketTitle,
+  ticketDescription,
   user: userId,
   _id: ticketId,
 }) => {
@@ -19,8 +19,8 @@ const TicketsContainerInProject = ({
 
   return (
     <div onClick={() => getSingleTicket(ticketId)}>
-      <h5>{title}</h5>
-      <h5>{description}</h5>
+      <h5>{ticketTitle}</h5>
+      <h5>{ticketDescription}</h5>
       <h5>
         {firstName} {lastName}
       </h5>

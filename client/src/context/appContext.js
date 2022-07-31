@@ -21,6 +21,7 @@ import {
   GET_ALL_USERS_ERROR,
   DISPLAY_MODAL,
   HIDE_MODAL,
+  HIDE_CREATE_TICKET_MODAL,
   HANDLE_CHANGE,
   CREATE_PROJECT_BEGIN,
   CREATE_PROJECT_SUCCESS,
@@ -50,6 +51,10 @@ import {
   GET_TICKET_BEGIN,
   GET_TICKET_SUCCESS,
   GET_TICKET_ERROR,
+  DELETE_USER_BEGIN,
+  DELETE_USER_SUCCESS,
+  DELETE_USER_ERROR,
+  DISPLAY_CREATE_TICKET_MODAL,
 } from './actions'
 
 export const initialState = {
@@ -60,6 +65,7 @@ export const initialState = {
   user: null,
   users: [],
   showModal: false,
+  showCreateTicketModal: false,
   projectName: '',
   projectDescription: '',
   projectUsers: [],
@@ -184,6 +190,14 @@ const AppProvider = ({ children }) => {
 
   const hideModal = () => {
     dispatch({ type: HIDE_MODAL })
+  }
+
+  const createTicketModal = () => {
+    dispatch({ type: DISPLAY_CREATE_TICKET_MODAL })
+  }
+
+  const hideCreateTicketModal = () => {
+    dispatch({ type: HIDE_CREATE_TICKET_MODAL })
   }
 
   const handleChange = ({ name, value }) => {
@@ -327,10 +341,52 @@ const AppProvider = ({ children }) => {
     }
   }
 
+  const deleteUser = async (id) => {
+    dispatch({ type: DELETE_USER_BEGIN })
+
+    try {
+      await axios.delete(`/api/v1/users/${id}`)
+
+      dispatch({ type: DELETE_USER_SUCCESS })
+      getAllUsers()
+    } catch (error) {
+      dispatch({
+        type: DELETE_USER_ERROR,
+        payload: { msg: error.response.data },
+      })
+    }
+  }
+
   const createNewTicket = async () => {
     dispatch({ type: CREATE_TICKET_BEGIN })
     try {
-    } catch (error) {}
+      const {
+        ticketTitle,
+        ticketProjectId,
+        ticketDescription,
+        ticketPriority,
+        ticketStatus,
+        ticketType,
+      } = state
+
+      await axios.post('/api/v1/tickets', {
+        ticketTitle,
+        ticketProjectId,
+        ticketDescription,
+        ticketPriority,
+        ticketStatus,
+        ticketType,
+      })
+
+      dispatch({ type: CREATE_TICKET_SUCCESS })
+      hideCreateTicketModal()
+      getAllTickets()
+    } catch (error) {
+      dispatch({
+        type: CREATE_TICKET_ERROR,
+        payload: { msg: error.response.data },
+      })
+    }
   }
 
   return (
@@ -354,6 +410,10 @@ const AppProvider = ({ children }) => {
         addMemberToProject,
         deleteTicket,
         getSingleTicket,
+        deleteUser,
+        createTicketModal,
+        createNewTicket,
+        hideCreateTicketModal,
       }}
     >
       {children}
