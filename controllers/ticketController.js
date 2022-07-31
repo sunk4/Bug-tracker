@@ -30,7 +30,7 @@ const getAllTickets = async (req, res) => {
 const getSingleTicket = async (req, res) => {
   const { id: ticketId } = req.params
   const ticket = await Ticket.findOne({ _id: ticketId }).populate({
-    path: 'project',
+    path: 'ticketProjectId',
   })
   if (!ticket) {
     throw new NotFoundError(`Ticket with id: ${ticket} does not exist`)

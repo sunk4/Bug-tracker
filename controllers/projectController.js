@@ -33,7 +33,7 @@ const getSingleProject = async (req, res) => {
   const project = await Project.findOne({ _id: id })
 
   if (!project) {
-    throw new NotFoundError(`Project with id: ${projectId} does not exist`)
+    throw new NotFoundError(`Project with id: ${id} does not exist`)
   }
 
   const users = await User.find({
