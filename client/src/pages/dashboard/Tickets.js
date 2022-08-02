@@ -25,6 +25,7 @@ const Tickets = () => {
         <h5>Priority</h5>
       </div>
       {ticketsAll.map((ticket) => {
+        console.log(ticket)
         const { ticketProjectId } = ticket
 
         return (
