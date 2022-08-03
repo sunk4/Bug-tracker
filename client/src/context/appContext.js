@@ -22,6 +22,8 @@ import {
   DISPLAY_MODAL,
   HIDE_MODAL,
   HIDE_CREATE_TICKET_MODAL,
+  DISPLAY_EDIT_TICKET_MODAL,
+  HIDE_EDIT_TICKET_MODAL,
   HANDLE_CHANGE,
   CREATE_PROJECT_BEGIN,
   CREATE_PROJECT_SUCCESS,
@@ -55,6 +57,12 @@ import {
   DELETE_USER_SUCCESS,
   DELETE_USER_ERROR,
   DISPLAY_CREATE_TICKET_MODAL,
+  UPDATE_TICKET_BEGIN,
+  UPDATE_TICKET_SUCCESS,
+  UPDATE_TICKET_ERROR,
+  UPDATE_USER_BY_ADMIN_BEGIN,
+  UPDATE_USER_BY_ADMIN_SUCCESS,
+  UPDATE_USER_BY_ADMIN_ERROR,
 } from './actions'
 
 export const initialState = {
@@ -66,6 +74,7 @@ export const initialState = {
   users: [],
   showModal: false,
   showCreateTicketModal: false,
+  showUpdateTicketModal: false,
   projectName: '',
   projectDescription: '',
   projectUsers: [],
@@ -75,7 +84,6 @@ export const initialState = {
   teamMembersInProject: [],
   singleUser: [],
   ticketTitle: '',
-  ticketProjectId: '',
   ticketDescription: '',
   ticketPriority: 'medium',
   ticketPriorityOptions: ['low', 'medium', 'high'],
@@ -198,6 +206,14 @@ const AppProvider = ({ children }) => {
 
   const hideCreateTicketModal = () => {
     dispatch({ type: HIDE_CREATE_TICKET_MODAL })
+  }
+
+  const updateTicketModal = () => {
+    dispatch({ type: DISPLAY_EDIT_TICKET_MODAL })
+  }
+
+  const hideUpdateTicketModal = () => {
+    dispatch({ type: HIDE_EDIT_TICKET_MODAL })
   }
 
   const handleChange = ({ name, value }) => {
@@ -359,19 +375,22 @@ const AppProvider = ({ children }) => {
 
   const createNewTicket = async () => {
     dispatch({ type: CREATE_TICKET_BEGIN })
+
     try {
       const {
         ticketTitle,
-        ticketProjectId,
         ticketDescription,
         ticketPriority,
         ticketStatus,
         ticketType,
+        singleProject,
       } = state
+
+      const { _id } = singleProject
 
       await axios.post('/api/v1/tickets', {
         ticketTitle,
-        ticketProjectId,
+        ticketProjectId: _id,
         ticketDescription,
         ticketPriority,
         ticketStatus,
@@ -384,6 +403,60 @@ const AppProvider = ({ children }) => {
     } catch (error) {
       dispatch({
         type: CREATE_TICKET_ERROR,
+        payload: { msg: error.response.data },
+      })
+    }
+  }
+
+  const updateTicket = async (id) => {
+    dispatch({ type: UPDATE_TICKET_BEGIN })
+    try {
+      const {
+        ticketTitle,
+        ticketDescription,
+        ticketPriority,
+        ticketStatus,
+        ticketType,
+        singleProject,
+      } = state
+
+      const { _id } = singleProject
+
+      await axios.patch(`/api/v1/tickets/${id}`, {
+        ticketTitle,
+        ticketProjectId: _id,
+        ticketDescription,
+        ticketPriority,
+        ticketStatus,
+        ticketType,
+      })
+      dispatch({ type: UPDATE_TICKET_SUCCESS })
+    } catch (error) {
+      dispatch({
+        type: UPDATE_TICKET_ERROR,
+        payload: { msg: error.response.data },
+      })
+    }
+  }
+
+  const updateUserByAdmin = async (id, currentUser) => {
+    dispatch({ type: UPDATE_USER_BY_ADMIN_BEGIN })
+    try {
+     
+
+      const { firstName, lastName, phoneNumber, email, role } = currentUser
+      await axios.patch(`api/v1/users/updateUser/${id}`, {
+        firstName,
+        lastName,
+        phoneNumber,
+        email,
+        role,
+      })
+
+      dispatch({ type: UPDATE_USER_BY_ADMIN_SUCCESS })
+    } catch (error) {
+      dispatch({
+        type: UPDATE_USER_BY_ADMIN_ERROR,
         payload: { msg: error.response.data },
       })
     }
@@ -414,6 +487,10 @@ const AppProvider = ({ children }) => {
         createTicketModal,
         createNewTicket,
         hideCreateTicketModal,
+        updateTicketModal,
+        hideUpdateTicketModal,
+        updateTicket,
+        updateUserByAdmin,
       }}
     >
       {children}

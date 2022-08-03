@@ -20,6 +20,8 @@ import {
   HIDE_MODAL,
   DISPLAY_CREATE_TICKET_MODAL,
   HIDE_CREATE_TICKET_MODAL,
+  DISPLAY_EDIT_TICKET_MODAL,
+  HIDE_EDIT_TICKET_MODAL,
   HANDLE_CHANGE,
   HANDLE_CHANGE_SELECT,
   CREATE_PROJECT_BEGIN,
@@ -52,6 +54,12 @@ import {
   DELETE_USER_BEGIN,
   DELETE_USER_SUCCESS,
   DELETE_USER_ERROR,
+  UPDATE_TICKET_BEGIN,
+  UPDATE_TICKET_SUCCESS,
+  UPDATE_TICKET_ERROR,
+  UPDATE_USER_BY_ADMIN_BEGIN,
+  UPDATE_USER_BY_ADMIN_SUCCESS,
+  UPDATE_USER_BY_ADMIN_ERROR,
 } from './actions'
 import { initialState } from './appContext'
 
@@ -196,6 +204,12 @@ const reducer = (state, action) => {
       showModal: true,
     }
   }
+  if (action.type === HIDE_MODAL) {
+    return {
+      ...state,
+      showModal: false,
+    }
+  }
 
   if (action.type === DISPLAY_CREATE_TICKET_MODAL) {
     return {
@@ -210,10 +224,18 @@ const reducer = (state, action) => {
       showCreateTicketModal: false,
     }
   }
-  if (action.type === HIDE_MODAL) {
+
+  if (action.type === DISPLAY_EDIT_TICKET_MODAL) {
     return {
       ...state,
-      showModal: false,
+      showUpdateTicketModal: true,
+    }
+  }
+
+  if (action.type === HIDE_EDIT_TICKET_MODAL) {
+    return {
+      ...state,
+      showUpdateTicketModal: false,
     }
   }
 
@@ -452,13 +474,67 @@ const reducer = (state, action) => {
     return {
       ...state,
       isLoading: false,
-      // showAlert: true,
-      // alertType: 'success',
-      // alertText: 'New ticket Created!',
+      showAlert: true,
+      alertType: 'success',
+      alertText: 'New ticket Created!',
     }
   }
 
   if (action.type === CREATE_TICKET_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: 'danger',
+      alertText: action.payload.msg,
+    }
+  }
+
+  if (action.type === UPDATE_TICKET_BEGIN) {
+    return {
+      ...state,
+      isLoading: true,
+    }
+  }
+
+  if (action.type === UPDATE_TICKET_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: 'success',
+      alertText: 'New ticket Created!',
+    }
+  }
+
+  if (action.type === UPDATE_TICKET_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: 'danger',
+      alertText: action.payload.msg,
+    }
+  }
+
+  if (action.type === UPDATE_USER_BY_ADMIN_BEGIN) {
+    return {
+      ...state,
+      isLoading: true,
+    }
+  }
+
+  if (action.type === UPDATE_USER_BY_ADMIN_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: 'danger',
+      alertText: 'DONE',
+    }
+  }
+
+  if (action.type === UPDATE_USER_BY_ADMIN_ERROR) {
     return {
       ...state,
       isLoading: false,

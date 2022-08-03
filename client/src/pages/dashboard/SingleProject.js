@@ -4,6 +4,7 @@ import {
   TicketsContainerInProject,
   AddMemberModal,
   CreateTicketModal,
+  UpdateTicketModal,
 } from '../../components'
 import Wrapper from '../../assets/wrappers/SingleProject'
 import { useAppContext } from '../../context/appContext'
@@ -23,6 +24,7 @@ const SingleProject = () => {
     singleTicket,
     showCreateTicketModal,
     createTicketModal,
+    showUpdateTicketModal,
   } = useAppContext()
 
   const {
@@ -31,8 +33,10 @@ const SingleProject = () => {
     ticketDescription,
     ticketPriority,
     ticketType,
+    _id: ticketId,
   } = singleTicket
 
+  const { projectName } = singleProject
   useEffect(() => {
     getSingleProject(id)
   }, [])
@@ -64,7 +68,10 @@ const SingleProject = () => {
           <button className="btn" onClick={createTicketModal}>
             New Ticket
           </button>
-          {showCreateTicketModal && <CreateTicketModal />}
+          {showCreateTicketModal && <CreateTicketModal {...singleProject} />}
+          {showUpdateTicketModal && (
+            <UpdateTicketModal projectName={projectName} ticketId={ticketId} />
+          )}
         </div>
         <div>
           <h5>Ticket title</h5>
