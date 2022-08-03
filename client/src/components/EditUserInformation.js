@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAppContext } from '../context/appContext'
 import { FormRow } from '../components'
 
@@ -7,17 +7,25 @@ const EditUserInformation = () => {
 
   const { _id } = singleUser
 
-  const [firstName, setFirstName] = useState('dickead')
-  const [lastName, setLastName] = useState(singleUser?.lastName)
-  const [phoneNumber, setPhoneNumber] = useState(singleUser?.phoneNumber)
-  const [email, setEmail] = useState(singleUser?.email)
-  const [role, setRole] = useState(singleUser?.role)
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
+  const [email, setEmail] = useState('')
+  const [role, setRole] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
     updateUserByAdmin(_id, { firstName, lastName, phoneNumber, email, role })
     getAllUsers()
   }
+
+  useEffect(() => {
+    setFirstName(singleUser?.firstName)
+    setLastName(singleUser?.lastName)
+    setPhoneNumber(singleUser?.phoneNumber)
+    setEmail(singleUser?.email)
+    setRole(singleUser?.role)
+  }, [singleUser])
 
   return (
     <div>
