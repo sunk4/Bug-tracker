@@ -1,11 +1,12 @@
 import { useAppContext } from '../context/appContext'
 import { FormRow, FormRowSelect } from '../components'
-const CreateTicketModal = () => {
+import { useEffect } from 'react'
+
+const CreateTicketModal = ({ _id: projectId }) => {
   const {
     createNewTicket,
     handleChange,
     ticketTitle,
-    ticketProjectId,
     ticketDescription,
     ticketPriority,
     ticketPriorityOptions,
@@ -14,10 +15,7 @@ const CreateTicketModal = () => {
     ticketType,
     ticketTypeOptions,
     hideCreateTicketModal,
-    singleProject,
   } = useAppContext()
-
-  const { _id: projectId } = singleProject
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -34,12 +32,6 @@ const CreateTicketModal = () => {
     <section>
       <form className="form">
         <div>
-          <FormRow
-            type="text"
-            name="ticketProjectId"
-            value={projectId}
-            handleChange={handleTicketInput}
-          />
           <FormRow
             type="text"
             name="ticketTitle"

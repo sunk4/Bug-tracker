@@ -64,7 +64,7 @@ const SingleProject = () => {
           <button className="btn" onClick={createTicketModal}>
             New Ticket
           </button>
-          {showCreateTicketModal && <CreateTicketModal />}
+          {showCreateTicketModal && <CreateTicketModal {...singleProject} />}
         </div>
         <div>
           <h5>Ticket title</h5>

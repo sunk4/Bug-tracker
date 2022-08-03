@@ -75,7 +75,6 @@ export const initialState = {
   teamMembersInProject: [],
   singleUser: [],
   ticketTitle: '',
-  ticketProjectId: '',
   ticketDescription: '',
   ticketPriority: 'medium',
   ticketPriorityOptions: ['low', 'medium', 'high'],
@@ -359,19 +358,22 @@ const AppProvider = ({ children }) => {
 
   const createNewTicket = async () => {
     dispatch({ type: CREATE_TICKET_BEGIN })
+
     try {
       const {
         ticketTitle,
-        ticketProjectId,
         ticketDescription,
         ticketPriority,
         ticketStatus,
         ticketType,
+        singleProject,
       } = state
+
+      const { _id } = singleProject
 
       await axios.post('/api/v1/tickets', {
         ticketTitle,
-        ticketProjectId,
+        ticketProjectId: _id,
         ticketDescription,
         ticketPriority,
         ticketStatus,
