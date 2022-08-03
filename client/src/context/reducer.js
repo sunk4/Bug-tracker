@@ -57,6 +57,9 @@ import {
   UPDATE_TICKET_BEGIN,
   UPDATE_TICKET_SUCCESS,
   UPDATE_TICKET_ERROR,
+  UPDATE_USER_BY_ADMIN_BEGIN,
+  UPDATE_USER_BY_ADMIN_SUCCESS,
+  UPDATE_USER_BY_ADMIN_ERROR,
 } from './actions'
 import { initialState } from './appContext'
 
@@ -505,6 +508,33 @@ const reducer = (state, action) => {
   }
 
   if (action.type === UPDATE_TICKET_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: 'danger',
+      alertText: action.payload.msg,
+    }
+  }
+
+  if (action.type === UPDATE_USER_BY_ADMIN_BEGIN) {
+    return {
+      ...state,
+      isLoading: true,
+    }
+  }
+
+  if (action.type === UPDATE_USER_BY_ADMIN_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: 'danger',
+      alertText: 'DONE',
+    }
+  }
+
+  if (action.type === UPDATE_USER_BY_ADMIN_ERROR) {
     return {
       ...state,
       isLoading: false,

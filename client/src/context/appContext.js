@@ -60,6 +60,9 @@ import {
   UPDATE_TICKET_BEGIN,
   UPDATE_TICKET_SUCCESS,
   UPDATE_TICKET_ERROR,
+  UPDATE_USER_BY_ADMIN_BEGIN,
+  UPDATE_USER_BY_ADMIN_SUCCESS,
+  UPDATE_USER_BY_ADMIN_ERROR,
 } from './actions'
 
 export const initialState = {
@@ -436,6 +439,29 @@ const AppProvider = ({ children }) => {
     }
   }
 
+  const updateUserByAdmin = async (id, currentUser) => {
+    dispatch({ type: UPDATE_USER_BY_ADMIN_BEGIN })
+    try {
+     
+
+      const { firstName, lastName, phoneNumber, email, role } = currentUser
+      await axios.patch(`api/v1/users/updateUser/${id}`, {
+        firstName,
+        lastName,
+        phoneNumber,
+        email,
+        role,
+      })
+
+      dispatch({ type: UPDATE_USER_BY_ADMIN_SUCCESS })
+    } catch (error) {
+      dispatch({
+        type: UPDATE_USER_BY_ADMIN_ERROR,
+        payload: { msg: error.response.data },
+      })
+    }
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -464,6 +490,7 @@ const AppProvider = ({ children }) => {
         updateTicketModal,
         hideUpdateTicketModal,
         updateTicket,
+        updateUserByAdmin,
       }}
     >
       {children}
