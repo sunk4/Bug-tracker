@@ -22,6 +22,8 @@ import {
   DISPLAY_MODAL,
   HIDE_MODAL,
   HIDE_CREATE_TICKET_MODAL,
+  DISPLAY_EDIT_TICKET_MODAL,
+  HIDE_EDIT_TICKET_MODAL,
   HANDLE_CHANGE,
   CREATE_PROJECT_BEGIN,
   CREATE_PROJECT_SUCCESS,
@@ -55,6 +57,9 @@ import {
   DELETE_USER_SUCCESS,
   DELETE_USER_ERROR,
   DISPLAY_CREATE_TICKET_MODAL,
+  UPDATE_TICKET_BEGIN,
+  UPDATE_TICKET_SUCCESS,
+  UPDATE_TICKET_ERROR,
 } from './actions'
 
 export const initialState = {
@@ -66,6 +71,7 @@ export const initialState = {
   users: [],
   showModal: false,
   showCreateTicketModal: false,
+  showUpdateTicketModal: false,
   projectName: '',
   projectDescription: '',
   projectUsers: [],
@@ -197,6 +203,14 @@ const AppProvider = ({ children }) => {
 
   const hideCreateTicketModal = () => {
     dispatch({ type: HIDE_CREATE_TICKET_MODAL })
+  }
+
+  const updateTicketModal = () => {
+    dispatch({ type: DISPLAY_EDIT_TICKET_MODAL })
+  }
+
+  const hideUpdateTicketModal = () => {
+    dispatch({ type: HIDE_EDIT_TICKET_MODAL })
   }
 
   const handleChange = ({ name, value }) => {
@@ -391,6 +405,37 @@ const AppProvider = ({ children }) => {
     }
   }
 
+  const updateTicket = async (id) => {
+    dispatch({ type: UPDATE_TICKET_BEGIN })
+    try {
+      const {
+        ticketTitle,
+        ticketDescription,
+        ticketPriority,
+        ticketStatus,
+        ticketType,
+        singleProject,
+      } = state
+
+      const { _id } = singleProject
+
+      await axios.patch(`/api/v1/tickets/${id}`, {
+        ticketTitle,
+        ticketProjectId: _id,
+        ticketDescription,
+        ticketPriority,
+        ticketStatus,
+        ticketType,
+      })
+      dispatch({ type: UPDATE_TICKET_SUCCESS })
+    } catch (error) {
+      dispatch({
+        type: UPDATE_TICKET_ERROR,
+        payload: { msg: error.response.data },
+      })
+    }
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -416,6 +461,9 @@ const AppProvider = ({ children }) => {
         createTicketModal,
         createNewTicket,
         hideCreateTicketModal,
+        updateTicketModal,
+        hideUpdateTicketModal,
+        updateTicket,
       }}
     >
       {children}

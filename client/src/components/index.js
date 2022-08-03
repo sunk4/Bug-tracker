@@ -18,6 +18,7 @@ import TicketsContainerInProject from './TicketsContainerInProject'
 import AddMemberModal from './AddMemberModal'
 import FormRowSelect from './FormRowSelect'
 import CreateTicketModal from './CreateTicketModal'
+import UpdateTicketModal from './UpdateTicketModal'
 
 export {
   Logo,
@@ -40,4 +41,5 @@ export {
   AddMemberModal,
   FormRowSelect,
   CreateTicketModal,
+  UpdateTicketModal,
 }

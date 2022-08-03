@@ -1,9 +1,8 @@
 import { useAppContext } from '../context/appContext'
 import { FormRow, FormRowSelect } from '../components'
 
-const CreateTicketModal = ({ projectName }) => {
+const UpdateTicketModal = ({ ticketId, projectName }) => {
   const {
-    createNewTicket,
     handleChange,
     ticketTitle,
     ticketDescription,
@@ -13,12 +12,13 @@ const CreateTicketModal = ({ projectName }) => {
     ticketStatusOptions,
     ticketType,
     ticketTypeOptions,
-    hideCreateTicketModal,
+    hideUpdateTicketModal,
+    updateTicket,
   } = useAppContext()
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    createNewTicket()
+    updateTicket(ticketId)
   }
 
   const handleTicketInput = (e) => {
@@ -76,7 +76,7 @@ const CreateTicketModal = ({ projectName }) => {
           <button
             type="button"
             className="btn btn-block btn-danger"
-            onClick={hideCreateTicketModal}
+            onClick={hideUpdateTicketModal}
           >
             Close
           </button>
@@ -86,4 +86,4 @@ const CreateTicketModal = ({ projectName }) => {
   )
 }
 
-export default CreateTicketModal
+export default UpdateTicketModal
