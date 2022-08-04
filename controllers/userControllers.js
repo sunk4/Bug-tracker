@@ -5,11 +5,7 @@ import {
   BadRequestError,
   UnauthenticatedError,
 } from '../errors/index.js'
-import {
-  createTokenUser,
-  attachCookiesToResponse,
-  checkPermissions,
-} from '../utils/index.js'
+import { attachCookiesToResponse, checkPermissions } from '../utils/index.js'
 
 const getAllUsers = async (req, res) => {
   const users = await User.find({}).select('-password')
@@ -32,13 +28,13 @@ const showCurrentUser = async (req, res) => {
 }
 
 const updateUser = async (req, res) => {
-  const { firstName, lastName, phoneNumber, email, role } = req.body
+  const { firstName, lastName, phoneNumber, email } = req.body
 
   if (!firstName || !lastName || !phoneNumber || !email) {
     throw new BadRequestError('Please provide all values')
   }
 
-  const user = await User.findOne({ _id: req.user.userId })
+  const user = await User.findOne({ userId: req.user._id })
 
   user.firstName = firstName
   user.lastName = lastName
@@ -47,10 +43,9 @@ const updateUser = async (req, res) => {
 
   await user.save()
 
-  const tokenUser = createTokenUser(user)
-  attachCookiesToResponse({ res, user: tokenUser })
+  attachCookiesToResponse({ res, user })
 
-  res.status(StatusCodes.OK).json({ user: tokenUser })
+  res.status(StatusCodes.OK).json({ user })
 }
 
 const updateUserByAdmin = async (req, res) => {
@@ -79,7 +74,7 @@ const updateUserPassword = async (req, res) => {
     throw new BadRequestError('Please provide old and new password')
   }
 
-  const userId = req.user.userId
+  const userId = req.user._id
 
   const user = await User.findById({ _id: userId })
   if (!user) {

@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import Wrapper from '../../assets/wrappers/TicketPage'
-import { useAppContext } from '../../context/appContext'
+import { useTicketsContext } from '../../context/ticketsContext'
 import { TicketsContainer } from '../../components/TicketsPage'
 import { Link } from 'react-router-dom'
 
 const Tickets = () => {
-  const { getAllTickets, ticketsAll } = useAppContext()
+  const { getAllTickets, ticketsAll } = useTicketsContext()
 
   useEffect(() => {
     getAllTickets()

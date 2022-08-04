@@ -1,11 +1,16 @@
 import { useAppContext } from '../../context/appContext'
+import { useTicketsContext } from '../../context/ticketsContext'
 
 import { FormRow, FormRowSelect } from '../Global'
 
 const CreateTicketModal = ({ projectName }) => {
   const {
-    createNewTicket,
     handleChange,
+    hideCreateTicketModal,
+  } = useAppContext()
+
+  const {
+    createNewTicket,
     ticketTitle,
     ticketDescription,
     ticketPriority,
@@ -14,8 +19,7 @@ const CreateTicketModal = ({ projectName }) => {
     ticketStatusOptions,
     ticketType,
     ticketTypeOptions,
-    hideCreateTicketModal,
-  } = useAppContext()
+  } = useTicketsContext()
 
   const handleSubmit = (e) => {
     e.preventDefault()

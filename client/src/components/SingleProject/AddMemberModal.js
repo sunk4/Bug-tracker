@@ -1,13 +1,11 @@
 import { useAppContext } from '../../context/appContext'
+import { useProjectContext } from '../../context/projectContext'
+import { useUsersContext } from '../../context/usersContext'
 
 const AddMemberModal = () => {
-  const {
-    hideModal,
-    handleChangeSelect,
-    users,
-    singleProject,
-    addMemberToProject,
-  } = useAppContext()
+  const { hideModal, handleChangeSelect } = useAppContext()
+  const { users } = useUsersContext()
+  const { singleProject, addMemberToProject } = useProjectContext()
 
   const { projectUsers, _id: projectId } = singleProject
 

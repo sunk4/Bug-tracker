@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
 import { useAppContext } from '../../context/appContext'
+import { useUsersContext } from '../../context/usersContext'
+import { useTicketsContext } from '../../context/ticketsContext'
 import { AiFillDelete } from 'react-icons/ai'
 import { FiEdit } from 'react-icons/fi'
 
@@ -9,13 +11,9 @@ const TicketsContainerInProject = ({
   user: userId,
   _id: ticketId,
 }) => {
-  const {
-    getSingleUser,
-    singleUser,
-    deleteTicket,
-    getSingleTicket,
-    updateTicketModal,
-  } = useAppContext()
+  const { updateTicketModal } = useAppContext()
+  const { getSingleUser, singleUser } = useUsersContext()
+  const { deleteTicket, getSingleTicket } = useTicketsContext()
 
   const { firstName, lastName } = singleUser
 

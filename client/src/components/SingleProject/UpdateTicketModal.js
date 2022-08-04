@@ -1,9 +1,12 @@
 import { useAppContext } from '../../context/appContext'
+import { useTicketsContext } from '../../context/ticketsContext'
 import { FormRow, FormRowSelect } from '../Global'
 
 const UpdateTicketModal = ({ ticketId, projectName }) => {
+  const { handleChange, hideUpdateTicketModal } = useAppContext()
+
   const {
-    handleChange,
+    updateTicket,
     ticketTitle,
     ticketDescription,
     ticketPriority,
@@ -12,9 +15,7 @@ const UpdateTicketModal = ({ ticketId, projectName }) => {
     ticketStatusOptions,
     ticketType,
     ticketTypeOptions,
-    hideUpdateTicketModal,
-    updateTicket,
-  } = useAppContext()
+  } = useTicketsContext()
 
   const handleSubmit = (e) => {
     e.preventDefault()

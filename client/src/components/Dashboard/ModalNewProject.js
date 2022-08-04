@@ -1,23 +1,16 @@
-import { GrSelection } from 'react-icons/gr'
 import Wrapper from './wrappers/ModalNewProjects'
-
 import { useAppContext } from '../../context/appContext'
-
-import { FormRow } from '../Global'
-import { Alert } from '../Global'
+import { useProjectContext } from '../../context/projectContext'
+import { useUsersContext } from '../../context/usersContext'
+import { FormRow, Alert } from '../Global'
 
 const ModalNewProject = () => {
-  const {
-    hideModal,
-    projectName,
-    projectDescription,
-    displayAlert,
-    handleChange,
-    handleChangeSelect,
-    createProject,
-    projectUsers,
-    users,
-  } = useAppContext()
+  const { hideModal, displayAlert, handleChange, handleChangeSelect } =
+    useAppContext()
+
+  const { users } = useUsersContext()
+  const { projectName, projectDescription, createProject, projectUsers } =
+    useProjectContext()
 
   const handleSubmit = (e) => {
     e.preventDefault()

@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FormRow } from '../components/Global'
 import { Logo, Alert } from '../components/Global'
+
+import { useAuthContext } from '../context/authContext'
 import { useAppContext } from '../context/appContext'
 import Wrapper from '../assets/wrappers/RegisterPage'
 
@@ -17,8 +19,8 @@ const initialState = {
 const RegisterPage = () => {
   const [values, setValues] = useState(initialState)
 
-  const { isLoading, displayAlert, registerUser, user, loginUser } =
-    useAppContext()
+  const { registerUser, isLoading, user, loginUser } = useAuthContext()
+  const { displayAlert } = useAppContext()
 
   const navigate = useNavigate()
 

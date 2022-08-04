@@ -3,10 +3,10 @@ import { AiOutlineFundProjectionScreen } from 'react-icons/ai'
 import { FaTicketAlt } from 'react-icons/fa'
 import { GrUserAdmin } from 'react-icons/gr'
 import Wrapper from './wrappers/Sidebar'
-import { useAppContext } from '../../context/appContext'
+import { useAuthContext } from '../../context/authContext'
 
 const Sidebar = () => {
-  const { user } = useAppContext()
+  const { user } = useAuthContext()
 
   return (
     <Wrapper>

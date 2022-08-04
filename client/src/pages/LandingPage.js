@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom'
 import Wrapper from '../assets/wrappers/LandingPage'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAppContext } from '../context/appContext'
+import { useAuthContext } from '../context/authContext'
 
 const LandingPage = () => {
-  const { user } = useAppContext()
+  const { user } = useAuthContext()
 
   const navigate = useNavigate()
 

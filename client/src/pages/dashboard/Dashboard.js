@@ -6,27 +6,23 @@ import {
   ChartComponent,
 } from '../../components/Dashboard'
 import { useAppContext } from '../../context/appContext'
+import { useProjectContext } from '../../context/projectContext'
+import { useTicketsContext } from '../../context/ticketsContext'
 
 import { Loading } from '../../components/Global'
 import { Link } from 'react-router-dom'
+import { useUsersContext } from '../../context/usersContext'
 
 const Dashboard = () => {
-  const {
-    showModal,
-    displayModal,
-    getAllProjects,
-    projectsAll,
-    isLoading,
-    getAllTickets,
-    ticketsAll: data,
-  } = useAppContext()
+  const { showModal, displayModal, ticketsAll: data } = useAppContext()
+  const { getAllUsers } = useUsersContext()
+  const { getAllTickets } = useTicketsContext()
+  const { getAllProjects, projectsAll, isLoading } = useProjectContext()
 
   useEffect(() => {
     getAllProjects()
-  }, [])
-
-  useEffect(() => {
     getAllTickets()
+    getAllUsers()
   }, [])
 
   return (

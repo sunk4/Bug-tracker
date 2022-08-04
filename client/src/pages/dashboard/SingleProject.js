@@ -9,6 +9,8 @@ import {
 } from '../../components/SingleProject'
 import Wrapper from '../../assets/wrappers/SingleProject'
 import { useAppContext } from '../../context/appContext'
+import { useTicketsContext } from '../../context/ticketsContext'
+import { useProjectContext } from '../../context/projectContext'
 import { useEffect } from 'react'
 import { BiZoomIn } from 'react-icons/bi'
 
@@ -16,17 +18,15 @@ const SingleProject = () => {
   const { id } = useParams()
 
   const {
-    getSingleProject,
-    singleProject,
-    teamMembersInProject,
-    ticketsAll,
     displayModal,
     showModal,
-    singleTicket,
     showCreateTicketModal,
     createTicketModal,
     showUpdateTicketModal,
   } = useAppContext()
+  const { getSingleProject, singleProject, teamMembersInProject } =
+    useProjectContext()
+  const { ticketsAll, singleTicket } = useTicketsContext()
 
   const {
     ticketTitle,

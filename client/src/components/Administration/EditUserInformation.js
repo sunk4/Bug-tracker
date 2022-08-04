@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import { useAppContext } from '../../context/appContext'
+import { useUsersContext } from '../../context/usersContext'
 import { FormRow } from '../Global'
 
 const EditUserInformation = () => {
-  const { singleUser, updateUserByAdmin, getAllUsers } = useAppContext()
+  const { singleUser, updateUserByAdmin, getAllUsers } = useUsersContext()
 
   const { _id } = singleUser
 

@@ -1,12 +1,7 @@
 import User from '../models/User.js'
-import Token from '../models/Token.js'
 import { StatusCodes } from 'http-status-codes'
 import { BadRequestError, UnauthenticatedError } from '../errors/index.js'
-import {
-  createTokenUser,
-  attachCookiesToResponse,
-  sendVerificationEmail,
-} from '../utils/index.js'
+import { attachCookiesToResponse } from '../utils/index.js'
 import crypto from 'crypto'
 
 const register = async (req, res) => {
@@ -29,7 +24,7 @@ const register = async (req, res) => {
 
   const verificationToken = crypto.randomBytes(40).toString('hex')
 
-  const user = await User.create({
+  await User.create({
     firstName,
     lastName,
     phoneNumber,
@@ -39,40 +34,7 @@ const register = async (req, res) => {
     verificationToken,
   })
 
-  const origin = 'http://localhost:3000'
-
-  await sendVerificationEmail({
-    firstName: user.firstName,
-    lastName: user.lastName,
-    email: user.email,
-    verificationToken: user.verificationToken,
-    origin,
-  })
-
-  res
-    .status(StatusCodes.CREATED)
-    .json({ msg: 'success, please check your email to verify account' })
-}
-
-const verifyEmail = async (req, res) => {
-  const { email, verificationToken } = req.body
-
-  const user = await User.findOne({ email })
-
-  if (!user) {
-    throw new UnauthenticatedError('verification failed')
-  }
-
-  if (user.verificationToken !== verificationToken) {
-    throw new UnauthenticatedError('verification failed')
-  }
-  user.isVerified = true
-  user.verified = Date.now()
-  user.verificationToken = ''
-
-  await user.save()
-
-  res.status(StatusCodes.OK).json({ msg: 'Email verified' })
+  res.status(StatusCodes.CREATED).json({ msg: 'success' })
 }
 
 const login = async (req, res) => {
@@ -83,6 +45,7 @@ const login = async (req, res) => {
   }
 
   const user = await User.findOne({ email })
+
   if (!user) {
     throw new UnauthenticatedError('Invalid email or password')
   }
@@ -91,40 +54,12 @@ const login = async (req, res) => {
   if (!isPasswordCorrect) {
     throw new UnauthenticatedError('Invalid email or password')
   }
-  if (!user.isVerified) {
-    throw new UnauthenticatedError('Please verify your email')
-  }
 
-  const tokenUser = createTokenUser(user)
+  attachCookiesToResponse({ res, user })
 
-  let refreshToken = ''
-
-  const existingToken = await Token.findOne({ user: user._id })
-
-  if (existingToken) {
-    const { isValid } = existingToken
-    if (!isValid) {
-      throw new UnauthenticatedError('Invalid credentials')
-    }
-    refreshToken = existingToken.refreshToken
-    attachCookiesToResponse({ res, user: tokenUser, refreshToken })
-    res.status(StatusCodes.OK).json({ user: tokenUser })
-    return
-  }
-
-  refreshToken = crypto.randomBytes(40).toString('hex')
-  const userAgent = req.headers['user-agent']
-  const userToken = { refreshToken, userAgent, user: user.id }
-
-  await Token.create(userToken)
-
-  attachCookiesToResponse({ res, user: tokenUser, refreshToken })
-
-  res.status(StatusCodes.OK).json({ user: tokenUser })
+  res.status(StatusCodes.OK).json({ user })
 }
 const logout = async (req, res) => {
-  await Token.findOneAndDelete({ user: req.user.userId })
-
   res.cookie('accessToken', 'logout', {
     httpOnly: true,
     expires: new Date(Date.now()),
@@ -136,4 +71,4 @@ const logout = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: 'user logged out' })
 }
 
-export { register, login, logout, verifyEmail }
+export { register, login, logout }

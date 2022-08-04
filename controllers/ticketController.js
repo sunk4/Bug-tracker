@@ -14,7 +14,7 @@ const createTicket = async (req, res) => {
     )
   }
 
-  req.body.user = req.user.userId
+  req.body.user = req.user._id
 
   const ticket = await Ticket.create(req.body)
   res.status(StatusCodes.CREATED).json({ ticket })
@@ -26,7 +26,6 @@ const getAllTickets = async (req, res) => {
   res.status(StatusCodes.OK).json({ tickets, count: tickets.length })
 }
 
-//toto je zle ---->>>>
 const getSingleTicket = async (req, res) => {
   const { id: ticketId } = req.params
   const ticket = await Ticket.findOne({ _id: ticketId }).populate({

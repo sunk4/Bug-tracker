@@ -1,9 +1,9 @@
 import Wrapper from './wrappers/UsersContainer'
-import { useAppContext } from '../../context/appContext'
+import { useUsersContext } from '../../context/usersContext'
 import { AiFillDelete } from 'react-icons/ai'
 import { FiEdit } from 'react-icons/fi'
 const UsersContainer = ({ firstName, lastName, role, email, _id }) => {
-  const { deleteUser, getSingleUser } = useAppContext()
+  const { deleteUser, getSingleUser } = useUsersContext()
 
   return (
     <Wrapper>

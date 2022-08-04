@@ -1,9 +1,9 @@
 import { Logo } from '../Global'
-import { useAppContext } from '../../context/appContext'
+import { useAuthContext } from '../../context/authContext'
 import Wrapper from './wrappers/Header'
 
 const Header = () => {
-  const { logoutUser } = useAppContext()
+  const { logoutUser } = useAuthContext()
   return (
     <Wrapper>
       <Logo />
