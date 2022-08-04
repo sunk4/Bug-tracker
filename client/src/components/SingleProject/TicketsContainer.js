@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useAppContext } from '../context/appContext'
+import { useAppContext } from '../../context/appContext'
 import { AiFillDelete } from 'react-icons/ai'
 import { FiEdit } from 'react-icons/fi'
 

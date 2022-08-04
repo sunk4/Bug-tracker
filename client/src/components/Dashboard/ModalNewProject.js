@@ -1,9 +1,10 @@
 import { GrSelection } from 'react-icons/gr'
-import Wrapper from '../assets/wrappers/ModalNewProjects'
+import Wrapper from './wrappers/ModalNewProjects'
 
-import { useAppContext } from '../context/appContext'
-import Alert from './Alert'
-import FormRow from './FormRow'
+import { useAppContext } from '../../context/appContext'
+
+import { FormRow } from '../Global'
+import { Alert } from '../Global'
 
 const ModalNewProject = () => {
   const {

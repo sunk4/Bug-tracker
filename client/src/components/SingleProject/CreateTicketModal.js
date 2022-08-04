@@ -1,5 +1,6 @@
-import { useAppContext } from '../context/appContext'
-import { FormRow, FormRowSelect } from '../components'
+import { useAppContext } from '../../context/appContext'
+
+import { FormRow, FormRowSelect } from '../Global'
 
 const CreateTicketModal = ({ projectName }) => {
   const {

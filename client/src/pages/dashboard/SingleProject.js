@@ -1,11 +1,12 @@
 import { useParams } from 'react-router-dom'
+
 import {
-  TeamComponent,
-  TicketsContainerInProject,
   AddMemberModal,
+  TeamComponent,
+  TicketsContainer,
   CreateTicketModal,
   UpdateTicketModal,
-} from '../../components'
+} from '../../components/SingleProject'
 import Wrapper from '../../assets/wrappers/SingleProject'
 import { useAppContext } from '../../context/appContext'
 import { useEffect } from 'react'
@@ -80,7 +81,7 @@ const SingleProject = () => {
         </div>
       </section>
       {ticketsAll.map((ticket) => {
-        return <TicketsContainerInProject key={ticket._id} {...ticket} />
+        return <TicketsContainer key={ticket._id} {...ticket} />
       })}
 
       <section>

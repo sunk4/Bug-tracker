@@ -1,4 +1,4 @@
-import { Navbar, Footer } from '../components'
+import { Footer, Navbar } from '../components/Global'
 import Wrapper from '../assets/wrappers/AboutPage'
 import googleImg from '../assets/images/google.png'
 import meImg from '../assets/images/romanTrnka.jpg'

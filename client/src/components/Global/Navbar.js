@@ -1,6 +1,6 @@
-import Wrapper from '../assets/wrappers/Navbar'
+import Wrapper from './wrappers/Navbar'
 import { NavLink, Link } from 'react-router-dom'
-import { Logo } from '../components'
+import { Logo } from './'
 
 const Navbar = () => {
   return (

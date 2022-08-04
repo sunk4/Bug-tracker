@@ -1,4 +1,4 @@
-import Wrapper from '../assets/wrappers/TicketsContainer'
+import Wrapper from './wrappers/TicketsContainer'
 
 const TicketsContainer = ({
   createdAt,
@@ -12,7 +12,7 @@ const TicketsContainer = ({
 
   return (
     <Wrapper>
-      <h5>{ticketProjectId.projectName || 'Project does not exist'}</h5>
+      <h5>{ticketProjectId.projectName}</h5>
       <h5>{ticketTitle}</h5>
       <h5>{ticketType}</h5>
       <h5>{ticketStatus}</h5>

@@ -1,8 +1,13 @@
 import { useEffect } from 'react'
 import Wrapper from '../../assets/wrappers/DashboardPage'
-import { ListOfProjects, ModalNewProject } from '../../components'
+import {
+  ListOfProjects,
+  ModalNewProject,
+  ChartComponent,
+} from '../../components/Dashboard'
 import { useAppContext } from '../../context/appContext'
-import { Loading, ChartComponent } from '../../components/'
+
+import { Loading } from '../../components/Global'
 import { Link } from 'react-router-dom'
 
 const Dashboard = () => {

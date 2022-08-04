@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import Wrapper from '../../assets/wrappers/TicketPage'
 import { useAppContext } from '../../context/appContext'
-import { TicketsContainer } from '../../components'
+import { TicketsContainer } from '../../components/TicketsPage'
 import { Link } from 'react-router-dom'
 
 const Tickets = () => {

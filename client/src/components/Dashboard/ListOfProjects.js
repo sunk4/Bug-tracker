@@ -1,4 +1,4 @@
-import Wrapper from '../assets/wrappers/ListOfProjects'
+import Wrapper from './wrappers/ListOfProjects'
 import { BiDotsHorizontalRounded } from 'react-icons/bi'
 const ListOfProjects = ({ projectName, projectDescription, user }) => {
   return (

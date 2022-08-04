@@ -1,4 +1,4 @@
-import Wrapper from '../assets/wrappers/Loading'
+import Wrapper from './wrappers/Loading'
 
 const Loading = () => {
   return (

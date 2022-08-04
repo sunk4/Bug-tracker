@@ -1,8 +1,8 @@
-import { UsersContainer, Loading } from './'
-
+import { UsersContainer } from './'
+import { Loading } from '../Global'
 import { useEffect } from 'react'
-import { useAppContext } from '../context/appContext'
-import Wrapper from '../assets/wrappers/AdministrationComponent'
+import { useAppContext } from '../../context/appContext'
+import Wrapper from './wrappers/Administration'
 
 const AdministrationComponent = () => {
   const { getAllUsers, users, isLoading } = useAppContext()

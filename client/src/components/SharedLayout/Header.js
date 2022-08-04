@@ -1,6 +1,6 @@
-import { Logo } from './'
-import { useAppContext } from '../context/appContext'
-import Wrapper from '../assets/wrappers/Header'
+import { Logo } from '../Global'
+import { useAppContext } from '../../context/appContext'
+import Wrapper from './wrappers/Header'
 
 const Header = () => {
   const { logoutUser } = useAppContext()

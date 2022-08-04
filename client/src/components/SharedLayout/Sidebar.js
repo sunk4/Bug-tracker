@@ -2,8 +2,8 @@ import { NavLink } from 'react-router-dom'
 import { AiOutlineFundProjectionScreen } from 'react-icons/ai'
 import { FaTicketAlt } from 'react-icons/fa'
 import { GrUserAdmin } from 'react-icons/gr'
-import Wrapper from '../assets/wrappers//Sidebar'
-import { useAppContext } from '../context/appContext'
+import Wrapper from './wrappers/Sidebar'
+import { useAppContext } from '../../context/appContext'
 
 const Sidebar = () => {
   const { user } = useAppContext()

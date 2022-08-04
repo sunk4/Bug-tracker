@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { useAppContext } from '../context/appContext'
-import { FormRow } from '../components'
+import { useAppContext } from '../../context/appContext'
+import { FormRow } from '../Global'
 
 const EditUserInformation = () => {
   const { singleUser, updateUserByAdmin, getAllUsers } = useAppContext()
