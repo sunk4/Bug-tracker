@@ -1,32 +1,45 @@
 import { useAppContext } from '../../context/appContext'
 import { useTicketsContext } from '../../context/ticketsContext'
 import { FormRow, FormRowSelect } from '../Global'
+import { useEffect, useState } from 'react'
 
 const UpdateTicketModal = ({ ticketId, projectName }) => {
-  const { handleChange, hideModal } = useAppContext()
+  const { hideModal } = useAppContext()
 
   const {
     updateTicket,
-    ticketTitle,
-    ticketDescription,
-    ticketPriority,
     ticketPriorityOptions,
-    ticketStatus,
     ticketStatusOptions,
-    ticketType,
     ticketTypeOptions,
+    singleTicket,
   } = useTicketsContext()
+
+  const [ticketTitle, setTicketTitle] = useState('')
+  const [ticketDescription, setTicketDescription] = useState('')
+  const [ticketPriority, setTicketPriority] = useState('')
+  const [ticketStatus, setTicketStatus] = useState('')
+  const [ticketType, setTicketType] = useState('')
+
+  const { _id } = singleTicket
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    updateTicket(ticketId)
+    updateTicket(_id, {
+      ticketTitle,
+      ticketDescription,
+      ticketPriority,
+      ticketStatus,
+      ticketType,
+    })
   }
 
-  const handleTicketInput = (e) => {
-    const name = e.target.name
-    const value = e.target.value
-    handleChange({ name, value })
-  }
+  useEffect(() => {
+    setTicketTitle(singleTicket?.ticketTitle)
+    setTicketDescription(singleTicket?.ticketDescription)
+    setTicketPriority(singleTicket?.ticketPriority)
+    setTicketStatus(singleTicket?.ticketStatus)
+    setTicketType(singleTicket?.ticketType)
+  }, [singleTicket])
 
   return (
     <section>
@@ -36,34 +49,34 @@ const UpdateTicketModal = ({ ticketId, projectName }) => {
           <FormRow
             type="text"
             name="ticketTitle"
-            value={ticketTitle}
-            handleChange={handleTicketInput}
+            value={ticketTitle || ''}
+            handleChange={(e) => setTicketTitle(e.target.value)}
           />
           <FormRow
             type="text"
             name="ticketDescription"
-            value={ticketDescription}
-            handleChange={handleTicketInput}
+            value={ticketDescription || ''}
+            handleChange={(e) => setTicketDescription(e.target.value)}
           />
 
           <FormRowSelect
             name="ticketPriority"
-            value={ticketPriority}
-            handleChange={handleTicketInput}
+            value={ticketPriority || ''}
+            handleChange={(e) => setTicketPriority(e.target.value)}
             list={[...ticketPriorityOptions]}
           />
 
           <FormRowSelect
             name="ticketStatus"
-            value={ticketStatus}
-            handleChange={handleTicketInput}
+            value={ticketStatus || ''}
+            handleChange={(e) => setTicketStatus(e.target.value)}
             list={[...ticketStatusOptions]}
           />
 
           <FormRowSelect
             name="ticketType"
-            value={ticketType}
-            handleChange={handleTicketInput}
+            value={ticketType || ''}
+            handleChange={(e) => setTicketType(e.target.value)}
             list={[...ticketTypeOptions]}
           />
 
