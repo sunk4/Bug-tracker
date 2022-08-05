@@ -4,7 +4,7 @@ import { useTicketsContext } from '../../context/ticketsContext'
 import { FormRow, FormRowSelect } from '../Global'
 
 const CreateTicketModal = ({ projectName }) => {
-  const { handleChange, hideModal } = useAppContext()
+  const { hideModal } = useAppContext()
 
   const {
     createNewTicket,
@@ -16,6 +16,7 @@ const CreateTicketModal = ({ projectName }) => {
     ticketStatusOptions,
     ticketType,
     ticketTypeOptions,
+    handleChangeInput,
   } = useTicketsContext()
 
   const handleSubmit = (e) => {
@@ -26,7 +27,7 @@ const CreateTicketModal = ({ projectName }) => {
   const handleTicketInput = (e) => {
     const name = e.target.name
     const value = e.target.value
-    handleChange({ name, value })
+    handleChangeInput({ name, value })
   }
 
   return (

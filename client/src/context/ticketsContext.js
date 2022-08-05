@@ -2,6 +2,7 @@ import React, { useContext, useReducer } from 'react'
 import axios from 'axios'
 import reducer from '../reducers/ticketsReducer'
 import { useAppContext } from './appContext'
+import { useProjectContext } from './projectContext.js'
 
 import {
   GET_ALL_TICKETS_BEGIN,
@@ -19,6 +20,7 @@ import {
   UPDATE_TICKET_BEGIN,
   UPDATE_TICKET_SUCCESS,
   UPDATE_TICKET_ERROR,
+  HANDLE_CHANGE_INPUT,
 } from '../actions/ticketsAction'
 
 const initialState = {
@@ -43,6 +45,7 @@ const TicketsContext = React.createContext()
 const TicketsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const { hideModal } = useAppContext()
+  const { singleProject } = useProjectContext()
 
   const getAllTickets = async () => {
     dispatch({ type: GET_ALL_TICKETS_BEGIN })
@@ -100,7 +103,6 @@ const TicketsProvider = ({ children }) => {
         ticketPriority,
         ticketStatus,
         ticketType,
-        singleProject,
       } = state
 
       const { _id } = singleProject
@@ -156,6 +158,10 @@ const TicketsProvider = ({ children }) => {
     }
   }
 
+  const handleChangeInput = ({ name, value }) => {
+    dispatch({ type: HANDLE_CHANGE_INPUT, payload: { name, value } })
+  }
+
   return (
     <TicketsContext.Provider
       value={{
@@ -165,6 +171,7 @@ const TicketsProvider = ({ children }) => {
         deleteTicket,
         getSingleTicket,
         updateTicket,
+        handleChangeInput,
       }}
     >
       {children}
