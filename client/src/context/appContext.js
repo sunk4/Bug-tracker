@@ -1,17 +1,13 @@
 import React, { useContext, useReducer } from 'react'
-import axios from 'axios'
+
 import reducer from './reducer'
 import {
   DISPLAY_ALERT,
   CLEAR_ALERT,
   DISPLAY_MODAL,
   HIDE_MODAL,
-  HIDE_CREATE_TICKET_MODAL,
-  DISPLAY_EDIT_TICKET_MODAL,
-  HIDE_EDIT_TICKET_MODAL,
   HANDLE_CHANGE,
   HANDLE_CHANGE_SELECT,
-  DISPLAY_CREATE_TICKET_MODAL,
 } from './actions'
 
 const initialState = {
@@ -20,8 +16,7 @@ const initialState = {
   alertText: '',
   alertType: '',
   showModal: false,
-  showCreateTicketModal: false,
-  showUpdateTicketModal: false,
+  dataModal: '',
 }
 
 const AppContext = React.createContext()
@@ -40,28 +35,15 @@ const AppProvider = ({ children }) => {
     }, 3000)
   }
 
-  const displayModal = () => {
-    dispatch({ type: DISPLAY_MODAL })
+  const displayModal = (e) => {
+    const dataModal = e.target.getAttribute('data-modal')
+    console.log(dataModal)
+
+    dispatch({ type: DISPLAY_MODAL, payload: dataModal })
   }
 
   const hideModal = () => {
     dispatch({ type: HIDE_MODAL })
-  }
-
-  const createTicketModal = () => {
-    dispatch({ type: DISPLAY_CREATE_TICKET_MODAL })
-  }
-
-  const hideCreateTicketModal = () => {
-    dispatch({ type: HIDE_CREATE_TICKET_MODAL })
-  }
-
-  const updateTicketModal = () => {
-    dispatch({ type: DISPLAY_EDIT_TICKET_MODAL })
-  }
-
-  const hideUpdateTicketModal = () => {
-    dispatch({ type: HIDE_EDIT_TICKET_MODAL })
   }
 
   const handleChange = ({ name, value }) => {
@@ -82,10 +64,6 @@ const AppProvider = ({ children }) => {
         hideModal,
         handleChange,
         handleChangeSelect,
-        createTicketModal,
-        hideCreateTicketModal,
-        updateTicketModal,
-        hideUpdateTicketModal,
       }}
     >
       {children}

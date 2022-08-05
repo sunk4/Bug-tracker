@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom'
 import { useUsersContext } from '../../context/usersContext'
 
 const Dashboard = () => {
-  const { showModal, displayModal, ticketsAll: data } = useAppContext()
+  const { showModal, displayModal, dataModal } = useAppContext()
   const { getAllUsers } = useUsersContext()
   const { getAllTickets } = useTicketsContext()
   const { getAllProjects, projectsAll, isLoading } = useProjectContext()
@@ -29,10 +29,16 @@ const Dashboard = () => {
     <Wrapper>
       <section className="header">
         <h4>Projects</h4>
-        <button onClick={displayModal} className="btn">
+        <button
+          onClick={displayModal}
+          data-modal="modal-create-project"
+          className="btn"
+        >
           New Project
         </button>
-        {showModal && <ModalNewProject />}
+        {showModal && dataModal === 'modal-create-project' && (
+          <ModalNewProject />
+        )}
       </section>
       {isLoading ? (
         <Loading />

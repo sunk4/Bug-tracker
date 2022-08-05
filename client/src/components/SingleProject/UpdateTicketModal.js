@@ -3,7 +3,7 @@ import { useTicketsContext } from '../../context/ticketsContext'
 import { FormRow, FormRowSelect } from '../Global'
 
 const UpdateTicketModal = ({ ticketId, projectName }) => {
-  const { handleChange, hideUpdateTicketModal } = useAppContext()
+  const { handleChange, hideModal } = useAppContext()
 
   const {
     updateTicket,
@@ -77,7 +77,7 @@ const UpdateTicketModal = ({ ticketId, projectName }) => {
           <button
             type="button"
             className="btn btn-block btn-danger"
-            onClick={hideUpdateTicketModal}
+            onClick={hideModal}
           >
             Close
           </button>

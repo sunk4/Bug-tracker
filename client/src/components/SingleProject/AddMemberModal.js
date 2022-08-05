@@ -1,11 +1,14 @@
 import { useAppContext } from '../../context/appContext'
 import { useProjectContext } from '../../context/projectContext'
 import { useUsersContext } from '../../context/usersContext'
+import Select from 'react-select'
 
 const AddMemberModal = () => {
   const { hideModal, handleChangeSelect } = useAppContext()
   const { users } = useUsersContext()
   const { singleProject, addMemberToProject } = useProjectContext()
+
+  
 
   const { projectUsers, _id: projectId } = singleProject
 
@@ -23,6 +26,7 @@ const AddMemberModal = () => {
   const usersNotInProject = users.filter(
     (user) => !projectUsers.includes(user._id)
   )
+  console.log(usersNotInProject)
 
   return (
     <section>
@@ -45,6 +49,7 @@ const AddMemberModal = () => {
             })}
           </select>
         </label>
+        <Select options={usersNotInProject} />
         <button className="btn" type="submit" onClick={handleSubmit}>
           Submit
         </button>

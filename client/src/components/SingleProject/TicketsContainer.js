@@ -11,7 +11,7 @@ const TicketsContainerInProject = ({
   user: userId,
   _id: ticketId,
 }) => {
-  const { updateTicketModal } = useAppContext()
+  const { displayModal } = useAppContext()
   const { getSingleUser, singleUser } = useUsersContext()
   const { deleteTicket, getSingleTicket } = useTicketsContext()
 
@@ -29,7 +29,7 @@ const TicketsContainerInProject = ({
         {firstName} {lastName}
       </h5>
       <AiFillDelete onClick={() => deleteTicket(ticketId)} />
-      <FiEdit onClick={updateTicketModal} />
+      <FiEdit data-modal="modal-edit-project" onClick={displayModal} />
     </div>
   )
 }

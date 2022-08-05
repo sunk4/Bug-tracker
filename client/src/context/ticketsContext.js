@@ -42,7 +42,7 @@ const TicketsContext = React.createContext()
 
 const TicketsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
-  const { hideCreateTicketModal } = useAppContext()
+  const { hideModal } = useAppContext()
 
   const getAllTickets = async () => {
     dispatch({ type: GET_ALL_TICKETS_BEGIN })
@@ -115,7 +115,7 @@ const TicketsProvider = ({ children }) => {
       })
 
       dispatch({ type: CREATE_TICKET_SUCCESS })
-      hideCreateTicketModal()
+      hideModal()
       getAllTickets()
     } catch (error) {
       dispatch({

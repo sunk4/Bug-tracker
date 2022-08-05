@@ -3,10 +3,6 @@ import {
   CLEAR_ALERT,
   DISPLAY_MODAL,
   HIDE_MODAL,
-  DISPLAY_CREATE_TICKET_MODAL,
-  HIDE_CREATE_TICKET_MODAL,
-  DISPLAY_EDIT_TICKET_MODAL,
-  HIDE_EDIT_TICKET_MODAL,
   HANDLE_CHANGE,
   HANDLE_CHANGE_SELECT,
 } from './actions'
@@ -33,40 +29,14 @@ const reducer = (state, action) => {
     return {
       ...state,
       showModal: true,
+      dataModal: action.payload,
     }
   }
   if (action.type === HIDE_MODAL) {
     return {
       ...state,
       showModal: false,
-    }
-  }
-
-  if (action.type === DISPLAY_CREATE_TICKET_MODAL) {
-    return {
-      ...state,
-      showCreateTicketModal: true,
-    }
-  }
-
-  if (action.type === HIDE_CREATE_TICKET_MODAL) {
-    return {
-      ...state,
-      showCreateTicketModal: false,
-    }
-  }
-
-  if (action.type === DISPLAY_EDIT_TICKET_MODAL) {
-    return {
-      ...state,
-      showUpdateTicketModal: true,
-    }
-  }
-
-  if (action.type === HIDE_EDIT_TICKET_MODAL) {
-    return {
-      ...state,
-      showUpdateTicketModal: false,
+      dataModal: '',
     }
   }
 

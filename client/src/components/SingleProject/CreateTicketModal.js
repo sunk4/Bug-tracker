@@ -4,10 +4,7 @@ import { useTicketsContext } from '../../context/ticketsContext'
 import { FormRow, FormRowSelect } from '../Global'
 
 const CreateTicketModal = ({ projectName }) => {
-  const {
-    handleChange,
-    hideCreateTicketModal,
-  } = useAppContext()
+  const { handleChange, hideModal } = useAppContext()
 
   const {
     createNewTicket,
@@ -81,7 +78,7 @@ const CreateTicketModal = ({ projectName }) => {
           <button
             type="button"
             className="btn btn-block btn-danger"
-            onClick={hideCreateTicketModal}
+            onClick={hideModal}
           >
             Close
           </button>
