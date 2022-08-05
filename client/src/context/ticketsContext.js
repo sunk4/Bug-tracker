@@ -127,7 +127,7 @@ const TicketsProvider = ({ children }) => {
     }
   }
 
-  const updateTicket = async (id) => {
+  const updateTicket = async (id, currentTicket) => {
     dispatch({ type: UPDATE_TICKET_BEGIN })
     try {
       const {
@@ -136,20 +136,21 @@ const TicketsProvider = ({ children }) => {
         ticketPriority,
         ticketStatus,
         ticketType,
-        singleProject,
-      } = state
+      } = currentTicket
 
       const { _id } = singleProject
 
       await axios.patch(`/api/v1/tickets/${id}`, {
-        ticketTitle,
         ticketProjectId: _id,
+        ticketTitle,
         ticketDescription,
         ticketPriority,
         ticketStatus,
         ticketType,
       })
       dispatch({ type: UPDATE_TICKET_SUCCESS })
+      hideModal()
+      getAllTickets()
     } catch (error) {
       dispatch({
         type: UPDATE_TICKET_ERROR,

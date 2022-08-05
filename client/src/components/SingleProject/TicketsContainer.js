@@ -28,8 +28,12 @@ const TicketsContainerInProject = ({
       <h5>
         {firstName} {lastName}
       </h5>
-      <AiFillDelete onClick={() => deleteTicket(ticketId)} />
-      <FiEdit data-modal="modal-edit-project" onClick={displayModal} />
+      <button type="button">
+        <AiFillDelete onClick={() => deleteTicket(ticketId)} />
+      </button>
+      <button type="button">
+        <FiEdit data-modal="modal-edit-project" onClick={displayModal} />
+      </button>
     </div>
   )
 }

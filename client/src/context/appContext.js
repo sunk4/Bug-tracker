@@ -1,6 +1,6 @@
 import React, { useContext, useReducer } from 'react'
 
-import reducer from './reducer'
+import reducer from '../reducers/appReducer'
 import {
   DISPLAY_ALERT,
   CLEAR_ALERT,
@@ -8,7 +8,7 @@ import {
   HIDE_MODAL,
   HANDLE_CHANGE,
   HANDLE_CHANGE_SELECT,
-} from './actions'
+} from '../actions/appActions'
 
 const initialState = {
   isLoading: false,
