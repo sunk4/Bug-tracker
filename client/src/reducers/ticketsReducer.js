@@ -14,6 +14,7 @@ import {
   UPDATE_TICKET_BEGIN,
   UPDATE_TICKET_SUCCESS,
   UPDATE_TICKET_ERROR,
+  HANDLE_CHANGE_INPUT,
 } from '../actions/ticketsAction'
 
 const reducer = (state, action) => {
@@ -137,6 +138,13 @@ const reducer = (state, action) => {
       showAlert: true,
       alertType: 'danger',
       alertText: action.payload.msg,
+    }
+  }
+
+  if (action.type === HANDLE_CHANGE_INPUT) {
+    return {
+      ...state,
+      [action.payload.name]: action.payload.value,
     }
   }
   throw new Error(`no such action :${action.type}`)
