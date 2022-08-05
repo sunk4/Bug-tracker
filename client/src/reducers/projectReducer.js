@@ -11,6 +11,7 @@ import {
   UPDATE_ADD_MEMBER_TO_PROJECT_BEGIN,
   UPDATE_ADD_MEMBER_TO_PROJECT_SUCCESS,
   UPDATE_ADD_MEMBER_TO_PROJECT_ERROR,
+  HANDLE_CHANGE,
 } from '../actions/projectActions'
 
 const reducer = (state, action) => {
@@ -106,6 +107,14 @@ const reducer = (state, action) => {
       alertText: action.payload.msg,
     }
   }
+
+  if (action.type === HANDLE_CHANGE) {
+    return {
+      ...state,
+      projectUsers: action.payload,
+    }
+  }
+
   throw new Error(`no such action :${action.type}`)
 }
 

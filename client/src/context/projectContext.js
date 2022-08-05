@@ -14,6 +14,7 @@ import {
   UPDATE_ADD_MEMBER_TO_PROJECT_BEGIN,
   UPDATE_ADD_MEMBER_TO_PROJECT_SUCCESS,
   UPDATE_ADD_MEMBER_TO_PROJECT_ERROR,
+  HANDLE_CHANGE,
 } from '../actions/projectActions'
 
 const initialState = {
@@ -99,12 +100,17 @@ const ProjectProvider = ({ children }) => {
       })
 
       dispatch({ type: UPDATE_ADD_MEMBER_TO_PROJECT_SUCCESS })
+      getSingleProject(id)
     } catch (error) {
       dispatch({
         type: UPDATE_ADD_MEMBER_TO_PROJECT_ERROR,
         payload: { msg: error.response.data },
       })
     }
+  }
+
+  const handleChange = (e) => {
+    dispatch({ type: HANDLE_CHANGE, payload: e })
   }
 
   return (
@@ -115,6 +121,7 @@ const ProjectProvider = ({ children }) => {
         createProject,
         getAllProjects,
         addMemberToProject,
+        handleChange,
       }}
     >
       {children}

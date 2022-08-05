@@ -37,7 +37,6 @@ const AppProvider = ({ children }) => {
 
   const displayModal = (e) => {
     const dataModal = e.target.getAttribute('data-modal')
-    console.log(dataModal)
 
     dispatch({ type: DISPLAY_MODAL, payload: dataModal })
   }

@@ -12,7 +12,7 @@ import { useAppContext } from '../../context/appContext'
 import { useTicketsContext } from '../../context/ticketsContext'
 import { useProjectContext } from '../../context/projectContext'
 import { useEffect } from 'react'
-import { BiZoomIn } from 'react-icons/bi'
+
 
 const SingleProject = () => {
   const { id } = useParams()
