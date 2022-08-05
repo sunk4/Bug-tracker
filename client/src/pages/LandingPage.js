@@ -1,13 +1,14 @@
 import LandingImg from '../assets/images/Landing-img.png'
-import { Navbar, Footer } from '../components'
+
+import { Footer, Navbar } from '../components/Global'
 import { Link } from 'react-router-dom'
 import Wrapper from '../assets/wrappers/LandingPage'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAppContext } from '../context/appContext'
+import { useAuthContext } from '../context/authContext'
 
 const LandingPage = () => {
-  const { user } = useAppContext()
+  const { user } = useAuthContext()
 
   const navigate = useNavigate()
 

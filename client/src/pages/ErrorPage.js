@@ -1,6 +1,6 @@
 import React from 'react'
 import Wrapper from '../assets/wrappers/ErrorPage'
-import { Footer } from '../components'
+import { Footer } from '../components/Global'
 import { Link } from 'react-router-dom'
 import errorImage from '../assets/images/error_404.svg'
 

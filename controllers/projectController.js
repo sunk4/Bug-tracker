@@ -13,7 +13,8 @@ const createProject = async (req, res) => {
       throw new NotFoundError(`User with id ${usersId[i]} does not exist`)
     }
   }
-  req.body.user = req.user.userId
+
+  req.body.user = req.user._id
 
   const project = await Project.create(req.body)
 

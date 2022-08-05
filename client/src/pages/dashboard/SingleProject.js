@@ -1,31 +1,26 @@
 import { useParams } from 'react-router-dom'
+
 import {
-  TeamComponent,
-  TicketsContainerInProject,
   AddMemberModal,
+  TeamComponent,
+  TicketsContainer,
   CreateTicketModal,
   UpdateTicketModal,
-} from '../../components'
+} from '../../components/SingleProject'
 import Wrapper from '../../assets/wrappers/SingleProject'
 import { useAppContext } from '../../context/appContext'
+import { useTicketsContext } from '../../context/ticketsContext'
+import { useProjectContext } from '../../context/projectContext'
 import { useEffect } from 'react'
-import { BiZoomIn } from 'react-icons/bi'
+
 
 const SingleProject = () => {
   const { id } = useParams()
 
-  const {
-    getSingleProject,
-    singleProject,
-    teamMembersInProject,
-    ticketsAll,
-    displayModal,
-    showModal,
-    singleTicket,
-    showCreateTicketModal,
-    createTicketModal,
-    showUpdateTicketModal,
-  } = useAppContext()
+  const { displayModal, showModal, dataModal } = useAppContext()
+  const { getSingleProject, singleProject, teamMembersInProject } =
+    useProjectContext()
+  const { ticketsAll, singleTicket } = useTicketsContext()
 
   const {
     ticketTitle,
@@ -47,10 +42,14 @@ const SingleProject = () => {
       <section>
         <div>
           <h5>Team</h5>
-          <button className="btn" onClick={displayModal}>
+          <button
+            className="btn"
+            data-modal="modal-add-member"
+            onClick={displayModal}
+          >
             New Member
           </button>
-          {showModal && <AddMemberModal />}
+          {showModal && dataModal === 'modal-add-member' && <AddMemberModal />}
         </div>
         <div>
           <h5>First name</h5>
@@ -65,11 +64,17 @@ const SingleProject = () => {
       <section>
         <div>
           <h5>Tickets</h5>
-          <button className="btn" onClick={createTicketModal}>
+          <button
+            className="btn"
+            data-modal="modal-create-ticket"
+            onClick={displayModal}
+          >
             New Ticket
           </button>
-          {showCreateTicketModal && <CreateTicketModal {...singleProject} />}
-          {showUpdateTicketModal && (
+          {showModal && dataModal === 'modal-create-ticket' && (
+            <CreateTicketModal {...singleProject} />
+          )}
+          {showModal && dataModal === 'modal-edit-project' && (
             <UpdateTicketModal projectName={projectName} ticketId={ticketId} />
           )}
         </div>
@@ -80,7 +85,7 @@ const SingleProject = () => {
         </div>
       </section>
       {ticketsAll.map((ticket) => {
-        return <TicketsContainerInProject key={ticket._id} {...ticket} />
+        return <TicketsContainer key={ticket._id} {...ticket} />
       })}
 
       <section>

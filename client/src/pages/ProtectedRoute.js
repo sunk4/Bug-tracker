@@ -1,8 +1,8 @@
 import { Navigate } from 'react-router-dom'
-import { useAppContext } from '../context/appContext'
+import { useAuthContext } from '../context/authContext'
 
 const ProtectedRoute = ({ children }) => {
-  const { user } = useAppContext()
+  const { user } = useAuthContext()
 
   if (!user) {
     return <Navigate to="/landing" />

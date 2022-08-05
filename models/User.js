@@ -43,12 +43,6 @@ const UserSchema = new mongoose.Schema({
     enum: ['admin', 'senior', 'junior'],
     default: 'junior',
   },
-  verificationToken: String,
-  isVerified: {
-    type: Boolean,
-    default: true,
-  },
-  verified: Date,
 })
 
 UserSchema.pre('save', async function () {
