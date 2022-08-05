@@ -3,13 +3,13 @@ import { useAppContext } from '../../context/appContext'
 import { useProjectContext } from '../../context/projectContext'
 import { useUsersContext } from '../../context/usersContext'
 import { FormRow, Alert } from '../Global'
+import { SelectComponent } from '../SingleProject'
 
 const ModalNewProject = () => {
-  const { hideModal, displayAlert, handleChange, handleChangeSelect } =
-    useAppContext()
+  const { hideModal, displayAlert } = useAppContext()
 
   const { users } = useUsersContext()
-  const { projectName, projectDescription, createProject, projectUsers } =
+  const { projectName, projectDescription, createProject, handleChangeInput } =
     useProjectContext()
 
   const handleSubmit = (e) => {
@@ -18,20 +18,20 @@ const ModalNewProject = () => {
       displayAlert()
     }
     createProject()
-    //  hideModal()
   }
 
   const handleProjectInput = (e) => {
     const name = e.target.name
     const value = e.target.value
-    handleChange({ name, value })
+    handleChangeInput({ name, value })
   }
 
-  const handleProjectSelect = (e) => {
-    const name = e.target.name
-    const value = e.target.value
-    handleChangeSelect({ name, value })
-  }
+  const newProjectUsers = users.map((user) => {
+    return {
+      value: user._id,
+      label: `${user.firstName} ${user.lastName}`,
+    }
+  })
 
   return (
     <Wrapper>
@@ -55,21 +55,7 @@ const ModalNewProject = () => {
         />
         <label>
           Add team member
-          <select
-            name="projectUsers"
-            type="select"
-            value={projectUsers}
-            onChange={handleProjectSelect}
-            multiple={true}
-          >
-            {users.map((user) => {
-              return (
-                <option key={user._id} value={user._id}>
-                  {user.firstName} {user.lastName}
-                </option>
-              )
-            })}
-          </select>
+          <SelectComponent options={newProjectUsers} />
         </label>
         <button className="btn" type="submit" onClick={handleSubmit}>
           Submit

@@ -11,7 +11,8 @@ import {
   UPDATE_ADD_MEMBER_TO_PROJECT_BEGIN,
   UPDATE_ADD_MEMBER_TO_PROJECT_SUCCESS,
   UPDATE_ADD_MEMBER_TO_PROJECT_ERROR,
-  HANDLE_CHANGE,
+  HANDLE_CHANGE_SELECT,
+  HANDLE_CHANGE_INPUT,
 } from '../actions/projectActions'
 
 const reducer = (state, action) => {
@@ -108,10 +109,21 @@ const reducer = (state, action) => {
     }
   }
 
-  if (action.type === HANDLE_CHANGE) {
+  if (action.type === HANDLE_CHANGE_SELECT) {
+    let users = []
+    action.payload.map((user) => {
+      return users.push(user.value)
+    })
     return {
       ...state,
-      projectUsers: action.payload,
+      projectUsers: users,
+    }
+  }
+
+  if (action.type === HANDLE_CHANGE_INPUT) {
+    return {
+      ...state,
+      [action.payload.name]: action.payload.value,
     }
   }
 

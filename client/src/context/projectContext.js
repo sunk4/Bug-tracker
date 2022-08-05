@@ -14,7 +14,8 @@ import {
   UPDATE_ADD_MEMBER_TO_PROJECT_BEGIN,
   UPDATE_ADD_MEMBER_TO_PROJECT_SUCCESS,
   UPDATE_ADD_MEMBER_TO_PROJECT_ERROR,
-  HANDLE_CHANGE,
+  HANDLE_CHANGE_SELECT,
+  HANDLE_CHANGE_INPUT,
 } from '../actions/projectActions'
 
 const initialState = {
@@ -109,8 +110,12 @@ const ProjectProvider = ({ children }) => {
     }
   }
 
-  const handleChange = (e) => {
-    dispatch({ type: HANDLE_CHANGE, payload: e })
+  const handleChangeSelect = (e) => {
+    dispatch({ type: HANDLE_CHANGE_SELECT, payload: e })
+  }
+
+  const handleChangeInput = ({ name, value }) => {
+    dispatch({ type: HANDLE_CHANGE_INPUT, payload: { name, value } })
   }
 
   return (
@@ -121,7 +126,8 @@ const ProjectProvider = ({ children }) => {
         createProject,
         getAllProjects,
         addMemberToProject,
-        handleChange,
+        handleChangeSelect,
+        handleChangeInput,
       }}
     >
       {children}

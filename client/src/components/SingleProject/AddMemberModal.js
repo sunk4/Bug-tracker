@@ -1,17 +1,13 @@
 import { useAppContext } from '../../context/appContext'
 import { useProjectContext } from '../../context/projectContext'
 import { useUsersContext } from '../../context/usersContext'
-import Select from 'react-select'
-import makeAnimated from 'react-select/animated'
+import { SelectComponent } from '../../components/SingleProject'
 
 const AddMemberModal = () => {
   const { hideModal } = useAppContext()
   const { users } = useUsersContext()
-  const { singleProject, addMemberToProject, handleChange } =
-    useProjectContext()
+  const { singleProject, addMemberToProject } = useProjectContext()
   const { projectUsers, _id: projectId } = singleProject
-
-  const animatedComponents = makeAnimated()
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -28,25 +24,11 @@ const AddMemberModal = () => {
       }
     })
 
-  const handleProjectSelect = (e) => {
-    let users = []
-    e.map((user) => {
-      return users.push(user.value)
-    })
-    handleChange(users)
-  }
-
   return (
     <section>
       <form className="form">
         <label>Add team member</label>
-        <Select
-          closeMenuOnSelect={false}
-          onChange={handleProjectSelect}
-          components={animatedComponents}
-          isMulti
-          options={usersNotInProject}
-        />
+        <SelectComponent options={usersNotInProject} />
         <button className="btn" type="submit" onClick={handleSubmit}>
           Submit
         </button>

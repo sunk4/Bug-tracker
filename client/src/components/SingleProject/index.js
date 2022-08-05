@@ -3,7 +3,7 @@ import CreateTicketModal from './CreateTicketModal'
 import TeamComponent from './TeamComponent'
 import TicketsContainer from './TicketsContainer'
 import UpdateTicketModal from './UpdateTicketModal'
-import UsersContainer from '../Administration/UsersContainer'
+import SelectComponent from './SelectComponent'
 
 export {
   AddMemberModal,
@@ -11,5 +11,5 @@ export {
   TeamComponent,
   TicketsContainer,
   UpdateTicketModal,
-  UsersContainer,
+  SelectComponent,
 }
