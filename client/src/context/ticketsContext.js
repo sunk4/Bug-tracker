@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from 'react'
+import React, { useContext, useEffect, useReducer } from 'react'
 import axios from 'axios'
 import reducer from '../reducers/ticketsReducer'
 import { useAppContext } from './appContext'
@@ -20,6 +20,9 @@ import {
   UPDATE_TICKET_BEGIN,
   UPDATE_TICKET_SUCCESS,
   UPDATE_TICKET_ERROR,
+  SHOW_STATS_BEGIN,
+  SHOW_STATS_SUCCESS,
+  SHOW_STATS_ERROR,
   HANDLE_CHANGE_INPUT,
 } from '../actions/ticketsAction'
 
@@ -38,6 +41,9 @@ const initialState = {
   ticketType: 'bug',
   ticketTypeOptions: ['bug', 'error', 'featured request', 'other'],
   singleTicket: [],
+  statsTicketPriority: [],
+  statsTicketStatus: [],
+  statsTicketType: [],
 }
 
 const TicketsContext = React.createContext()
@@ -159,6 +165,26 @@ const TicketsProvider = ({ children }) => {
     }
   }
 
+  const getStatsTickets = async () => {
+    dispatch({ type: SHOW_STATS_BEGIN })
+
+    try {
+      const response = await axios('/api/v1/tickets/showStats')
+
+      const { countPriority, countStatus, countType } = response.data
+
+      dispatch({
+        type: SHOW_STATS_SUCCESS,
+        payload: { countPriority, countStatus, countType },
+      })
+    } catch (error) {
+      dispatch({
+        type: SHOW_STATS_ERROR,
+        payload: { msg: error.response.data },
+      })
+    }
+  }
+
   const handleChangeInput = ({ name, value }) => {
     dispatch({ type: HANDLE_CHANGE_INPUT, payload: { name, value } })
   }
@@ -173,6 +199,7 @@ const TicketsProvider = ({ children }) => {
         getSingleTicket,
         updateTicket,
         handleChangeInput,
+        getStatsTickets,
       }}
     >
       {children}

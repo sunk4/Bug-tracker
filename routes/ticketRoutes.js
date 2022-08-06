@@ -12,12 +12,15 @@ import {
   getSingleTicket,
   updateTicket,
   deleteTicket,
+  getStatsTickets,
 } from '../controllers/ticketController.js'
 
 router
   .route('/')
   .post(authenticateUser, authorizePermissions('admin', 'senior'), createTicket)
   .get(authenticateUser, getAllTickets)
+
+router.route('/showStats').get(authenticateUser, getStatsTickets)
 
 router
   .route('/:id')

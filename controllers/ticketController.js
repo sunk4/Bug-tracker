@@ -65,10 +65,42 @@ const deleteTicket = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: 'ticket removed' })
 }
 
+const getStatsTickets = async (req, res) => {
+  const countPriority = await Ticket.aggregate([
+    {
+      $group: {
+        _id: '$ticketPriority',
+        count: { $sum: 1 },
+      },
+    },
+  ])
+
+  const countStatus = await Ticket.aggregate([
+    {
+      $group: {
+        _id: '$ticketStatus',
+        count: { $sum: 1 },
+      },
+    },
+  ])
+
+  const countType = await Ticket.aggregate([
+    {
+      $group: {
+        _id: '$ticketType',
+        count: { $sum: 1 },
+      },
+    },
+  ])
+
+  res.status(StatusCodes.OK).json({ countPriority, countStatus, countType })
+}
+
 export {
   createTicket,
   getAllTickets,
   getSingleTicket,
   updateTicket,
   deleteTicket,
+  getStatsTickets,
 }

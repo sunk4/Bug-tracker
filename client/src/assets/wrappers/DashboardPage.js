@@ -6,6 +6,8 @@ const Wrapper = styled.section`
   left: 12rem;
   bottom: 0;
   width: calc(100% - 12rem);
+  display: grid;
+  grid-template-columns: 1fr;
 
   .header {
     display: flex;
@@ -18,6 +20,10 @@ const Wrapper = styled.section`
     display: flex;
     justify-content: space-around;
     background-color: var(--grey-100);
+  }
+  .graphs {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 `
 export default Wrapper
