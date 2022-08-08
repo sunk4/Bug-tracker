@@ -2,8 +2,9 @@ import { useEffect } from 'react'
 import Wrapper from '../../assets/wrappers/DashboardPage'
 import {
   ListOfProjects,
-  ModalNewProject,
   ChartComponent,
+  DashboardHeader,
+  DashboardTitle,
 } from '../../components/Dashboard'
 import { useAppContext } from '../../context/appContext'
 import { useProjectContext } from '../../context/projectContext'
@@ -36,29 +37,16 @@ const Dashboard = () => {
   return (
     <Wrapper>
       <div>
-        <section className="header">
-          <h4>Projects</h4>
-          <button
-            onClick={displayModal}
-            data-modal="modal-create-project"
-            className="btn"
-          >
-            New Project
-          </button>
-          {showModal && dataModal === 'modal-create-project' && (
-            <ModalNewProject />
-          )}
-        </section>
+        <DashboardHeader
+          displayModal={displayModal}
+          showModal={showModal}
+          dataModal={dataModal}
+        />
         {isLoadingProject ? (
           <Loading />
         ) : (
           <section>
-            <div className="titles-projects">
-              <h5>Project</h5>
-              <h5>Description</h5>
-              <h5>Created by</h5>
-            </div>
-
+            <DashboardTitle />
             {projectsAll.map((project) => {
               return (
                 <Link key={project._id} to={`project/${project._id}`}>
@@ -72,11 +60,11 @@ const Dashboard = () => {
       {isLoadingTicket ? (
         <Loading />
       ) : (
-        <div className="graphs">
+        <section className="graphs">
           <ChartComponent data={statsTicketPriority} name={'Ticket Priority'} />
           <ChartComponent data={statsTicketStatus} name={'Ticket Status'} />
           <ChartComponent data={statsTicketType} name={'Ticket Type'} />
-        </div>
+        </section>
       )}
     </Wrapper>
   )
