@@ -17,19 +17,20 @@ const Dashboard = () => {
   const { showModal, displayModal, dataModal } = useAppContext()
   const { getAllUsers } = useUsersContext()
   const {
+    isLoadingTicket,
     getAllTickets,
     statsTicketPriority,
     statsTicketStatus,
     statsTicketType,
     getStatsTickets,
   } = useTicketsContext()
-  const { getAllProjects, projectsAll, isLoading } = useProjectContext()
+  const { getAllProjects, projectsAll, isLoadingProject } = useProjectContext()
 
   useEffect(() => {
+    getStatsTickets()
     getAllProjects()
     getAllTickets()
     getAllUsers()
-    getStatsTickets()
   }, [])
 
   return (
@@ -48,7 +49,7 @@ const Dashboard = () => {
             <ModalNewProject />
           )}
         </section>
-        {isLoading ? (
+        {isLoadingProject ? (
           <Loading />
         ) : (
           <section>
@@ -68,11 +69,15 @@ const Dashboard = () => {
           </section>
         )}
       </div>
-      <div className="graphs">
-        <ChartComponent data={statsTicketPriority} name={'Ticket Priority'} />
-        <ChartComponent data={statsTicketStatus} name={'Ticket Status'} />
-        <ChartComponent data={statsTicketType} name={'Ticket Type'} />
-      </div>
+      {isLoadingTicket ? (
+        <Loading />
+      ) : (
+        <div className="graphs">
+          <ChartComponent data={statsTicketPriority} name={'Ticket Priority'} />
+          <ChartComponent data={statsTicketStatus} name={'Ticket Status'} />
+          <ChartComponent data={statsTicketType} name={'Ticket Type'} />
+        </div>
+      )}
     </Wrapper>
   )
 }

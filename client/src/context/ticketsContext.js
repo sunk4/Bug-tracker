@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer } from 'react'
+import React, { useContext, useReducer } from 'react'
 import axios from 'axios'
 import reducer from '../reducers/ticketsReducer'
 import { useAppContext } from './appContext'
@@ -27,10 +27,7 @@ import {
 } from '../actions/ticketsAction'
 
 const initialState = {
-  isLoading: false,
-  showAlert: false,
-  alertText: '',
-  alertType: '',
+  isLoadingTicket: false,
   ticketsAll: [],
   ticketTitle: '',
   ticketDescription: '',

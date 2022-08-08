@@ -5,13 +5,13 @@ import { useUsersContext } from '../../context/usersContext'
 import Wrapper from './wrappers/Administration'
 
 const AdministrationComponent = () => {
-  const { getAllUsers, users, isLoading } = useUsersContext()
+  const { getAllUsers, users, isLoadingUser } = useUsersContext()
 
   useEffect(() => {
     getAllUsers()
   }, [])
 
-  if (isLoading) {
+  if (isLoadingUser) {
     return <Loading />
   }
 

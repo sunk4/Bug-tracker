@@ -19,10 +19,7 @@ import {
 } from '../actions/projectActions'
 
 const initialState = {
-  isLoading: false,
-  showAlert: false,
-  alertText: '',
-  alertType: '',
+  isLoadingProject: false,
   projectName: '',
   projectDescription: '',
   projectUsers: [],

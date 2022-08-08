@@ -1,8 +1,2 @@
-export const DISPLAY_ALERT = 'SHOW_ALERT'
-export const CLEAR_ALERT = 'CLEAR_ALERT'
-
 export const DISPLAY_MODAL = 'DISPLAY_MODAL'
 export const HIDE_MODAL = 'HIDE_MODAL'
-
-export const HANDLE_CHANGE = 'HANDLE_CHANGE'
-export const HANDLE_CHANGE_SELECT = 'HANDLE_CHANGE_SELECT'

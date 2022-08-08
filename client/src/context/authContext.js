@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useReducer } from 'react'
 import axios from 'axios'
 import reducer from '../reducers/authReducer'
-import { useAppContext } from './appContext'
+
 import {
   REGISTER_USER_BEGIN,
   REGISTER_USER_SUCCESS,
@@ -18,10 +18,7 @@ import {
 } from '../actions/authActions.js'
 
 const initialState = {
-  isLoading: false,
-  showAlert: false,
-  alertText: '',
-  alertType: '',
+  isLoadingAuth: false,
   user: null,
 }
 
@@ -29,7 +26,6 @@ const AuthContext = React.createContext()
 
 const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
-  const { clearAlert } = useAppContext()
 
   const registerUser = async (currentUser) => {
     dispatch({ type: REGISTER_USER_BEGIN })
@@ -46,7 +42,6 @@ const AuthProvider = ({ children }) => {
         payload: { msg: error.response.data.msg },
       })
     }
-    clearAlert()
   }
 
   const loginUser = async (currentUser) => {
@@ -62,7 +57,6 @@ const AuthProvider = ({ children }) => {
         payload: { msg: error.response.data.msg },
       })
     }
-    clearAlert()
   }
 
   const showMe = async () => {

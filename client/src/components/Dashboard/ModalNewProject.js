@@ -6,7 +6,7 @@ import { FormRow, Alert } from '../Global'
 import { SelectComponent } from '../SingleProject'
 
 const ModalNewProject = () => {
-  const { hideModal, displayAlert } = useAppContext()
+  const { hideModal } = useAppContext()
 
   const { users } = useUsersContext()
   const { projectName, projectDescription, createProject, handleChangeInput } =
@@ -15,7 +15,7 @@ const ModalNewProject = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (!projectName || !projectDescription) {
-      displayAlert()
+      
     }
     createProject()
   }

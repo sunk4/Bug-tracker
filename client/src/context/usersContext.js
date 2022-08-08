@@ -18,8 +18,7 @@ import {
 } from '../actions/usersActions'
 
 const initialState = {
-  isLoading: false,
-  alertText: '',
+  isLoadingUser: false,
   users: [],
   singleUser: [],
 }
