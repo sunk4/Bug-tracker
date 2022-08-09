@@ -9,22 +9,11 @@ const Wrapper = styled.section`
   display: grid;
   grid-template-columns: 1fr;
 
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 0.5rem;
-    background-color: var(--grey-200);
-  }
-  .titles-projects {
-    display: flex;
-    justify-content: space-around;
-    background-color: var(--grey-100);
-  }
   .graphs {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 0 4rem;
+    margin: 0.5rem 0.1rem;
+    gap: 1rem;
   }
 `
 export default Wrapper

@@ -3,9 +3,9 @@ import Wrapper from './wrappers/ListOfProjects'
 const ListOfProjects = ({ projectName, projectDescription, user }) => {
   return (
     <Wrapper>
-      <h5> {projectName}</h5>
-      <h5> {projectDescription}</h5>
-      <h5> {user.lastName}</h5>
+      <h6> {projectName}</h6>
+      <h6> {projectDescription}</h6>
+      <h6> {user.lastName}</h6>
     </Wrapper>
   )
 }

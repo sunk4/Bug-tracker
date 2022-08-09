@@ -30,38 +30,34 @@ const PieChartComponent = ({ data, name }) => {
   }
 
   return (
-    <>
+    <div>
+      <h5>{name}</h5>
+      <hr />
       <div>
-        <div>
-          <h1>{name}</h1>
-          <hr />
-          <div>
-            <ResponsiveContainer width="100%" height={300}>
-              <PieChart>
-                <Legend layout="vertical" verticalAlign="top" align="top" />
-                <Pie
-                  data={data}
-                  cx="50%"
-                  cy="50%"
-                  labelLine={false}
-                  label={renderCustomizedLabel}
-                  outerRadius={80}
-                  fill="#8884d8"
-                  dataKey="value"
-                >
-                  {data.map((entry, index) => (
-                    <Cell
-                      key={`cell-${index}`}
-                      fill={COLORS[index % COLORS.length]}
-                    />
-                  ))}
-                </Pie>
-              </PieChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
+        <ResponsiveContainer width="70%" height={300}>
+          <PieChart>
+            <Legend layout="vertical" verticalAlign="top" align="top" />
+            <Pie
+              data={data}
+              cx="50%"
+              cy="50%"
+              labelLine={false}
+              label={renderCustomizedLabel}
+              outerRadius={80}
+              fill="#8884d8"
+              dataKey="value"
+            >
+              {data.map((entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))}
+            </Pie>
+          </PieChart>
+        </ResponsiveContainer>
       </div>
-    </>
+    </div>
   )
 }
 export default PieChartComponent

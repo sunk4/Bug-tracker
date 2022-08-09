@@ -3,9 +3,8 @@ import styled from 'styled-components'
 const Wrapper = styled.section`
   .title-user {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    margin: 0 auto;
   }
   h6 {
     justify-self: center;
@@ -19,8 +18,7 @@ const Wrapper = styled.section`
     justify-self: center;
     align-self: center;
     cursor: pointer;
-    border-radius: 50%;
-    background-color: #fff;
+    margin-left: 1rem;
   }
   .icon-delete {
     background-color: red;

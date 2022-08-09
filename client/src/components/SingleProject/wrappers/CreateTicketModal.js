@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   position: fixed;
   background: white;
   height: auto;
@@ -14,4 +14,5 @@ const Wrapper = styled.div`
     margin-top: 2rem;
   }
 `
+
 export default Wrapper

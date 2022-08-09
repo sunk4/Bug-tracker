@@ -2,6 +2,7 @@ import { useAppContext } from '../../context/appContext'
 import { useProjectContext } from '../../context/projectContext'
 import { useUsersContext } from '../../context/usersContext'
 import { SelectComponent } from '../../components/SingleProject'
+import Wrapper from './wrappers/AddMemberModal'
 
 const AddMemberModal = () => {
   const { hideModal } = useAppContext()
@@ -25,18 +26,22 @@ const AddMemberModal = () => {
     })
 
   return (
-    <section>
+    <Wrapper>
+      <h4>Add team member</h4>
       <form className="form">
-        <label>Add team member</label>
         <SelectComponent options={usersNotInProject} />
-        <button className="btn" type="submit" onClick={handleSubmit}>
+        <button className="btn btn-block" type="submit" onClick={handleSubmit}>
           Submit
         </button>
-        <button type="button" className="btn" onClick={hideModal}>
+        <button
+          type="button"
+          className="btn btn-block btn-danger"
+          onClick={hideModal}
+        >
           Close
         </button>
       </form>
-    </section>
+    </Wrapper>
   )
 }
 

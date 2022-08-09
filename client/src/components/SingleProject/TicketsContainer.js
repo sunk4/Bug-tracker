@@ -4,6 +4,7 @@ import { useUsersContext } from '../../context/usersContext'
 import { useTicketsContext } from '../../context/ticketsContext'
 import { AiFillDelete } from 'react-icons/ai'
 import { FiEdit } from 'react-icons/fi'
+import Wrapper from './wrappers/TicketsContainer'
 
 const TicketsContainerInProject = ({
   ticketTitle,
@@ -22,19 +23,21 @@ const TicketsContainerInProject = ({
   }, [])
 
   return (
-    <div onClick={() => getSingleTicket(ticketId)}>
+    <Wrapper onClick={() => getSingleTicket(ticketId)}>
       <h5>{ticketTitle}</h5>
       <h5>{ticketDescription}</h5>
       <h5>
         {firstName} {lastName}
       </h5>
-      <button type="button">
-        <AiFillDelete onClick={() => deleteTicket(ticketId)} />
-      </button>
-      <button type="button">
-        <FiEdit data-modal="modal-edit-project" onClick={displayModal} />
-      </button>
-    </div>
+      <div>
+        <button type="button">
+          <AiFillDelete onClick={() => deleteTicket(ticketId)} />
+        </button>
+        <button type="button">
+          <FiEdit data-modal="modal-edit-project" onClick={displayModal} />
+        </button>
+      </div>
+    </Wrapper>
   )
 }
 

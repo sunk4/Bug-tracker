@@ -2,6 +2,7 @@ import { useAppContext } from '../../context/appContext'
 import { useTicketsContext } from '../../context/ticketsContext'
 import { FormRow, FormRowSelect } from '../Global'
 import { useEffect, useState } from 'react'
+import Wrapper from './wrappers/UpdateTicketModal'
 
 const UpdateTicketModal = ({ ticketId, projectName }) => {
   const { hideModal } = useAppContext()
@@ -42,9 +43,9 @@ const UpdateTicketModal = ({ ticketId, projectName }) => {
   }, [singleTicket])
 
   return (
-    <section>
+    <Wrapper>
       <form className="form">
-        <h5>{projectName}</h5>
+        <h4>{projectName}</h4>
         <div>
           <FormRow
             type="text"
@@ -96,7 +97,7 @@ const UpdateTicketModal = ({ ticketId, projectName }) => {
           </button>
         </div>
       </form>
-    </section>
+    </Wrapper>
   )
 }
 

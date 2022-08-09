@@ -1,10 +1,12 @@
+import Wrapper from './wrappers/DashboardTitle'
+
 const DashboardTitle = () => {
   return (
-    <div className="titles-projects">
+    <Wrapper>
       <h5>Project</h5>
       <h5>Description</h5>
       <h5>Created by</h5>
-    </div>
+    </Wrapper>
   )
 }
 
