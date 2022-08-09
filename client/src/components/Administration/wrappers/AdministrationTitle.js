@@ -6,14 +6,12 @@ const Wrapper = styled.div`
   }
   .title-administration {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    margin: 0 auto;
   }
 
   h5 {
     text-decoration: underline;
-
     text-align: start;
   }
 `

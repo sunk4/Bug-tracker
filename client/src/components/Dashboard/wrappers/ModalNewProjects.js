@@ -5,6 +5,13 @@ const Wrapper = styled.div`
   background: white;
   height: auto;
   top: 4rem;
-  left: 50%;
+  left: 35%;
+  z-index: 999;
+
+  h4 {
+    text-align: center;
+    text-decoration: underline;
+    margin-top: 2rem;
+  }
 `
 export default Wrapper

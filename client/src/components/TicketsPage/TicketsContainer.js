@@ -12,12 +12,12 @@ const TicketsContainer = ({
 
   return (
     <Wrapper>
-      <h5>{ticketProjectId.projectName}</h5>
-      <h5>{ticketTitle}</h5>
-      <h5>{ticketType}</h5>
-      <h5>{ticketStatus}</h5>
-      <h5>{modifiedDate}</h5>
-      <h5>{ticketPriority}</h5>
+      <h6>{ticketProjectId.projectName}</h6>
+      <h6>{ticketTitle}</h6>
+      <h6>{ticketType}</h6>
+      <h6>{ticketStatus}</h6>
+      <h6>{modifiedDate}</h6>
+      <h6>{ticketPriority}</h6>
     </Wrapper>
   )
 }

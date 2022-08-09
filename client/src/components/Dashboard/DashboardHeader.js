@@ -1,8 +1,9 @@
 import ModalNewProject from './ModalNewProject'
+import Wrapper from './wrappers/DashboardHeader'
 
 const DashboardHeader = ({ displayModal, showModal, dataModal }) => {
   return (
-    <section className="header">
+    <Wrapper>
       <h4>Projects</h4>
       <button
         onClick={displayModal}
@@ -12,7 +13,7 @@ const DashboardHeader = ({ displayModal, showModal, dataModal }) => {
         New Project
       </button>
       {showModal && dataModal === 'modal-create-project' && <ModalNewProject />}
-    </section>
+    </Wrapper>
   )
 }
 
