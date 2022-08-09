@@ -1,13 +1,14 @@
+import Wrapper from './wrappers/TeamComponent'
 
-
-const TeamComponent = ({ firstName, lastName, email, phone }) => {
+const TeamComponent = ({ firstName, lastName, email, phoneNumber }) => {
   return (
-    <section>
-      <h5>{firstName}</h5>
-      <h5>{lastName}</h5>
-      <h5>{email}</h5>
-      <h5>{phone}</h5>
-    </section>
+    <Wrapper>
+      <h6>
+        {firstName} {lastName}
+      </h6>
+      <h6>{email}</h6>
+      <h6>{phoneNumber}</h6>
+    </Wrapper>
   )
 }
 

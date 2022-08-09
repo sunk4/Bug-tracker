@@ -1,29 +1,36 @@
-import { AddMemberModal } from '.'
+import { AddMemberModal, TeamComponent } from '.'
+import Wrapper from '../SingleProject/wrappers/HeaderProject'
 
-const HeaderProject = ({ showModal, displayModal, dataModal, projectName }) => {
+const HeaderProject = ({
+  showModal,
+  displayModal,
+  dataModal,
+  projectName,
+  teamMembersInProject,
+}) => {
   return (
-    <>
-      <h4>{projectName} </h4>
-      <section>
-        <div>
-          <h5>Team</h5>
-          <button
-            className="btn"
-            data-modal="modal-add-member"
-            onClick={displayModal}
-          >
-            New Member
-          </button>
-          {showModal && dataModal === 'modal-add-member' && <AddMemberModal />}
-        </div>
-        <div>
-          <h5>First name</h5>
-          <h5>Last name</h5>
-          <h5>Email</h5>
-          <h5>Phone</h5>
-        </div>
-      </section>
-    </>
+    <Wrapper>
+      <div className="header">
+        <h5>Team</h5>
+        <button
+          className="btn"
+          data-modal="modal-add-member"
+          onClick={displayModal}
+          type="button"
+        >
+          New Member
+        </button>
+        {showModal && dataModal === 'modal-add-member' && <AddMemberModal />}
+      </div>
+      <div className="titles">
+        <h5>Name</h5>
+        <h5>Email</h5>
+        <h5>Phone</h5>
+      </div>
+      {teamMembersInProject.map((member) => {
+        return <TeamComponent key={member._id} {...member} />
+      })}
+    </Wrapper>
   )
 }
 

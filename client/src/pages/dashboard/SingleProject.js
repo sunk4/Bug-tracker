@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom'
 
 import {
-  TeamComponent,
   TicketsContainer,
   HeaderTicket,
   SingleTicketInfo,
@@ -30,28 +29,34 @@ const SingleProject = () => {
 
   return (
     <Wrapper>
-      <HeaderProject
-        showModal={showModal}
-        displayModal={displayModal}
-        dataModal={dataModal}
-        projectName={projectName}
-      />
-      {teamMembersInProject.map((member) => {
-        return <TeamComponent key={member._id} {...member} />
-      })}
-
-      <HeaderTicket
-        {...singleProject}
-        displayModal={displayModal}
-        showModal={showModal}
-        dataModal={dataModal}
-        projectName={projectName}
-        ticketId={ticketId}
-      />
-      {ticketsAll.map((ticket) => {
-        return <TicketsContainer key={ticket._id} {...ticket} />
-      })}
-      <SingleTicketInfo {...singleTicket} />
+      <h4 className="title">{projectName} </h4>
+      <div className="tickets-container">
+        <div className="team">
+          <HeaderProject
+            showModal={showModal}
+            displayModal={displayModal}
+            dataModal={dataModal}
+            projectName={projectName}
+            teamMembersInProject={teamMembersInProject}
+          />
+        </div>
+        <div className="ticket">
+          <HeaderTicket
+            {...singleProject}
+            displayModal={displayModal}
+            showModal={showModal}
+            dataModal={dataModal}
+            projectName={projectName}
+            ticketId={ticketId}
+          />
+          {ticketsAll.map((ticket) => {
+            return <TicketsContainer key={ticket._id} {...ticket} />
+          })}
+        </div>
+        <div className='single-ticket'>
+          <SingleTicketInfo {...singleTicket} />
+        </div>
+      </div>
     </Wrapper>
   )
 }

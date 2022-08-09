@@ -6,5 +6,28 @@ const Wrapper = styled.section`
   left: 12rem;
   bottom: 0;
   width: calc(100% - 12rem);
+
+  .title {
+    background-color: var(--grey-200);
+  }
+  .tickets-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .team {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ticket {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .single-ticket {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
 `
 export default Wrapper

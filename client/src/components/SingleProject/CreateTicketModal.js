@@ -1,6 +1,6 @@
 import { useAppContext } from '../../context/appContext'
 import { useTicketsContext } from '../../context/ticketsContext'
-
+import Wrapper from './wrappers/CreateTicketModal'
 import { FormRow, FormRowSelect } from '../Global'
 
 const CreateTicketModal = ({ projectName }) => {
@@ -31,9 +31,9 @@ const CreateTicketModal = ({ projectName }) => {
   }
 
   return (
-    <section>
+    <Wrapper>
       <form className="form">
-        <h5>{projectName}</h5>
+        <h4>{projectName}</h4>
         <div>
           <FormRow
             type="text"
@@ -85,7 +85,7 @@ const CreateTicketModal = ({ projectName }) => {
           </button>
         </div>
       </form>
-    </section>
+    </Wrapper>
   )
 }
 
