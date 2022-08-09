@@ -1,11 +1,4 @@
-import {
-  PieChart,
-  Pie,
-  Legend,
-  Sector,
-  Cell,
-  ResponsiveContainer,
-} from 'recharts'
+import { PieChart, Pie, Legend, Cell, ResponsiveContainer } from 'recharts'
 
 const PieChartComponent = ({ data, name }) => {
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042']
@@ -18,7 +11,6 @@ const PieChartComponent = ({ data, name }) => {
     innerRadius,
     outerRadius,
     percent,
-    index,
   }) => {
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5
     const x = cx + radius * Math.cos(-midAngle * RADIAN)
@@ -44,8 +36,8 @@ const PieChartComponent = ({ data, name }) => {
           <h1>{name}</h1>
           <hr />
           <div>
-            <ResponsiveContainer width={400} height={400}>
-              <PieChart width={400} height={400}>
+            <ResponsiveContainer width="100%" height={300}>
+              <PieChart>
                 <Legend layout="vertical" verticalAlign="top" align="top" />
                 <Pie
                   data={data}

@@ -1,18 +1,20 @@
 import styled from 'styled-components'
-const Wrapper = styled.section`
+
+const Wrapper = styled.div`
+  .main-title {
+    background-color: var(--grey-200);
+  }
   .title-administration {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
   }
 
-  h4 {
-    text-align: center;
-    text-decoration: underline;
-    color: var(--primary-500);
-  }
   h5 {
     text-decoration: underline;
-    color: var(--primary-500);
+
+    text-align: start;
   }
 `
 

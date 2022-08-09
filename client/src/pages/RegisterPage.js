@@ -4,7 +4,7 @@ import { FormRow } from '../components/Global'
 import { Logo, Alert } from '../components/Global'
 
 import { useAuthContext } from '../context/authContext'
-import { useAppContext } from '../context/appContext'
+
 import Wrapper from '../assets/wrappers/RegisterPage'
 
 const initialState = {
@@ -19,8 +19,7 @@ const initialState = {
 const RegisterPage = () => {
   const [values, setValues] = useState(initialState)
 
-  const { registerUser, isLoading, user, loginUser } = useAuthContext()
-  const { displayAlert } = useAppContext()
+  const { registerUser, isLoadingAuth, user, loginUser } = useAuthContext()
 
   const navigate = useNavigate()
 
@@ -39,7 +38,6 @@ const RegisterPage = () => {
       (!isMember && !lastName) ||
       (!isMember && !phoneNumber)
     ) {
-      displayAlert()
       return
     }
     const currentUser = { firstName, lastName, email, password, phoneNumber }
@@ -117,7 +115,7 @@ const RegisterPage = () => {
           handleChange={handleChange}
         />
 
-        <button type="submit" className="btn btn-block" disabled={isLoading}>
+        <button type="submit" className="btn btn-block" disabled={isLoadingAuth}>
           {values.isMember ? 'Login' : 'Register'}
         </button>
         <p>

@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import Wrapper from '../../assets/wrappers/TicketPage'
 import { useTicketsContext } from '../../context/ticketsContext'
-import { TicketsContainer } from '../../components/TicketsPage'
+import { TicketsContainer, TicketTitle } from '../../components/TicketsPage'
 import { Link } from 'react-router-dom'
 
 const Tickets = () => {
@@ -13,20 +13,9 @@ const Tickets = () => {
 
   return (
     <Wrapper>
-      <div className="main-title">
-        <h4>Tickets</h4>
-      </div>
-      <div className="titles-tickets">
-        <h5>Project</h5>
-        <h5>Ticket</h5>
-        <h5>Type</h5>
-        <h5>Status</h5>
-        <h5>Created at</h5>
-        <h5>Priority</h5>
-      </div>
+      <TicketTitle />
       {ticketsAll.map((ticket) => {
         const { ticketProjectId } = ticket
-
         return (
           <Link key={ticket._id} to={`/project/${ticketProjectId._id}`}>
             <TicketsContainer {...ticket} />

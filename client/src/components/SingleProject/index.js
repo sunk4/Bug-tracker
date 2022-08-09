@@ -4,6 +4,9 @@ import TeamComponent from './TeamComponent'
 import TicketsContainer from './TicketsContainer'
 import UpdateTicketModal from './UpdateTicketModal'
 import SelectComponent from './SelectComponent'
+import SingleTicketInfo from './SingleTicketInfo'
+import HeaderProject from './HeaderProject'
+import HeaderTicket from './HeaderTicket'
 
 export {
   AddMemberModal,
@@ -12,4 +15,7 @@ export {
   TicketsContainer,
   UpdateTicketModal,
   SelectComponent,
+  SingleTicketInfo,
+  HeaderProject,
+  HeaderTicket,
 }

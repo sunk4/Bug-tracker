@@ -7,18 +7,21 @@ const UsersContainer = ({ firstName, lastName, role, email, _id }) => {
 
   return (
     <Wrapper>
-      <h5 className="title-user">{firstName}</h5>
-      <h5 className="title-user">{lastName}</h5>
-      <h5 className="title-user">{email}</h5>
-      <h5 className="title-user">
-        {role}
-        <button onClick={() => deleteUser(_id)}>
-          <AiFillDelete />
-        </button>
-        <button onClick={() => getSingleUser(_id)}>
-          <FiEdit />
-        </button>
-      </h5>
+      <div className="title-user">
+        <h6>
+          {firstName} {lastName}
+        </h6>
+        <h6>{role}</h6>
+        <h6>{email}</h6>
+        <div>
+          <button type="button" onClick={() => deleteUser(_id)}>
+            <AiFillDelete className="icon-delete" />
+          </button>
+          <button type="button" onClick={() => getSingleUser(_id)}>
+            <FiEdit className="icon-edit" />
+          </button>
+        </div>
+      </div>
     </Wrapper>
   )
 }

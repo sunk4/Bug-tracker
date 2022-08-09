@@ -17,13 +17,13 @@ const reducer = (state, action) => {
   if (action.type === GET_ALL_USERS_BEGIN) {
     return {
       ...state,
-      isLoading: true,
+      isLoadingUser: true,
     }
   }
   if (action.type === GET_ALL_USERS_SUCCESS) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingUser: false,
       users: action.payload.users,
     }
   }
@@ -31,7 +31,7 @@ const reducer = (state, action) => {
   if (action.type === GET_ALL_USERS_ERROR) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingUser: false,
       alertText: action.payload.msg,
     }
   }
@@ -39,14 +39,14 @@ const reducer = (state, action) => {
   if (action.type === GET_SINGLE_USER_BEGIN) {
     return {
       ...state,
-      isLoading: true,
+      isLoadingUser: true,
     }
   }
 
   if (action.type === GET_SINGLE_USER_SUCCESS) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingUser: false,
       singleUser: action.payload.user,
     }
   }
@@ -54,7 +54,7 @@ const reducer = (state, action) => {
   if (action.type === GET_SINGLE_USER_ERROR) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingUser: false,
       alertText: action.payload.msg,
     }
   }
@@ -62,21 +62,21 @@ const reducer = (state, action) => {
   if (action.type === DELETE_USER_BEGIN) {
     return {
       ...state,
-      isLoading: true,
+      isLoadingUser: true,
     }
   }
 
   if (action.type === DELETE_USER_SUCCESS) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingUser: false,
     }
   }
 
   if (action.type === DELETE_USER_ERROR) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingUser: false,
       alertText: action.payload.msg,
     }
   }
@@ -84,14 +84,14 @@ const reducer = (state, action) => {
   if (action.type === UPDATE_USER_BY_ADMIN_BEGIN) {
     return {
       ...state,
-      isLoading: true,
+      isLoadingUser: true,
     }
   }
 
   if (action.type === UPDATE_USER_BY_ADMIN_SUCCESS) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingUser: false,
       showAlert: true,
       alertType: 'danger',
       alertText: 'DONE',
@@ -101,7 +101,7 @@ const reducer = (state, action) => {
   if (action.type === UPDATE_USER_BY_ADMIN_ERROR) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingUser: false,
       showAlert: true,
       alertType: 'danger',
       alertText: action.payload.msg,

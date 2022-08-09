@@ -2,8 +2,9 @@ import { useEffect } from 'react'
 import Wrapper from '../../assets/wrappers/DashboardPage'
 import {
   ListOfProjects,
-  ModalNewProject,
   ChartComponent,
+  DashboardHeader,
+  DashboardTitle,
 } from '../../components/Dashboard'
 import { useAppContext } from '../../context/appContext'
 import { useProjectContext } from '../../context/projectContext'
@@ -17,47 +18,35 @@ const Dashboard = () => {
   const { showModal, displayModal, dataModal } = useAppContext()
   const { getAllUsers } = useUsersContext()
   const {
+    isLoadingTicket,
     getAllTickets,
     statsTicketPriority,
     statsTicketStatus,
     statsTicketType,
     getStatsTickets,
   } = useTicketsContext()
-  const { getAllProjects, projectsAll, isLoading } = useProjectContext()
+  const { getAllProjects, projectsAll, isLoadingProject } = useProjectContext()
 
   useEffect(() => {
+    getStatsTickets()
     getAllProjects()
     getAllTickets()
     getAllUsers()
-    getStatsTickets()
   }, [])
 
   return (
     <Wrapper>
       <div>
-        <section className="header">
-          <h4>Projects</h4>
-          <button
-            onClick={displayModal}
-            data-modal="modal-create-project"
-            className="btn"
-          >
-            New Project
-          </button>
-          {showModal && dataModal === 'modal-create-project' && (
-            <ModalNewProject />
-          )}
-        </section>
-        {isLoading ? (
+        <DashboardHeader
+          displayModal={displayModal}
+          showModal={showModal}
+          dataModal={dataModal}
+        />
+        {isLoadingProject ? (
           <Loading />
         ) : (
           <section>
-            <div className="titles-projects">
-              <h5>Project</h5>
-              <h5>Description</h5>
-              <h5>Created by</h5>
-            </div>
-
+            <DashboardTitle />
             {projectsAll.map((project) => {
               return (
                 <Link key={project._id} to={`project/${project._id}`}>
@@ -68,11 +57,15 @@ const Dashboard = () => {
           </section>
         )}
       </div>
-      <div className="graphs">
-        <ChartComponent data={statsTicketPriority} name={'Ticket Priority'} />
-        <ChartComponent data={statsTicketStatus} name={'Ticket Status'} />
-        <ChartComponent data={statsTicketType} name={'Ticket Type'} />
-      </div>
+      {isLoadingTicket ? (
+        <Loading />
+      ) : (
+        <section className="graphs">
+          <ChartComponent data={statsTicketPriority} name={'Ticket Priority'} />
+          <ChartComponent data={statsTicketStatus} name={'Ticket Status'} />
+          <ChartComponent data={statsTicketType} name={'Ticket Type'} />
+        </section>
+      )}
     </Wrapper>
   )
 }

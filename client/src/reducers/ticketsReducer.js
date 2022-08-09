@@ -24,14 +24,14 @@ const reducer = (state, action) => {
   if (action.type === GET_ALL_TICKETS_BEGIN) {
     return {
       ...state,
-      isLoading: true,
+      isLoadingTicket: true,
     }
   }
 
   if (action.type === GET_ALL_TICKETS_SUCCESS) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingTicket: false,
       ticketsAll: action.payload.tickets,
     }
   }
@@ -39,7 +39,7 @@ const reducer = (state, action) => {
   if (action.type === GET_ALL_TICKETS_ERROR) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingTicket: false,
       alertText: action.payload.msg,
     }
   }
@@ -47,14 +47,14 @@ const reducer = (state, action) => {
   if (action.type === DELETE_TICKET_BEGIN) {
     return {
       ...state,
-      isLoading: true,
+      isLoadingTicket: true,
     }
   }
 
   if (action.type === DELETE_TICKET_SUCCESS) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingTicket: false,
       alertText: 'Deleted',
     }
   }
@@ -62,7 +62,7 @@ const reducer = (state, action) => {
   if (action.type === DELETE_TICKET_ERROR) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingTicket: false,
       alertText: action.payload.msg,
     }
   }
@@ -70,14 +70,14 @@ const reducer = (state, action) => {
   if (action.type === GET_TICKET_BEGIN) {
     return {
       ...state,
-      isLoading: true,
+      isLoadingTicket: true,
     }
   }
 
   if (action.type === GET_TICKET_SUCCESS) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingTicket: false,
       singleTicket: action.payload.ticket,
     }
   }
@@ -85,7 +85,7 @@ const reducer = (state, action) => {
   if (action.type === GET_TICKET_ERROR) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingTicket: false,
       alertText: action.payload.msg,
     }
   }
@@ -93,14 +93,14 @@ const reducer = (state, action) => {
   if (action.type === CREATE_TICKET_BEGIN) {
     return {
       ...state,
-      isLoading: true,
+      isLoadingTicket: true,
     }
   }
 
   if (action.type === CREATE_TICKET_SUCCESS) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingTicket: false,
       showAlert: true,
       alertType: 'success',
       alertText: 'New ticket Created!',
@@ -110,7 +110,7 @@ const reducer = (state, action) => {
   if (action.type === CREATE_TICKET_ERROR) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingTicket: false,
       showAlert: true,
       alertType: 'danger',
       alertText: action.payload.msg,
@@ -120,14 +120,14 @@ const reducer = (state, action) => {
   if (action.type === UPDATE_TICKET_BEGIN) {
     return {
       ...state,
-      isLoading: true,
+      isLoadingTicket: true,
     }
   }
 
   if (action.type === UPDATE_TICKET_SUCCESS) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingTicket: false,
       showAlert: true,
       alertType: 'success',
       alertText: 'New ticket Created!',
@@ -137,7 +137,7 @@ const reducer = (state, action) => {
   if (action.type === UPDATE_TICKET_ERROR) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingTicket: false,
       showAlert: true,
       alertType: 'danger',
       alertText: action.payload.msg,
@@ -147,7 +147,7 @@ const reducer = (state, action) => {
   if (action.type === SHOW_STATS_BEGIN) {
     return {
       ...state,
-      isLoading: true,
+      isLoadingTicket: true,
     }
   }
 
@@ -162,7 +162,7 @@ const reducer = (state, action) => {
     }
     return {
       ...state,
-      isLoading: false,
+      isLoadingTicket: false,
       statsTicketPriority: changeKeys(action.payload.countPriority),
       statsTicketStatus: changeKeys(action.payload.countStatus),
       statsTicketType: changeKeys(action.payload.countType),
@@ -172,7 +172,7 @@ const reducer = (state, action) => {
   if (action.type === SHOW_STATS_ERROR) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingTicket: false,
       alertText: action.payload.msg,
     }
   }

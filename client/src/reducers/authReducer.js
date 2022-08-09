@@ -17,14 +17,14 @@ const reducer = (state, action) => {
   if (action.type === REGISTER_USER_BEGIN) {
     return {
       ...state,
-      isLoading: true,
+      isLoadingAuth: true,
     }
   }
   if (action.type === REGISTER_USER_SUCCESS) {
 
     return {
       ...state,     
-      isLoading: false,
+      isLoadingAuth: false,
       showAlert: true,
       alertType: 'success',
       alertText: 'User Created! Now you can login',
@@ -34,7 +34,7 @@ const reducer = (state, action) => {
   if (action.type === REGISTER_USER_ERROR) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingAuth: false,
       showAlert: true,
       alertType: 'danger',
       alertText: action.payload.msg,
@@ -44,7 +44,7 @@ const reducer = (state, action) => {
   if (action.type === LOGIN_USER_BEGIN) {
     return {
       ...state,
-      isLoading: true,
+      isLoadingAuth: true,
     }
   }
 
@@ -52,7 +52,7 @@ const reducer = (state, action) => {
     return {
       ...state,
       user: action.payload.user,
-      isLoading: false,
+      isLoadingAuth: false,
       showAlert: true,
       alertType: 'success',
       alertText: 'User Logged in! Redirecting... ',
@@ -61,7 +61,7 @@ const reducer = (state, action) => {
   if (action.type === LOGIN_USER_ERROR) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingAuth: false,
       showAlert: true,
       alertType: 'danger',
       alertText: action.payload.msg,
@@ -71,14 +71,14 @@ const reducer = (state, action) => {
   if (action.type === SHOW_ME_BEGIN) {
     return {
       ...state,
-      isLoading: true,
+      isLoadingAuth: true,
     }
   }
 
   if (action.type === SHOW_ME_SUCCESS) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingAuth: false,
       user: action.payload.user,
     }
   }
@@ -86,7 +86,7 @@ const reducer = (state, action) => {
   if (action.type === SHOW_ME_ERROR) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingAuth: false,
       user: null,
     }
   }
@@ -94,20 +94,20 @@ const reducer = (state, action) => {
   if (action.type === LOGOUT_USER_BEGIN) {
     return {
       ...state,
-      isLoading: true,
+      isLoadingAuth: true,
     }
   }
   if (action.type === LOGOUT_USER_SUCCESS) {
     return {
       ...state,
       user: null,
-      isLoading: false,
+      isLoadingAuth: false,
     }
   }
   if (action.type === LOGOUT_USER_ERROR) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingAuth: false,
     }
   }
 

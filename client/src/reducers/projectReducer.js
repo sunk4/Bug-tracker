@@ -17,13 +17,13 @@ import {
 
 const reducer = (state, action) => {
   if (action.type === CREATE_PROJECT_BEGIN) {
-    return { ...state, isLoading: true }
+    return { ...state, isLoadingProject: true }
   }
 
   if (action.type === CREATE_PROJECT_SUCCESS) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingProject: false,
       showAlert: true,
       alertType: 'success',
       alertText: 'New project Created!',
@@ -33,7 +33,7 @@ const reducer = (state, action) => {
   if (action.type === CREATE_PROJECT_ERROR) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingProject: false,
       showAlert: true,
       alertType: 'danger',
       alertText: action.payload.msg,
@@ -43,14 +43,14 @@ const reducer = (state, action) => {
   if (action.type === GET_ALL_PROJECTS_BEGIN) {
     return {
       ...state,
-      isLoading: true,
+      isLoadingProject: true,
     }
   }
 
   if (action.type === GET_ALL_PROJECTS_SUCCESS) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingProject: false,
       projectsAll: action.payload.projects,
     }
   }
@@ -58,7 +58,7 @@ const reducer = (state, action) => {
   if (action.type === GET_ALL_PROJECTS_ERROR) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingProject: false,
       alertText: action.payload.msg,
     }
   }
@@ -66,14 +66,14 @@ const reducer = (state, action) => {
   if (action.type === GET_SINGLE_PROJECT_BEGIN) {
     return {
       ...state,
-      isLoading: true,
+      isLoadingProject: true,
     }
   }
 
   if (action.type === GET_SINGLE_PROJECT_SUCCESS) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingProject: false,
       singleProject: action.payload.project,
       teamMembersInProject: action.payload.users,
     }
@@ -82,7 +82,7 @@ const reducer = (state, action) => {
   if (action.type === GET_SINGLE_PROJECT_ERROR) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingProject: false,
       alertText: action.payload.msg,
     }
   }
@@ -90,21 +90,21 @@ const reducer = (state, action) => {
   if (action.type === UPDATE_ADD_MEMBER_TO_PROJECT_BEGIN) {
     return {
       ...state,
-      isLoading: true,
+      isLoadingProject: true,
     }
   }
 
   if (action.type === UPDATE_ADD_MEMBER_TO_PROJECT_SUCCESS) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingProject: false,
     }
   }
 
   if (action.type === UPDATE_ADD_MEMBER_TO_PROJECT_ERROR) {
     return {
       ...state,
-      isLoading: false,
+      isLoadingProject: false,
       alertText: action.payload.msg,
     }
   }
