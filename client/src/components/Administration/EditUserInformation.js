@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useUsersContext } from '../../context/usersContext'
 import { FormRow } from '../Global'
+import Wrapper from './wrappers/EditUserInformation'
 
 const EditUserInformation = () => {
   const { singleUser, updateUserByAdmin, getAllUsers } = useUsersContext()
@@ -28,8 +29,9 @@ const EditUserInformation = () => {
   }, [singleUser])
 
   return (
-    <div>
+    <Wrapper>
       <form onSubmit={handleSubmit}>
+        <h4>Edit User information</h4>
         <FormRow
           type="text"
           name="firstName"
@@ -60,11 +62,11 @@ const EditUserInformation = () => {
           value={role || ''}
           handleChange={(e) => setRole(e.target.value)}
         />
-        <button className="btn btn-block" type="submit">
+        <button className="btn" type="submit">
           Save changes
         </button>
       </form>
-    </div>
+    </Wrapper>
   )
 }
 
