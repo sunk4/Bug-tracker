@@ -31,5 +31,9 @@ const Wrapper = styled.section`
     display: grid;
     grid-template-columns: 1fr;
   }
+
+  .none-button {
+    all: unset;
+  }
 `
 export default Wrapper

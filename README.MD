@@ -3,12 +3,22 @@
 ## App for my first job interview - stack ---->
 MONGODB
 EXPRESS
-REACT,
-NODE,
+REACT 
+NODE
 
 #### Track Your projects and tickets in your company
 
-Project in Action - [BUG-Tracker]("https - will be done")
+Project in Action - [BUG-Tracker]("https://bug-tracker-interview.herokuapp.com/")
+
+#### TODOS
+```sh
+styling - mobile, laptop
+alertText on FE - after submit or errors from BE
+add typescript
+tickets also only per user
+project - delete, update on FE
+```
+
 
 #### Run The App Locally
 

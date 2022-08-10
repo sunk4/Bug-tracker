@@ -1,6 +1,9 @@
 import Wrapper from './wrappers/TicketTitle'
 
+
 const TicketTitle = () => {
+
+
   return (
     <Wrapper>
       <div className="main-title">

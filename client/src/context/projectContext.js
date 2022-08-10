@@ -61,6 +61,7 @@ const ProjectProvider = ({ children }) => {
       const response = await axios('/api/v1/projects')
       const { projects } = response.data
 
+      
       dispatch({ type: GET_ALL_PROJECTS_SUCCESS, payload: { projects } })
     } catch (error) {
       dispatch({

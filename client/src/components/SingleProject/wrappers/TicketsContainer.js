@@ -8,5 +8,8 @@ const Wrapper = styled.section`
     cursor: pointer;
     background-color: var(--grey-200);
   }
+  button {
+    cursor: pointer;
+  }
 `
 export default Wrapper

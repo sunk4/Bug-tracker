@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-
+import { useState } from 'react'
 import {
   TicketsContainer,
   HeaderTicket,
@@ -14,11 +14,12 @@ import { useEffect } from 'react'
 
 const SingleProject = () => {
   const { id } = useParams()
-
   const { displayModal, showModal, dataModal } = useAppContext()
   const { getSingleProject, singleProject, teamMembersInProject } =
     useProjectContext()
   const { ticketsAll, singleTicket } = useTicketsContext()
+
+  const [showSingleTicket, setShowSingleTicket] = useState(false)
 
   const { _id: ticketId } = singleTicket
 
@@ -52,12 +53,22 @@ const SingleProject = () => {
             ticketId={ticketId}
           />
           {ticketsAll.map((ticket) => {
-            return <TicketsContainer key={ticket._id} {...ticket} />
+            return (
+              <button
+                type="button"
+                className="none-button"
+                onClick={() => setShowSingleTicket(true)}
+              >
+                <TicketsContainer key={ticket._id} {...ticket} />
+              </button>
+            )
           })}
         </div>
-        <div className="single-ticket">
-          <SingleTicketInfo {...singleTicket} />
-        </div>
+        {showSingleTicket && (
+          <div className="single-ticket">
+            <SingleTicketInfo {...singleTicket} />
+          </div>
+        )}
       </div>
     </Wrapper>
   )

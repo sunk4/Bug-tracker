@@ -11,9 +11,9 @@ const isTokenValid = (token) => {
   return jwt.verify(token, process.env.JWT_SECRET)
 }
 
-const attachCookiesToResponse = ({ res, user, refreshToken }) => {
+const attachCookiesToResponse = ({ res, user }) => {
   const accessTokenJWT = createJWT({ payload: { user } })
-  const refreshTokenJWT = createJWT({ payload: { user, refreshToken } })
+  const refreshTokenJWT = createJWT({ payload: { user } })
 
   const oneDay = 1000 * 60 * 60 * 24
   const longerExp = 1000 * 60 * 60 * 24 * 30
@@ -32,7 +32,5 @@ const attachCookiesToResponse = ({ res, user, refreshToken }) => {
     signed: true,
   })
 }
-
-
 
 export { createJWT, isTokenValid, attachCookiesToResponse }

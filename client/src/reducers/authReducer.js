@@ -21,13 +21,12 @@ const reducer = (state, action) => {
     }
   }
   if (action.type === REGISTER_USER_SUCCESS) {
-
     return {
-      ...state,     
+      ...state,
       isLoadingAuth: false,
-      showAlert: true,
-      alertType: 'success',
-      alertText: 'User Created! Now you can login',
+      showAlertAuth: true,
+      alertTypeAuth: 'success',
+      alertTextAuth: 'User Created! Redirecting...',
     }
   }
 
@@ -35,9 +34,9 @@ const reducer = (state, action) => {
     return {
       ...state,
       isLoadingAuth: false,
-      showAlert: true,
-      alertType: 'danger',
-      alertText: action.payload.msg,
+      showAlertAuth: true,
+      alertTypeAuth: 'danger',
+      alertTextAuth: action.payload.msg,
     }
   }
 
@@ -53,18 +52,18 @@ const reducer = (state, action) => {
       ...state,
       user: action.payload.user,
       isLoadingAuth: false,
-      showAlert: true,
-      alertType: 'success',
-      alertText: 'User Logged in! Redirecting... ',
+      showAlertAuth: true,
+      alertTypeAuth: 'success',
+      alertTextAuth: 'User Logged in! Redirecting... ',
     }
   }
   if (action.type === LOGIN_USER_ERROR) {
     return {
       ...state,
       isLoadingAuth: false,
-      showAlert: true,
-      alertType: 'danger',
-      alertText: action.payload.msg,
+      showAlertAuth: true,
+      alertTypeAuth: 'danger',
+      alertTextAuth: action.payload.msg,
     }
   }
 

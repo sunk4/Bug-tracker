@@ -20,6 +20,9 @@ import {
 const initialState = {
   isLoadingAuth: false,
   user: null,
+  showAlertAuth: false,
+  alertTypeAuth: '',
+  alertTextAuth: '',
 }
 
 const AuthContext = React.createContext()
@@ -63,6 +66,7 @@ const AuthProvider = ({ children }) => {
     dispatch({ type: SHOW_ME_BEGIN })
     try {
       const response = await axios.get('/api/v1/users/showMe')
+
       const { user } = response.data
 
       dispatch({ type: SHOW_ME_SUCCESS, payload: { user } })

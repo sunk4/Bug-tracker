@@ -7,21 +7,20 @@ const authenticateUser = async (req, res, next) => {
   try {
     if (accessToken) {
       const payload = isTokenValid(accessToken)
-
       req.user = payload.user
+
       return next()
     }
     const payload = isTokenValid(refreshToken)
-
     attachCookiesToResponse({
       res,
       user: payload.user,
-      refreshToken: accessToken,
     })
 
     req.user = payload.user
     next()
   } catch (error) {
+
     throw new UnauthenticatedError('Authentication invalid')
   }
 }

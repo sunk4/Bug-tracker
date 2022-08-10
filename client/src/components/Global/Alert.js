@@ -1,9 +1,9 @@
-import { useAppContext } from '../../context/appContext'
+import { useAuthContext } from '../../context/authContext'
 
 const Alert = () => {
-  const { alertType, alertText } = useAppContext()
+  const { alertTypeAuth, alertTextAuth } = useAuthContext()
 
-  return <div className={`alert alert-${alertType}`}>{alertText}</div>
+  return <div className={`alert alert-${alertTypeAuth}`}>{alertTextAuth}</div>
 }
 
 export default Alert
