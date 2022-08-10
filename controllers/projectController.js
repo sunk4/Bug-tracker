@@ -21,12 +21,22 @@ const createProject = async (req, res) => {
   res.status(StatusCodes.CREATED).json({ project })
 }
 const getAllProjects = async (req, res) => {
-  const projects = await Project.find({}).populate({
-    path: 'user',
-    select: '-password _id',
-  })
-
-  res.status(StatusCodes.OK).json({ projects, counts: projects.length })
+  const user = req.user
+  if (user.role === 'admin') {
+    const projects = await Project.find({}).populate({
+      path: 'user',
+      select: '-password _id',
+    })
+    res.status(StatusCodes.OK).json({ projects, counts: projects.length })
+  } else {
+    const projects = await Project.find({
+      projectUsers: user._id,
+    }).populate({
+      path: 'user',
+      select: '-password _id',
+    })
+    res.status(StatusCodes.OK).json({ projects, counts: projects.length })
+  }
 }
 const getSingleProject = async (req, res) => {
   const { id } = req.params
