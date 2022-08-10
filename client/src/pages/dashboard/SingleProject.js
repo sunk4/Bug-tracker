@@ -23,8 +23,10 @@ const SingleProject = () => {
   const { _id: ticketId } = singleTicket
 
   const { projectName } = singleProject
+
   useEffect(() => {
     getSingleProject(id)
+    // eslint-disable-next-line
   }, [])
 
   return (
@@ -53,7 +55,7 @@ const SingleProject = () => {
             return <TicketsContainer key={ticket._id} {...ticket} />
           })}
         </div>
-        <div className='single-ticket'>
+        <div className="single-ticket">
           <SingleTicketInfo {...singleTicket} />
         </div>
       </div>

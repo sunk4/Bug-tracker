@@ -9,6 +9,7 @@ const AdministrationComponent = () => {
 
   useEffect(() => {
     getAllUsers()
+    // eslint-disable-next-line
   }, [])
 
   if (isLoadingUser) {

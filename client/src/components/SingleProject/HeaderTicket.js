@@ -1,6 +1,5 @@
 import {
   CreateTicketModal,
-  TicketsContainer,
   UpdateTicketModal,
 } from '../../components/SingleProject'
 

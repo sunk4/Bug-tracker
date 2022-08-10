@@ -9,6 +9,7 @@ const Tickets = () => {
 
   useEffect(() => {
     getAllTickets()
+    // eslint-disable-next-line
   }, [])
 
   return (

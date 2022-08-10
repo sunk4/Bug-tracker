@@ -32,6 +32,7 @@ const Dashboard = () => {
     getAllProjects()
     getAllTickets()
     getAllUsers()
+    // eslint-disable-next-line
   }, [])
 
   return (

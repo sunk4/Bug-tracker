@@ -20,6 +20,7 @@ const TicketsContainerInProject = ({
 
   useEffect(() => {
     getSingleUser(userId)
+    // eslint-disable-next-line
   }, [])
 
   return (
