@@ -8,7 +8,7 @@ NODE
 
 #### Track Your projects and tickets in your company
 
-Project in Action - [BUG-Tracker]("https://bug-tracker-interview.herokuapp.com/")
+Project in Action - [BUG-Tracker](https://bug-tracker-interview.herokuapp.com/)
 
 #### TODOS
 ```sh
