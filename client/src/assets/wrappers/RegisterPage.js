@@ -26,6 +26,10 @@ const Wrapper = styled.section`
   p {
     text-align: center;
   }
+
+  span {
+    color: red;
+  }
 `
 
 export default Wrapper

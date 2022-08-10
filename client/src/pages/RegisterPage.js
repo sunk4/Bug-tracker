@@ -64,6 +64,14 @@ const RegisterPage = () => {
   return (
     <Wrapper>
       <form className="form" onSubmit={onSubmit}>
+        <div>
+          <p>
+            Please login with this username for admin auth - name:
+            <span> roman.gmail@.com </span>
+            password: <span> secret</span> or register, but u will not have
+            access to everything. Thank you
+          </p>
+        </div>
         <div className="header-form">
           <Logo />
           <h3>{values.isMember ? 'Login' : 'Register'}</h3>
@@ -115,7 +123,11 @@ const RegisterPage = () => {
           handleChange={handleChange}
         />
 
-        <button type="submit" className="btn btn-block" disabled={isLoadingAuth}>
+        <button
+          type="submit"
+          className="btn btn-block"
+          disabled={isLoadingAuth}
+        >
           {values.isMember ? 'Login' : 'Register'}
         </button>
         <p>
