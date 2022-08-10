@@ -18,11 +18,13 @@ const Wrapper = styled.section`
   .team {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    padding-left: 2rem;
   }
 
   .ticket {
     display: grid;
     grid-template-columns: 1fr;
+    padding-right: 2rem;
   }
 
   .single-ticket {

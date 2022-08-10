@@ -1,3 +1,5 @@
+import Wrapper from './wrappers/SingleTicketInfo'
+
 const SingleTicketInfo = ({
   ticketTitle,
   ticketStatus,
@@ -6,28 +8,28 @@ const SingleTicketInfo = ({
   ticketType,
 }) => {
   return (
-    <section>
-      <div>
+    <Wrapper>
+      <div className="title-status">
         <h6>Ticket title</h6>
-        <h5>{ticketTitle}</h5>
+        <h4>{ticketTitle}</h4>
         <h6>Status</h6>
-        <h5>{ticketStatus}</h5>
+        <h4>{ticketStatus}</h4>
       </div>
-      <div>
+      <div className="ticket-types">
         <div>
           <h6>Description</h6>
-          <h5>{ticketDescription}</h5>
+          <h4>{ticketDescription}</h4>
         </div>
         <div>
           <h6>Priority</h6>
-          <h5>{ticketPriority}</h5>
+          <h4>{ticketPriority}</h4>
         </div>
         <div>
           <h6>Type</h6>
-          <h5>{ticketType}</h5>
+          <h4>{ticketType}</h4>
         </div>
       </div>
-    </section>
+    </Wrapper>
   )
 }
 
