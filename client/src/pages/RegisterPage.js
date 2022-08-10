@@ -67,7 +67,7 @@ const RegisterPage = () => {
         <div>
           <p>
             Please login with this username for admin auth - name:
-            <span> roman.gmail@.com </span>
+            <span> roman.trnka@gmail.com </span>
             password: <span> secret</span> or register, but u will not have
             access to everything. Thank you
           </p>
