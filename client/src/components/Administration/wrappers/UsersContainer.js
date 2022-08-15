@@ -1,32 +1,29 @@
 import styled from 'styled-components'
 
 const Wrapper = styled.section`
-  .title-user {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+  div {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
-  h6 {
-    justify-self: center;
-    text-align: start;
+
+  h5 {
+    font-size: 1rem;
+    font-family: var(--bodyFont);
+    letter-spacing: var(--letterSpacing);
+    color: var(--black);
+    text-align: center;
+    margin: 0;
+    padding: 1.5rem;
+  }
+
+  .underline {
+    border-bottom: 2px solid var(--grey-200);
+    width: 80%;
+  }
+  .buttons {
     align-self: center;
-    display: inline-block;
-    width: 7.5rem;
-  }
-  button {
-    border: none;
     justify-self: center;
-    align-self: center;
-    cursor: pointer;
-    margin-left: 1rem;
-  }
-  .icon-delete {
-    background-color: red;
-    font-size: 1.05rem;
-  }
-  .icon-edit {
-    background-color: green;
-    font-size: 1.05rem;
+    padding-left: 5.5rem;
   }
 `
 

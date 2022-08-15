@@ -9,10 +9,10 @@ import {
 import { useAppContext } from '../../context/appContext'
 import { useProjectContext } from '../../context/projectContext'
 import { useTicketsContext } from '../../context/ticketsContext'
-
 import { Loading } from '../../components/Global'
 import { Link } from 'react-router-dom'
 import { useUsersContext } from '../../context/usersContext'
+import { Header } from '../../components/SharedLayout'
 
 const Dashboard = () => {
   const { showModal, displayModal, dataModal } = useAppContext()
@@ -37,6 +37,7 @@ const Dashboard = () => {
 
   return (
     <Wrapper>
+      <Header title="Dashboard" />
       <div>
         <DashboardHeader
           displayModal={displayModal}
