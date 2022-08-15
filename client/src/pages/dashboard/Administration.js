@@ -1,16 +1,21 @@
 import Wrapper from '../../assets/wrappers/AdministrationPage'
 import {
   AdministrationComponent,
-  EditUserInformation,
+  EditUserInformationModal,
 } from '../../components/Administration'
 import { Header } from '../../components/SharedLayout'
+import { useAppContext } from '../../context/appContext'
 
 const Administration = () => {
+  const { showModal, dataModal } = useAppContext()
+
   return (
     <Wrapper>
       <Header title="Organization" />
       <AdministrationComponent />
-      <EditUserInformation />
+      {showModal && dataModal === 'modal-edit-user' && (
+        <EditUserInformationModal />
+      )}
     </Wrapper>
   )
 }

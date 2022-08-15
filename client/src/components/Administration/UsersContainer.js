@@ -2,9 +2,16 @@ import Wrapper from './wrappers/UsersContainer'
 import { useUsersContext } from '../../context/usersContext'
 import { AiFillDelete } from 'react-icons/ai'
 import { FiEdit } from 'react-icons/fi'
+import { useAppContext } from '../../context/appContext'
 const UsersContainer = ({ users }) => {
   const { deleteUser, getSingleUser } = useUsersContext()
-  console.log(users)
+  const { displayModal } = useAppContext()
+
+  const handleClick = (id, e) => {
+    e.preventDefault()
+    getSingleUser(id)
+    displayModal(e)
+  }
 
   return (
     <Wrapper>
@@ -19,7 +26,7 @@ const UsersContainer = ({ users }) => {
       {users.map((user) => {
         const { _id, firstName, lastName, email, phoneNumber, role } = user
         return (
-          <div>
+          <div key={_id}>
             <h5>
               {firstName} {lastName}
             </h5>
@@ -28,10 +35,19 @@ const UsersContainer = ({ users }) => {
             <h5>{phoneNumber}</h5>
             <div className="buttons">
               <button type="button" onClick={() => deleteUser(_id)}>
-                <AiFillDelete className="icon-delete" />
+                <AiFillDelete className="icon" />
               </button>
-              <button type="button" onClick={() => getSingleUser(_id)}>
-                <FiEdit className="icon-edit" />
+
+              <button
+                type="button"
+                data-modal="modal-edit-user"
+                onClick={(e) => handleClick(_id, e)}
+              >
+                <FiEdit
+                  className="icon"
+                  data-modal="modal-edit-user"
+                  onClick={(e) => handleClick(_id, e)}
+                />
               </button>
             </div>
           </div>

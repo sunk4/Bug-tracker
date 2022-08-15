@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
+import { useAppContext } from '../../context/appContext'
 import { useUsersContext } from '../../context/usersContext'
 import { FormRow } from '../Global'
 import Wrapper from './wrappers/EditUserInformation'
 
-const EditUserInformation = () => {
+const EditUserInformationModal = () => {
+  const { hideModal } = useAppContext()
   const { singleUser, updateUserByAdmin, getAllUsers } = useUsersContext()
 
   const { _id } = singleUser
@@ -17,6 +19,7 @@ const EditUserInformation = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     updateUserByAdmin(_id, { firstName, lastName, phoneNumber, email, role })
+    hideModal()
     getAllUsers()
   }
 
@@ -62,12 +65,17 @@ const EditUserInformation = () => {
           value={role || ''}
           handleChange={(e) => setRole(e.target.value)}
         />
-        <button className="btn" type="submit">
-          Save changes
-        </button>
+        <div className="buttons">
+          <button className="btn" type="submit">
+            Submit
+          </button>
+          <button className="btn" type="button" onClick={hideModal}>
+            Close
+          </button>
+        </div>
       </form>
     </Wrapper>
   )
 }
 
-export default EditUserInformation
+export default EditUserInformationModal

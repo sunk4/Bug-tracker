@@ -20,10 +20,21 @@ const Wrapper = styled.section`
     border-bottom: 2px solid var(--grey-200);
     width: 80%;
   }
+  button {
+    cursor: pointer;
+    border: none;
+    background-color: var(--grey-50);
+    padding: 0.5rem;
+  }
+
+  .icon {
+    font-size: 1.2rem;
+    background-color: var(--grey-50);
+  }
   .buttons {
     align-self: center;
     justify-self: center;
-    padding-left: 5.5rem;
+    margin-left: 6rem;
   }
 `
 

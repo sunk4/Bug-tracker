@@ -21,6 +21,7 @@ const HeaderTicket = ({
           className="btn"
           data-modal="modal-create-ticket"
           onClick={displayModal}
+          type="button"
         >
           New Ticket
         </button>
