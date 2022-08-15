@@ -12,7 +12,7 @@ import { useTicketsContext } from '../../context/ticketsContext'
 import { Loading } from '../../components/Global'
 import { Link } from 'react-router-dom'
 import { useUsersContext } from '../../context/usersContext'
-import { Header } from '../../components/SharedLayout'
+import { Header } from '../../components/Global'
 
 const Dashboard = () => {
   const { showModal, displayModal, dataModal } = useAppContext()

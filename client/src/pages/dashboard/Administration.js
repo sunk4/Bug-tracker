@@ -3,7 +3,7 @@ import {
   AdministrationComponent,
   EditUserInformationModal,
 } from '../../components/Administration'
-import { Header } from '../../components/SharedLayout'
+import { Header } from '../../components/Global'
 import { useAppContext } from '../../context/appContext'
 
 const Administration = () => {
