@@ -18,8 +18,8 @@ const UsersContainer = ({ users }) => {
       <div>
         <h5>Name</h5>
         <h5>Role</h5>
-        <h5>Email</h5>
-        <h5>Number</h5>
+        <h5 className="hide">Email</h5>
+        <h5 className="hide">Number</h5>
         <h5>Actions</h5>
       </div>
       <div className="underline"></div>
@@ -31,8 +31,8 @@ const UsersContainer = ({ users }) => {
               {firstName} {lastName}
             </h5>
             <h5>{role}</h5>
-            <h5>{email}</h5>
-            <h5>{phoneNumber}</h5>
+            <h5 className="hide">{email}</h5>
+            <h5 className="hide">{phoneNumber}</h5>
             <div className="buttons">
               <button type="button" onClick={() => deleteUser(_id)}>
                 <AiFillDelete className="icon" />

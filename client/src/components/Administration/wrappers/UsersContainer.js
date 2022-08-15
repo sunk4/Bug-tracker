@@ -18,7 +18,7 @@ const Wrapper = styled.section`
 
   .underline {
     border-bottom: 2px solid var(--grey-200);
-    width: 80%;
+    width: 100%;
   }
   button {
     cursor: pointer;
@@ -35,6 +35,15 @@ const Wrapper = styled.section`
     align-self: center;
     justify-self: center;
     margin-left: 6rem;
+  }
+
+  @media (max-width: 992px) {
+    .hide {
+      display: none;
+    }
+    .buttons {
+      margin: 0;
+    }
   }
 `
 
