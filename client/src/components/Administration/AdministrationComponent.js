@@ -1,4 +1,4 @@
-import { UsersContainer, AdministrationTitle } from './'
+import { UsersContainer } from './'
 import { Loading } from '../Global'
 import { useEffect } from 'react'
 import { useUsersContext } from '../../context/usersContext'
@@ -18,10 +18,7 @@ const AdministrationComponent = () => {
 
   return (
     <Wrapper>
-      <AdministrationTitle />
-      {users.map((user) => {
-        return <UsersContainer key={user._id} {...user} />
-      })}
+      <UsersContainer users={users} />
     </Wrapper>
   )
 }

@@ -1,11 +1,5 @@
 import AdministrationComponent from './AdministrationComponent'
-import EditUserInformation from './EditUserInformation'
+import EditUserInformationModal from './EditUserInformationModal'
 import UsersContainer from './UsersContainer'
-import AdministrationTitle from './AdministrationTitle'
 
-export {
-  AdministrationComponent,
-  EditUserInformation,
-  UsersContainer,
-  AdministrationTitle,
-}
+export { AdministrationComponent, EditUserInformationModal, UsersContainer }

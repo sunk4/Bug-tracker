@@ -9,6 +9,7 @@ const DashboardHeader = ({ displayModal, showModal, dataModal }) => {
         onClick={displayModal}
         data-modal="modal-create-project"
         className="btn"
+        type="button"
       >
         New Project
       </button>
