@@ -15,7 +15,6 @@ const ModalNewProject = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (!projectName || !projectDescription) {
-      
     }
     createProject()
   }
@@ -37,7 +36,7 @@ const ModalNewProject = () => {
     <Wrapper>
       <h4>Add new project </h4>
       <Alert />
-      <form className="form">
+      <form>
         <FormRow
           labelText="Project Name"
           name="projectName"
@@ -57,12 +56,14 @@ const ModalNewProject = () => {
           Add team member
           <SelectComponent options={newProjectUsers} />
         </label>
-        <button className="btn" type="submit" onClick={handleSubmit}>
-          Submit
-        </button>
-        <button type="button" className="btn" onClick={hideModal}>
-          Close
-        </button>
+        <div className="buttons">
+          <button className="btn" type="submit" onClick={handleSubmit}>
+            Submit
+          </button>
+          <button type="button" className="btn" onClick={hideModal}>
+            Close
+          </button>
+        </div>
       </form>
     </Wrapper>
   )

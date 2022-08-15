@@ -26,7 +26,6 @@ const Wrapper = styled.section`
     gap: 0 2rem;
   }
 
-  @media screen {
-  }
+ 
 `
 export default Wrapper
