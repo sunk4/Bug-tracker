@@ -1,30 +1,46 @@
 import styled from 'styled-components'
 
 const Wrapper = styled.nav`
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
   align-items: center;
-  margin: 0.5rem 50% 0 8rem;
-  height: 10%;
+  padding: 0.8rem 4.5rem;
+  margin: 0 4rem;
 
-  .nav-links {
-    display: flex;
-    gap: 0 2rem;
+  ul {
+    display: grid;
+    grid-template-columns: 100px 100px;
   }
-  .nav-links li {
+
+  ul li {
+    list-style-type: none;
+  }
+  a {
+    text-decoration: none;
     font-size: 1.5rem;
-  }
-  li:hover {
-    text-decoration: underline;
+    font-family: var(--bodyFont);
+    letter-spacing: var(--letterSpacing);
+    color: var(--black);
   }
 
-  .active-home,
-  .active-about {
+  .active-home {
     color: var(--primary-500);
   }
 
+  .active-about {
+    color: var(--primary-500);
+  }
   .logo {
-    width: 250px;
+    width: 200px;
+    cursor: pointer;
+  }
+
+  @media (max-width: 991px) {
+    display: grid;
+    grid-template-columns: 1fr;
+    .logo {
+      display: none;
+    }
   }
 `
 
