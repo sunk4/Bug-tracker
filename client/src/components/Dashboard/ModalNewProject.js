@@ -17,6 +17,7 @@ const ModalNewProject = () => {
     if (!projectName || !projectDescription) {
     }
     createProject()
+    hideModal()
   }
 
   const handleProjectInput = (e) => {
@@ -34,9 +35,9 @@ const ModalNewProject = () => {
 
   return (
     <Wrapper>
-      <h4>Add new project </h4>
-      <Alert />
       <form>
+        <h4>Add new project </h4>
+        <Alert />
         <FormRow
           labelText="Project Name"
           name="projectName"
