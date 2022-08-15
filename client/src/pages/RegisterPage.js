@@ -19,7 +19,8 @@ const initialState = {
 const RegisterPage = () => {
   const [values, setValues] = useState(initialState)
 
-  const { registerUser, isLoadingAuth, user, loginUser } = useAuthContext()
+  const { registerUser, isLoadingAuth, user, loginUser, clearValuesAuth } =
+    useAuthContext()
 
   const navigate = useNavigate()
 
@@ -57,25 +58,24 @@ const RegisterPage = () => {
     if (user) {
       setTimeout(() => {
         navigate('/')
+        clearValuesAuth()
       }, 2000)
     }
-  }, [navigate, user])
+  }, [navigate, user, clearValuesAuth])
 
   return (
     <Wrapper>
-      <form className="form" onSubmit={onSubmit}>
+      <form onSubmit={onSubmit}>
         <div>
-          <p>
-            Please login with this username for admin auth - name:
-            <span> roman.trnka@gmail.com </span>
-            password: <span> secret</span> or register, but u will not have
-            access to everything. Thank you
-          </p>
-        </div>
-        <div className="header-form">
           <Logo />
           <h3>{values.isMember ? 'Login' : 'Register'}</h3>
         </div>
+        <p className="temp-paragraph">
+          Please login with this username for admin auth - name:
+          <span> roman.trnka@gmail.com </span>
+          password: <span> secret</span> or register, but u will not have access
+          to everything. Thank you
+        </p>
         <Alert />
 
         {!values.isMember && (
@@ -124,15 +124,15 @@ const RegisterPage = () => {
         />
 
         <button
+          className="btn login-btn"
           type="submit"
-          className="btn btn-block"
           disabled={isLoadingAuth}
         >
-          {values.isMember ? 'Login' : 'Register'}
+          Submit
         </button>
         <p>
           {values.isMember ? 'Not a member yet?' : 'Already a member?'}
-          <button type="button" onClick={toggleMember} className="member-btn">
+          <button className="isMember" type="button" onClick={toggleMember}>
             {values.isMember ? 'Register' : 'Login'}
           </button>
         </p>

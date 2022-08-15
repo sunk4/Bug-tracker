@@ -11,6 +11,7 @@ import {
   LOGOUT_USER_BEGIN,
   LOGOUT_USER_SUCCESS,
   LOGOUT_USER_ERROR,
+  CLEAR_VALUES_AUTH,
 } from '../actions/authActions.js'
 
 const reducer = (state, action) => {
@@ -64,6 +65,14 @@ const reducer = (state, action) => {
       showAlertAuth: true,
       alertTypeAuth: 'danger',
       alertTextAuth: action.payload.msg,
+    }
+  }
+
+  if (action.type === CLEAR_VALUES_AUTH) {
+    return {
+      ...state,
+      alertTypeAuth: '',
+      alertTextAuth: '',
     }
   }
 

@@ -6,14 +6,21 @@ const Wrapper = styled.footer`
   bottom: 0;
   height: 3rem;
   width: 100%;
+  padding-bottom: 4rem;
 
   h5 {
+    font-family: var(--bodyFont);
+    letter-spacing: var(--letterSpacing);
     text-align: center;
+    font-size: 1rem;
   }
 
   span {
     color: var(--primary-500);
-    margin: 0.4rem;
+  }
+
+  @media (max-width: 992px) {
+    position: static;
   }
 `
 

@@ -1,5 +1,4 @@
 import LandingImg from '../assets/images/Landing-img.png'
-
 import { Footer, Navbar } from '../components/Global'
 import { Link } from 'react-router-dom'
 import Wrapper from '../assets/wrappers/LandingPage'
@@ -32,13 +31,12 @@ const LandingPage = () => {
             development projects. It may be regarded as a type of issue tracking
             system.
           </p>
-          <Link to="/register" className="btn">
+          <Link className="btn" to="/register">
             Login/Register
           </Link>
         </div>
-        <div>
-          <img src={LandingImg} alt="programmer" />
-        </div>
+
+        <img className="main-image" src={LandingImg} alt="programmer" />
       </section>
 
       <Footer />

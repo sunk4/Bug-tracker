@@ -1,11 +1,11 @@
 const FormRow = ({ type, name, value, handleChange, labelText }) => {
   return (
-    <div className="form-row">
-      <label htmlFor={name} className="form-label">
+    <div>
+      <label className="form-label" htmlFor={name}>
         {labelText || name}
       </label>
       <input
-        className="form-input"
+        className="form-input "
         type={type}
         value={value}
         name={name}
