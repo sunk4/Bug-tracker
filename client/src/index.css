@@ -87,6 +87,7 @@ body {
 .btn:hover {
   background: var(--primary-700);
   box-shadow: var(--shadow-3);
+  cursor: pointer;
 }
 
 .alert {
