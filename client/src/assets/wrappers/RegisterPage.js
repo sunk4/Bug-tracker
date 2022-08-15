@@ -1,34 +1,28 @@
 import styled from 'styled-components'
 
-const Wrapper = styled.section`
-  .header-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+const Wrapper = styled.main`
+  display: grid;
+  justify-items: center;
+
+  form {
+    background-color: var(--white);
+    display: grid;
+    justify-items: center;
+    border: 1px solid black;
   }
+
   .logo {
-    width: 80%;
+    width: 300px;
   }
 
   h3 {
-    color: var(--primary-500);
-    text-decoration: underline;
-  }
-
-  .member-btn {
-    background: transparent;
-    border: transparent;
-    color: var(--primary-500);
-    cursor: pointer;
+    font-size: 2rem;
+    font-family: var(--headingFont);
     letter-spacing: var(--letterSpacing);
-  }
-
-  p {
+    color: var(--primary-500);
     text-align: center;
   }
-
-  span {
-    color: red;
+  p {
   }
 `
 
