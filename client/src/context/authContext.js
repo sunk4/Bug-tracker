@@ -15,6 +15,7 @@ import {
   LOGOUT_USER_BEGIN,
   LOGOUT_USER_SUCCESS,
   LOGOUT_USER_ERROR,
+  CLEAR_VALUES_AUTH,
 } from '../actions/authActions.js'
 
 const initialState = {
@@ -62,6 +63,10 @@ const AuthProvider = ({ children }) => {
     }
   }
 
+  const clearValuesAuth = () => {
+    dispatch({ type: CLEAR_VALUES_AUTH })
+  }
+
   const showMe = async () => {
     dispatch({ type: SHOW_ME_BEGIN })
     try {
@@ -93,7 +98,14 @@ const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ ...state, registerUser, loginUser, showMe, logoutUser }}
+      value={{
+        ...state,
+        registerUser,
+        loginUser,
+        showMe,
+        logoutUser,
+        clearValuesAuth,
+      }}
     >
       {children}
     </AuthContext.Provider>

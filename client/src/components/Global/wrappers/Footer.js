@@ -18,6 +18,10 @@ const Wrapper = styled.footer`
   span {
     color: var(--primary-500);
   }
+
+  @media (max-width: 992px) {
+    position: static;
+  }
 `
 
 export default Wrapper

@@ -8,8 +8,8 @@ const AboutPage = () => {
   return (
     <Wrapper>
       <Navbar />
-      <main className="about-main">
-        <section className="team-member-section">
+      <section>
+        <div className="team-member">
           <img className="team-member-img" src={googleImg} alt="google" />
           <h4>Google</h4>
           <p>
@@ -18,8 +18,8 @@ const AboutPage = () => {
             and he is like, did you mean ..... And I am like, that's exactly
             what I meant. I love google, we are inseparable
           </p>
-        </section>
-        <section className="team-member-section">
+        </div>
+        <div className="team-member">
           <img className="team-member-img" src={meImg} alt="me" />
           <h4>Roman Trnka</h4>
           <p>
@@ -27,16 +27,16 @@ const AboutPage = () => {
             Bratislava and passionate software engineer who will do whatever it
             takes to find and answer.
           </p>
-        </section>
-        <section className="team-member-section">
+        </div>
+        <div className="team-member">
           <img className="team-member-img" src={godImg} alt="god" />
           <h4>God</h4>
           <p>
             When I wrote this code, only God and I understood what it did.
             Now... Only god knows.
           </p>
-        </section>
-      </main>
+        </div>
+      </section>
       <Footer />
     </Wrapper>
   )

@@ -24,21 +24,6 @@ const Wrapper = styled.main`
     margin-bottom: 2rem;
   }
 
-  .btn {
-    background-color: var(--primary-500);
-    border-radius: 4px;
-    color: var(--white);
-    padding: 0.5rem 0.75rem;
-    font-family: var(--bodyFont);
-    text-decoration: none;
-    transition: var(--transition);
-    letter-spacing: var(--letterSpacing);
-  }
-  .btn:hover {
-    background: var(--primary-700);
-    box-shadow: var(--shadow-3);
-  }
-
   .main-image {
     display: none;
   }
