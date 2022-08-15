@@ -6,15 +6,8 @@ const Wrapper = styled.section`
   width: calc(100% - 12rem);
   padding: 1rem 2rem;
 
-  button {
-    display: grid;
-    justify-content: end;
-    align-items: end;
-    justify-self: end;
-    align-self: end;
-  }
-
-  div {
+  .project-title,
+  .project-info {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }

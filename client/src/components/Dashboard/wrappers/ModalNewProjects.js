@@ -7,7 +7,6 @@ const Wrapper = styled.section`
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 999;
-  display: grid;
   justify-content: center;
   width: var(--fixed-width);
   padding: 2rem;
@@ -24,6 +23,8 @@ const Wrapper = styled.section`
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0 2rem;
+  }
+  button {
   }
 `
 export default Wrapper

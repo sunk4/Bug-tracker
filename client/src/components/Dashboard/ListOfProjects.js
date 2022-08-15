@@ -12,12 +12,12 @@ const ListOfProjects = ({
       <button
         onClick={displayModal}
         data-modal="modal-create-project"
-        className="btn"
+        className="btn btn-new-project"
         type="button"
       >
         New Project
       </button>
-      <div>
+      <div className="project-title">
         <h5>Project</h5>
         <h5>Description</h5>
         <h5>Created by</h5>
