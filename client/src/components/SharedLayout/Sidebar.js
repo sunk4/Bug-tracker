@@ -4,35 +4,44 @@ import { FaTicketAlt } from 'react-icons/fa'
 import { GrUserAdmin } from 'react-icons/gr'
 import Wrapper from './wrappers/Sidebar'
 import { useAuthContext } from '../../context/authContext'
+import { Logo } from '../Global'
 
 const Sidebar = () => {
-  const { user } = useAuthContext()
+  const { user, logoutUser } = useAuthContext()
 
   return (
     <Wrapper>
-      <div className="sidebar-link">
-        <NavLink
-          to="/"
-          className={({ isActive }) => (isActive ? 'active' : null)}
-        >
-          <AiOutlineFundProjectionScreen className="icon" />
-          Dashboard
-        </NavLink>
-      </div>
-      <div className="sidebar-link">
-        <NavLink to="/tickets">
-          <FaTicketAlt className="icon" />
-          Tickets
-        </NavLink>
-      </div>
-      {(user.role === 'admin' || user.role === 'senior') && (
-        <div className="sidebar-link">
-          <NavLink to="/administration">
-            <GrUserAdmin className="icon" />
-            Administration
+      <Logo />
+      <ul>
+        <li>
+          <NavLink
+            to="/"
+            className={({ isActive }) => (isActive ? 'active' : null)}
+          >
+            <AiOutlineFundProjectionScreen className="icon" />
+            Dashboard
           </NavLink>
-        </div>
-      )}
+        </li>
+        <li>
+          <NavLink to="/tickets">
+            <FaTicketAlt className="icon" />
+            Tickets
+          </NavLink>
+        </li>
+        {(user.role === 'admin' || user.role === 'senior') && (
+          <li>
+            <NavLink to="/administration">
+              <GrUserAdmin className="icon" />
+              Administration
+            </NavLink>
+          </li>
+        )}
+        <li>
+          <button type="button" className="btn" onClick={logoutUser}>
+            Logout
+          </button>
+        </li>
+      </ul>
     </Wrapper>
   )
 }

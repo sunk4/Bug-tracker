@@ -6,6 +6,11 @@ const Wrapper = styled.main`
     align-items: center;
     flex-direction: column;
   }
+  h4 {
+    font-family: var(--bodyFont);
+    font-size: 1.2rem;
+    letter-spacing: var(--letterSpacing);
+  }
 
   img {
     width: 35%;
