@@ -14,11 +14,12 @@ const Wrapper = styled.section`
   }
 
   h4 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 
   h5 {
     font-size: 1rem;
+    text-align: center;
   }
 
   .ticket-members {
@@ -27,7 +28,7 @@ const Wrapper = styled.section`
   }
   .underline {
     border-bottom: 2px solid var(--grey-200);
-    width: 85%;
+    width: 100%;
   }
 `
 

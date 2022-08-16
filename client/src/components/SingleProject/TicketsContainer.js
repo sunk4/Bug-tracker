@@ -1,6 +1,4 @@
-import { useEffect } from 'react'
 import { useAppContext } from '../../context/appContext'
-import { useUsersContext } from '../../context/usersContext'
 import { useTicketsContext } from '../../context/ticketsContext'
 import { AiFillDelete } from 'react-icons/ai'
 import { FiEdit } from 'react-icons/fi'
@@ -20,13 +18,8 @@ const TicketsContainerInProject = ({
   ticketId,
 }) => {
   const { displayModal } = useAppContext()
-  const { getSingleUser, singleUser } = useUsersContext()
-  const { deleteTicket, getSingleTicket } = useTicketsContext()
 
-  // useEffect(() => {
-  //   getSingleUser(userId)
-  //   // eslint-disable-next-line
-  // }, [])
+  const { deleteTicket, getSingleTicket } = useTicketsContext()
 
   return (
     <Wrapper>
@@ -75,6 +68,7 @@ const TicketsContainerInProject = ({
             <h5>
               {firstName} {lastName}
             </h5>
+
             <div>
               <div className="buttons">
                 <button type="button" className="btn-delete-edit">

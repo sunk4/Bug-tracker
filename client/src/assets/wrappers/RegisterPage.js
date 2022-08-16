@@ -57,6 +57,7 @@ const Wrapper = styled.main`
     letter-spacing: var(--letterSpacing);
     font-size: 1.1rem;
     background-color: var(--white);
+    cursor: pointer;
   }
 `
 

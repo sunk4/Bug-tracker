@@ -10,7 +10,6 @@ import { useTicketsContext } from '../../context/ticketsContext'
 import { useProjectContext } from '../../context/projectContext'
 import { useEffect } from 'react'
 import { Header } from '../../components/Global'
-import { useState } from 'react'
 
 const SingleProject = () => {
   const { id } = useParams()
@@ -18,7 +17,6 @@ const SingleProject = () => {
   const { getSingleProject, singleProject, teamMembersInProject } =
     useProjectContext()
   const { ticketsAll, singleTicket } = useTicketsContext()
-  const [showSingleTicket, setShowSingleTicket] = useState(false)
 
   const { _id: ticketId } = singleTicket
 
