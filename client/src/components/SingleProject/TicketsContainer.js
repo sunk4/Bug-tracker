@@ -30,7 +30,7 @@ const TicketsContainerInProject = ({
 
   return (
     <Wrapper>
-      <div>
+      <div className="main-title">
         <h4>Tickets</h4>
         <button
           className="btn"
@@ -48,12 +48,14 @@ const TicketsContainerInProject = ({
         {showModal && dataModal === 'modal-edit-project' && (
           <UpdateTicketModal projectName={projectName} ticketId={ticketId} />
         )}
-
+      </div>
+      <div className="ticket-title">
         <h5>Title</h5>
         <h5>Description</h5>
-        <h5>Name</h5>
+        <h5>Author</h5>
         <h5>Actions</h5>
       </div>
+      <div className="underline"></div>
       {ticketsAll.map((ticket) => {
         const {
           ticketTitle,
@@ -63,22 +65,32 @@ const TicketsContainerInProject = ({
           lastName,
         } = ticket
         return (
-          <div key={ticketId} onClick={() => getSingleTicket(ticketId)}>
+          <div
+            key={ticketId}
+            onClick={() => getSingleTicket(ticketId)}
+            className="ticket-info"
+          >
             <h5>{ticketTitle}</h5>
             <h5>{ticketDescription}</h5>
             <h5>
               {firstName} {lastName}
             </h5>
             <div>
-              <button type="button">
-                <AiFillDelete onClick={() => deleteTicket(ticketId)} />
-              </button>
-              <button type="button">
-                <FiEdit
-                  data-modal="modal-edit-project"
-                  onClick={displayModal}
-                />
-              </button>
+              <div className="buttons">
+                <button type="button" className="btn-delete-edit">
+                  <AiFillDelete
+                    className="icon"
+                    onClick={() => deleteTicket(ticketId)}
+                  />
+                </button>
+                <button type="button" className="btn-delete-edit">
+                  <FiEdit
+                    className="icon"
+                    data-modal="modal-edit-project"
+                    onClick={displayModal}
+                  />
+                </button>
+              </div>
             </div>
           </div>
         )
