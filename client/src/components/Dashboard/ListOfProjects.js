@@ -42,6 +42,7 @@ const ListOfProjects = ({
           </Link>
         )
       })}
+      <div className="underline"></div>
     </Wrapper>
   )
 }

@@ -4,8 +4,6 @@ import { ListOfProjects, ChartComponent } from '../../components/Dashboard'
 import { useAppContext } from '../../context/appContext'
 import { useProjectContext } from '../../context/projectContext'
 import { useTicketsContext } from '../../context/ticketsContext'
-import { Loading } from '../../components/Global'
-
 import { useUsersContext } from '../../context/usersContext'
 import { Header } from '../../components/Global'
 
@@ -13,14 +11,13 @@ const Dashboard = () => {
   const { showModal, displayModal, dataModal } = useAppContext()
   const { getAllUsers } = useUsersContext()
   const {
-    isLoadingTicket,
     getAllTickets,
     statsTicketPriority,
     statsTicketStatus,
     statsTicketType,
     getStatsTickets,
   } = useTicketsContext()
-  const { getAllProjects, projectsAll, isLoadingProject } = useProjectContext()
+  const { getAllProjects, projectsAll } = useProjectContext()
 
   useEffect(() => {
     getStatsTickets()

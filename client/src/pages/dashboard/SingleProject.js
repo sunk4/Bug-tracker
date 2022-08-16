@@ -11,6 +11,7 @@ import { useAppContext } from '../../context/appContext'
 import { useTicketsContext } from '../../context/ticketsContext'
 import { useProjectContext } from '../../context/projectContext'
 import { useEffect } from 'react'
+import { Header } from '../../components/Global'
 
 const SingleProject = () => {
   const { id } = useParams()
@@ -18,7 +19,7 @@ const SingleProject = () => {
   const { getSingleProject, singleProject, teamMembersInProject } =
     useProjectContext()
   const { ticketsAll, singleTicket } = useTicketsContext()
-
+  
   const [showSingleTicket, setShowSingleTicket] = useState(false)
 
   const { _id: ticketId } = singleTicket
@@ -32,44 +33,26 @@ const SingleProject = () => {
 
   return (
     <Wrapper>
-      <h4 className="title">{projectName} </h4>
-      <div className="tickets-container">
-        <div className="team">
-          <HeaderProject
-            showModal={showModal}
-            displayModal={displayModal}
-            dataModal={dataModal}
-            projectName={projectName}
-            teamMembersInProject={teamMembersInProject}
-          />
-        </div>
-        <div className="ticket">
-          <HeaderTicket
-            {...singleProject}
-            displayModal={displayModal}
-            showModal={showModal}
-            dataModal={dataModal}
-            projectName={projectName}
-            ticketId={ticketId}
-          />
-          {ticketsAll.map((ticket) => {
-            return (
-              <button
-                type="button"
-                className="none-button"
-                onClick={() => setShowSingleTicket(true)}
-              >
-                <TicketsContainer key={ticket._id} {...ticket} />
-              </button>
-            )
-          })}
-        </div>
-        {showSingleTicket && (
-          <div className="single-ticket">
-            <SingleTicketInfo {...singleTicket} />
-          </div>
-        )}
-      </div>
+      <Header title={projectName} />
+      <HeaderProject
+        showModal={showModal}
+        displayModal={displayModal}
+        dataModal={dataModal}
+        projectName={projectName}
+        teamMembersInProject={teamMembersInProject}
+      />
+      <HeaderTicket
+        {...singleProject}
+        displayModal={displayModal}
+        showModal={showModal}
+        dataModal={dataModal}
+        projectName={projectName}
+        ticketId={ticketId}
+      />
+      <button type="button" onClick={() => setShowSingleTicket(true)}>
+        <TicketsContainer ticketsAll={ticketsAll} />
+      </button>
+      {showSingleTicket && <SingleTicketInfo {...singleTicket} />}
     </Wrapper>
   )
 }
