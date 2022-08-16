@@ -5,8 +5,7 @@ import { useTicketsContext } from '../../context/ticketsContext'
 import { AiFillDelete } from 'react-icons/ai'
 import { FiEdit } from 'react-icons/fi'
 import Wrapper from './wrappers/TicketsContainer'
-import { useState } from 'react'
-import { SingleTicketInfo } from '../../components/SingleProject'
+
 import {
   CreateTicketModal,
   UpdateTicketModal,
@@ -14,7 +13,6 @@ import {
 
 const TicketsContainerInProject = ({
   ticketsAll,
-  singleTicket,
 
   showModal,
   dataModal,
@@ -24,8 +22,6 @@ const TicketsContainerInProject = ({
   const { displayModal } = useAppContext()
   const { getSingleUser, singleUser } = useUsersContext()
   const { deleteTicket, getSingleTicket } = useTicketsContext()
-  const [showSingleTicket, setShowSingleTicket] = useState(false)
-  console.log()
 
   // useEffect(() => {
   //   getSingleUser(userId)
@@ -68,13 +64,11 @@ const TicketsContainerInProject = ({
         } = ticket
         return (
           <div key={ticketId} onClick={() => getSingleTicket(ticketId)}>
-            <button type="button" onClick={() => setShowSingleTicket(true)}>
-              <h5>{ticketTitle}</h5>
-              <h5>{ticketDescription}</h5>
-              <h5>
-                {firstName} {lastName}
-              </h5>
-            </button>
+            <h5>{ticketTitle}</h5>
+            <h5>{ticketDescription}</h5>
+            <h5>
+              {firstName} {lastName}
+            </h5>
             <div>
               <button type="button">
                 <AiFillDelete onClick={() => deleteTicket(ticketId)} />
@@ -89,7 +83,6 @@ const TicketsContainerInProject = ({
           </div>
         )
       })}
-      {showSingleTicket && <SingleTicketInfo {...singleTicket} />}
     </Wrapper>
   )
 }

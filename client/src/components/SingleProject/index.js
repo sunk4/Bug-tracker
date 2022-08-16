@@ -5,7 +5,6 @@ import UpdateTicketModal from './UpdateTicketModal'
 import SelectComponent from './SelectComponent'
 import SingleTicketInfo from './SingleTicketInfo'
 import HeaderProject from './HeaderProject'
-import HeaderTicket from './HeaderTicket'
 
 export {
   AddMemberModal,
@@ -15,5 +14,4 @@ export {
   SelectComponent,
   SingleTicketInfo,
   HeaderProject,
-  HeaderTicket,
 }
