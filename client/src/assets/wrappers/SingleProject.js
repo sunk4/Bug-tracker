@@ -3,6 +3,7 @@ import styled from 'styled-components'
 const Wrapper = styled.main`
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 0 2rem;
   position: relative;
   left: 12rem;
   width: calc(100% - 12rem);
