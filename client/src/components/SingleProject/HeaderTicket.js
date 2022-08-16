@@ -10,32 +10,29 @@ const HeaderTicket = ({
   showModal,
   dataModal,
   projectName,
-
   ticketId,
 }) => {
   return (
     <Wrapper>
-      <div className="header">
-        <h5>Tickets</h5>
-        <button
-          className="btn"
-          data-modal="modal-create-ticket"
-          onClick={displayModal}
-          type="button"
-        >
-          New Ticket
-        </button>
-      </div>
-      <div>
-        {showModal && dataModal === 'modal-create-ticket' && (
-          <CreateTicketModal projectName={projectName} />
-        )}
+      <h4>Tickets</h4>
+      <button
+        className="btn"
+        data-modal="modal-create-ticket"
+        onClick={displayModal}
+        type="button"
+      >
+        New Ticket
+      </button>
 
-        {showModal && dataModal === 'modal-edit-project' && (
-          <UpdateTicketModal projectName={projectName} ticketId={ticketId} />
-        )}
-      </div>
-      <div className="titles">
+      {showModal && dataModal === 'modal-create-ticket' && (
+        <CreateTicketModal projectName={projectName} />
+      )}
+
+      {showModal && dataModal === 'modal-edit-project' && (
+        <UpdateTicketModal projectName={projectName} ticketId={ticketId} />
+      )}
+
+      <div>
         <h5>Ticket title</h5>
         <h5>Description</h5>
         <h5>Ticket author</h5>
