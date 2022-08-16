@@ -30,16 +30,22 @@ const AddMemberModal = () => {
       <h4>Add team member</h4>
       <form className="form">
         <SelectComponent options={usersNotInProject} />
-        <button className="btn btn-block" type="submit" onClick={handleSubmit}>
-          Submit
-        </button>
-        <button
-          type="button"
-          className="btn btn-block btn-danger"
-          onClick={hideModal}
-        >
-          Close
-        </button>
+        <div className="buttons">
+          <button
+            className="btn btn-block"
+            type="submit"
+            onClick={handleSubmit}
+          >
+            Submit
+          </button>
+          <button
+            type="button"
+            className="btn btn-block btn-danger"
+            onClick={hideModal}
+          >
+            Close
+          </button>
+        </div>
       </form>
     </Wrapper>
   )

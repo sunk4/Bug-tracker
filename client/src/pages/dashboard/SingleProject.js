@@ -11,6 +11,7 @@ import { useAppContext } from '../../context/appContext'
 import { useTicketsContext } from '../../context/ticketsContext'
 import { useProjectContext } from '../../context/projectContext'
 import { useEffect } from 'react'
+import { Header } from '../../components/Global'
 
 const SingleProject = () => {
   const { id } = useParams()
@@ -32,7 +33,7 @@ const SingleProject = () => {
 
   return (
     <Wrapper>
-      <h4 className="title">{projectName} </h4>
+      <Header title={projectName} />
       <div className="tickets-container">
         <div className="team">
           <HeaderProject

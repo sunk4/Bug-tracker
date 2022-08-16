@@ -10,7 +10,7 @@ const HeaderTicket = ({
   showModal,
   dataModal,
   projectName,
-  singleProject,
+
   ticketId,
 }) => {
   return (
@@ -28,7 +28,7 @@ const HeaderTicket = ({
       </div>
       <div>
         {showModal && dataModal === 'modal-create-ticket' && (
-          <CreateTicketModal {...singleProject} />
+          <CreateTicketModal projectName={projectName} />
         )}
 
         {showModal && dataModal === 'modal-edit-project' && (

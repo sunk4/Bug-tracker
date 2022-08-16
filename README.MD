@@ -12,7 +12,6 @@ Project in Action - [BUG-Tracker](https://bug-tracker-interview.herokuapp.com/)
 
 #### TODOS
 ```sh
-styling - mobile, laptop
 alertText on FE - after submit or errors from BE
 add typescript
 tickets also only per user

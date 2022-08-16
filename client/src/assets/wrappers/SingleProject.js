@@ -28,8 +28,9 @@ const Wrapper = styled.section`
   }
 
   .single-ticket {
-    display: grid;
-    grid-template-columns: 1fr;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 3;
   }
 
   .none-button {

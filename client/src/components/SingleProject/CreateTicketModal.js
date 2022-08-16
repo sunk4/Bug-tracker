@@ -34,41 +34,41 @@ const CreateTicketModal = ({ projectName }) => {
     <Wrapper>
       <form className="form">
         <h4>{projectName}</h4>
-        <div>
-          <FormRow
-            type="text"
-            name="ticketTitle"
-            value={ticketTitle}
-            handleChange={handleTicketInput}
-          />
-          <FormRow
-            type="text"
-            name="ticketDescription"
-            value={ticketDescription}
-            handleChange={handleTicketInput}
-          />
 
-          <FormRowSelect
-            name="ticketPriority"
-            value={ticketPriority}
-            handleChange={handleTicketInput}
-            list={[...ticketPriorityOptions]}
-          />
+        <FormRow
+          type="text"
+          name="ticketTitle"
+          value={ticketTitle}
+          handleChange={handleTicketInput}
+        />
+        <FormRow
+          type="text"
+          name="ticketDescription"
+          value={ticketDescription}
+          handleChange={handleTicketInput}
+        />
 
-          <FormRowSelect
-            name="ticketStatus"
-            value={ticketStatus}
-            handleChange={handleTicketInput}
-            list={[...ticketStatusOptions]}
-          />
+        <FormRowSelect
+          name="ticketPriority"
+          value={ticketPriority}
+          handleChange={handleTicketInput}
+          list={[...ticketPriorityOptions]}
+        />
 
-          <FormRowSelect
-            name="ticketType"
-            value={ticketType}
-            handleChange={handleTicketInput}
-            list={[...ticketTypeOptions]}
-          />
+        <FormRowSelect
+          name="ticketStatus"
+          value={ticketStatus}
+          handleChange={handleTicketInput}
+          list={[...ticketStatusOptions]}
+        />
 
+        <FormRowSelect
+          name="ticketType"
+          value={ticketType}
+          handleChange={handleTicketInput}
+          list={[...ticketTypeOptions]}
+        />
+        <div className="buttons">
           <button
             type="submit"
             className="btn btn-block"
