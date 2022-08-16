@@ -22,7 +22,10 @@ project - delete, update on FE
 #### Run The App Locally
 
 ```sh
-npm run install-dependencies
+ 1. npm i in main folder
+ 2. cd client
+ 3. npm i
+ 
 ```
 
 - rename .env.temp to .env
