@@ -9,7 +9,15 @@ const Wrapper = styled.section`
   .ticket-info {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    align-items: center;
   }
+
+  .ticket-info:hover {
+    cursor: pointer;
+    background-color: var(--grey-200);
+  }
+
   h4,
   h5 {
     font-family: var(--bodyFont);
@@ -18,11 +26,12 @@ const Wrapper = styled.section`
   }
 
   h4 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 
   h5 {
     font-size: 1rem;
+    text-align: center;
   }
 
   .underline {
@@ -41,10 +50,9 @@ const Wrapper = styled.section`
     font-size: 1.2rem;
     background-color: var(--grey-50);
   }
+
   .buttons {
-    align-self: center;
-    justify-self: center;
-    margin-left: 6rem;
+    margin-left: 3.5rem;
   }
 `
 export default Wrapper

@@ -75,6 +75,7 @@ const TicketsContainerInProject = ({
             <h5>
               {firstName} {lastName}
             </h5>
+
             <div>
               <div className="buttons">
                 <button type="button" className="btn-delete-edit">
