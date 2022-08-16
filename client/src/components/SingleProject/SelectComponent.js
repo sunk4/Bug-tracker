@@ -14,6 +14,7 @@ const SelectComponent = ({ options }) => {
       components={animatedComponents}
       isMulti
       options={options}
+      className="form-select"
     />
   )
 }

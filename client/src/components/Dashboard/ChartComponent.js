@@ -1,4 +1,5 @@
 import { PieChart, Pie, Legend, Cell, ResponsiveContainer } from 'recharts'
+import Wrapper from './wrappers/ChartComponent'
 
 const PieChartComponent = ({ data, name }) => {
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042']
@@ -30,7 +31,7 @@ const PieChartComponent = ({ data, name }) => {
   }
 
   return (
-    <div>
+    <Wrapper>
       <h5>{name}</h5>
       <hr />
       <div>
@@ -57,7 +58,7 @@ const PieChartComponent = ({ data, name }) => {
           </PieChart>
         </ResponsiveContainer>
       </div>
-    </div>
+    </Wrapper>
   )
 }
 export default PieChartComponent

@@ -53,7 +53,7 @@ const ModalNewProject = () => {
           value={projectDescription}
           handleChange={handleProjectInput}
         />
-        <label>
+        <label className="form-label ">
           Add team member
           <SelectComponent options={newProjectUsers} />
         </label>
