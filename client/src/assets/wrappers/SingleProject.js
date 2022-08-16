@@ -8,9 +8,5 @@ const Wrapper = styled.main`
   left: 12rem;
   width: calc(100% - 12rem);
   padding: 1rem 2rem;
-
-  @media (max-width: 992px) {
-    grid-template-columns: 1fr;
-  }
 `
 export default Wrapper
